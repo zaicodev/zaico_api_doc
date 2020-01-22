@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "aglio": "^2.3.0",
+    "replace": "^1.1.1"
+  },
+  "scripts": {
+    "build":"yarn aglio -i api.md -o zaico-api-doc.html"
+  }
+}
