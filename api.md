@@ -2,7 +2,8 @@ FORMAT: 1A
 HOST: https://web.zaico.co.jp
  
 # ZAICO API Document
-このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。
+このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。  
+2020年1月22日更新
 
 # Group 認証
 ## 認証について
@@ -257,3 +258,324 @@ Authorization: Bearer YOUR_TOKEN_HERE
 + status: `error` ( string ) - ステータス
 + message: `error message` ( string ) - エラー内容
 
+
+# Group 納品データ
+
+## 納品データ一覧取得 [/api/v1/packing_slips/]
+### 納品データ一覧取得 [GET]
+#### 処理概要
+* 自分のアカウントに登録されている納品データのすべてを返します
+* 納品データが1件も無い場合は、空の配列を返します
+* 各納品データの項目について以下のようになります
+  * id : 納品データID
+  * num : 納品データ番号（ユーザーが任意に設定できる番号）
+  * customer_name : 取引先名
+  * status : 納品データの状態
+    * 以下の2つのどちらかが設定されています
+    * before_delivery : 納品前
+    * completed_delivery : 納品済み
+  * total_amount : 納品データの合計金額
+  * delivery_date : 納品日
+  * estimated_delivery_date : 納品予定日
+    * この納品予定日は納品データの物品のうち、最も早い納品予定日を表示します
+  * created_at : 納品データ作成日
+  * updated_at : 納品データ更新日
+  * deliveries : 納品データに登録している在庫データ一覧
+    * inventory_id : 在庫データID
+    * title : 物品名
+    * quantity : 納品数量
+    * unit : 単位
+    * unit_price : 納品単価
+    * status : 状態
+      * 以下の2つのどちらかが設定されています
+      * before_delivery : 納品前
+      * completed_delivery : 納品済み
+    * delivery_date : 納品日
+    * estimated_delivery_date : 納品予定日
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
++ Response 200 (application/json)
+    + Attributes (array)
+        + ()
+            + id: 10 (number)
+            + num: 100 (string)
+            + customer_name: 株式会社ZAICO (string) - 取引先名
+            + status: `completed_delivery` (string) - 状態
+            + total_amount: 1000 (number)
+            + delivery_date: `2019/09/01` (string) - 納品日
+            + estimated_delivery_date: `2019/09/01` (string) - 納品日
+            + created_at: `2018-03-27T09:38:19+09:00`
+            + updated_at: `2018-03-27T09:38:19+09:00`
+            + deliveries (array)
+                + ()
+                    + inventory_id: 1
+                    + title: 掃除機 (string) - 物品名
+                    + quantity: 3 (string) - 納品数量
+                    + unit: 台 (string) - 単位
+                    + unit_price: 100 (string) - 納品単価
+                    + status: completed_delivery (string)
+                    + delivery_date: 2019/09/01 (string)
+                    + estimated_delivery_date: null (string)
+                + ()
+                    + inventory_id: 1
+                    + title: 掃除機 (string) - 物品名
+                    + quantity: 3 (string) - 納品数量
+                    + unit: 台 (string) - 単位
+                    + unit_price: 100 (string) - 納品単価
+                    + status: completed_delivery (string)
+                    + delivery_date: 2019/09/01 (string)
+                    + estimated_delivery_date: null (string)
+        + ()
+            + id: 11 (number)
+            + num: 1001 (string)
+            + customer_name: 株式会社ZAICO (string) - 取引先名
+            + status: `before_delivery` (string) - 状態
+            + total_amount: 1000 (number)
+            + delivery_date: `2019/09/01` (string) - 納品日
+            + estimated_delivery_date: `2019/09/01` (string) - 納品予定日
+            + created_at: `2018-03-27T09:38:19+09:00`
+            + updated_at: `2018-03-27T09:38:19+09:00`
+            + deliveries (array)
+                + ()
+                    + inventory_id: 5
+                    + title: 掃除機 (string) - 物品名
+                    + quantity: 3 (string) - 納品数量
+                    + unit: 台 (string) - 単位
+                    + unit_price: 100 (string) - 納品単価
+                    + status: completed_delivery
+                    + delivery_date: 2019/09/01 
+                    + estimated_delivery_date: null
+
+
+## 納品データ作成 [/api/v1/packing_slips/]
+### 納品データ作成 [POST]
+#### 処理概要
+
+* 納品データを作成します
+* パースできないJSONを送るとエラーを返します
+* 登録できる項目について
+    * num : 納品データ番号（ユーザーが任意に設定できる番号）
+    * customer_name : 取引先名
+    * status : 納品データの状態
+        * 以下の2つのどちらかを指定してください
+        * 納品前の場合は before_delivery
+        * 納品済みの場合は completed_delivery
+        * **納品済みを指定した場合は、対象の在庫データの数量を減少します**
+    * delivery_date : 納品日
+        * statusによって必須かどうか変わります
+        * status=completed_delivery
+            * delivery_dateが必須
+        * status=before_delivery
+            * delivery_dateは不要
+    * deliveries : 対象となる在庫データの配列
+        * 以下のパラメータを含むオブジェクトを配列の要素とします
+            * inventory_id : 在庫データID
+            * quantity : 納品数量
+            * unit_price : 納品単価
+            * estimated_delivery_date : 納品予定日
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
+    + Attributes 
+        + num: 100 (string, optional) - 納品データ番号（ユーザーが任意に設定できる番号）
+        + customer_name: 株式会社ZAICO (string, optional) - 取引先名
+        + status: `completed_delivery` (string, required) - 状態
+        + delivery_date: `2019/09/01` (string) - 納品日
+        + deliveries (array[CreateDelivery], required)
+
++ Response 200 (application/json)
+    + Attributes 
+        + code: 200 (number) - ステータスコード
+        + status: success (string) - 状態
+        + message: Data was successfully created. (string) - メッセージ
+        + data_id: 12345 (number) - 作成した納品データID
+
++ Response 422 (application/json)
+    + Attributes 
+        + code: 422 (number) - ステータスコード
+        + status: error (string) - 状態
+        + message: Invalid data. (string) - メッセージ
+
+
+## 納品データ個別取得 [/api/v1/packing_slips/{id}]
+### 納品データ個別取得 [GET]
+#### 処理概要
+
+* 納品データを1件のみ取得します
+* 納品データの項目について以下のようになります
+  * id : 納品データID
+  * num : 納品データ番号（ユーザーが任意に設定できる番号）
+  * customer_name : 取引先名
+  * status : 納品データの状態
+    * 以下の2つのどちらかが設定されています
+    * before_delivery : 納品前
+    * completed_delivery : 納品済み
+  * total_amount : 納品データの合計金額
+  * delivery_date : 納品日
+  * estimated_delivery_date : 納品予定日
+    * この納品予定日は納品データの物品のうち、最も早い納品予定日を表示します
+  * created_at : 納品データ作成日
+  * updated_at : 納品データ更新日
+  * deliveries : 納品データに登録している在庫データ一覧
+    * inventory_id : 在庫データID
+    * title : 物品名
+    * quantity : 納品数量
+    * unit : 単位
+    * unit_price : 納品単価
+    * status : 状態
+      * 以下の2つのどちらかが設定されています
+      * before_delivery : 納品前
+      * completed_delivery : 納品済み
+    * delivery_date : 納品日
+    * estimated_delivery_date : 納品予定日
+
++ Parameters
+    + id: 1 (number) - 納品データのID
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
++ Response 200 (application/json)
+    + Attributes 
+        + id: 10 (number)
+        + num: 100 (string)
+        + customer_name: 株式会社ZAICO (string) - 取引先名
+        + status: `completed_delivery` (string) - 状態
+        + total_amount: 1000 (number)
+        + delivery_date: `2019/09/01` (string) - 納品日
+        + estimated_delivery_date: `2019/09/01` (string) - 納品日
+        + created_at: `2018-03-27T09:38:19+09:00`
+        + updated_at: `2018-03-27T09:38:19+09:00`
+        + deliveries (array)
+            + ()
+                + inventory_id: 1
+                + title: 掃除機 (string) - 物品名
+                + quantity: 3 (string) - 納品数量
+                + unit: 台 (string) - 単位
+                + unit_price: 100 (string) - 納品単価
+                + status: completed_delivery
+                + delivery_date: 2019/09/01 
+                + estimated_delivery_date: null
+            + ()
+                + inventory_id: 1
+                + title: 掃除機 (string) - 物品名
+                + quantity: 3 (string) - 納品数量
+                + unit: 台 (string) - 単位
+                + unit_price: 100 (string) - 納品単価
+                + status: completed_delivery
+                + delivery_date: 2019/09/01 
+                + estimated_delivery_date: null
+
+## 納品データ更新 [/api/v1/packing_slips/]
+### 納品データ更新 [PUT]
+#### 処理概要
+
+* 納品データを更新します
+* パースできないJSONを送るとエラーを返します
+* 項目について
+    * num : 納品データ番号（ユーザーが任意に設定できる番号）
+    * customer_name : 取引先名
+    * deliveries : 対象となる在庫データの配列
+        * 以下のパラメータを含むオブジェクトを配列の要素とします
+            * inventory_id : 在庫データID
+                * 在庫データIDは対象の物品を特定するために指定するため、これを更新することはできません
+            * quantity : 納品数量
+            * unit_price : 納品単価
+            * status : 状態
+                * 納品前在庫を更新するときは before_delivery または completed_delivery を指定できます   
+                納品前在庫を納品済みに更新すると **対象の在庫データの数量を減少します**
+                * 納品済み在庫の状態を更新することはできません
+            * delivery_date : 納品日
+            * estimated_delivery_date : 納品予定日
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
+    + Attributes 
+        + num: 100 (string, optional) - 納品データ番号（ユーザーが任意に設定できる番号）
+        + customer_name: 株式会社ZAICO (string, optional) - 取引先名
+        + deliveries (array[UpdateDeliveryToCompleted, UpdateDeliveryToBefore], required)
+
++ Response 200 (application/json)
+    + Attributes 
+        + code: 200 (number) - ステータスコード
+        + status: success (string) - 状態
+        + message: Data was successfully created. (string) - メッセージ
+        + data_id: 12345 (number) - 作成した納品データID
+
++ Response 422 (application/json)
+    + Attributes 
+        + code: 422 (number) - ステータスコード
+        + status: error (string) - 状態
+        + message: Invalid data. (string) - メッセージ
+
+
+
+## 納品データ削除 [/api/v1/packing_slips/{id}]
+### 納品データ削除 [DELETE]
+#### 処理概要
+
+* 特定の納品データを削除します
+* 納品データの各物品の状態によって在庫データの取り扱いが変わります
+    * 納品前：変化なし
+    * 納品済み：在庫データの数量を納品数量分だけ戻します
+
++ Parameters
+    + id: 1 (number) - 納品データのID
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
++ Response 200 (application/json)
+    + Attributes 
+        + code: 200 (number) - ステータスコード
+        + status: success (string) - 状態
+        + message: Data was successfully deleted (string) - メッセージ
+
++ Response 404 (application/json)
+    + Attributes 
+        + code: 404 (number) - ステータスコード
+        + status: error (string) - 状態
+        + message: Packing slip not found (string) - メッセージ
+
+
+# Data Structures
+
+## CreateDelivery (object)
++ inventory_id: 1 (number, required) - 在庫データID
++ quantity: 3 (string, required) - 納品数量
++ unit_price: 100 (string, optional) - 納品単価
++ estimated_delivery_date: null (string, optional) -　納品予定日
+
+## UpdateDeliveryToCompleted
++ inventory_id: 1 (number, required) - 在庫データID
++ quantity: 3 (string, required) - 納品数量
++ unit_price: 100 (string, optional) - 納品単価
++ status: completed_delivery (string)
++ delivery_date: 2019/11/11 (string)
++ estimated_delivery_date: null (string, optional) -　納品予定日
+
+## UpdateDeliveryToBefore
++ inventory_id: 2 (number, required) - 在庫データID
++ quantity: 5 (string, required) - 納品数量
++ unit_price: null (string, optional) - 納品単価
++ status: before_delivery
++ estimated_delivery_date: null (string, optional) -　納品予定日
