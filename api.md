@@ -307,49 +307,49 @@ Authorization: Bearer YOUR_TOKEN_HERE
             + customer_name: 株式会社ZAICO (string) - 取引先名
             + status: `completed_delivery` (string) - 状態
             + total_amount: 1000 (number)
-            + delivery_date: `2019/09/01` (string) - 納品日
-            + estimated_delivery_date: `2019/09/01` (string) - 納品日
+            + delivery_date: `2019-09-01` (string) - 納品日
+            + estimated_delivery_date (string, optional, nullable)
             + created_at: `2018-03-27T09:38:19+09:00`
             + updated_at: `2018-03-27T09:38:19+09:00`
-            + deliveries (array)
-                + ()
-                    + inventory_id: 1
+            + deliveries (array[object], fixed-type)
+                + (object)
+                    + inventory_id: 1 (number)
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (string) - 納品数量
+                    + quantity: 3 (number) - 納品数量
                     + unit: 台 (string) - 単位
-                    + unit_price: 100 (string) - 納品単価
+                    + unit_price: 100 (number) - 納品単価
                     + status: completed_delivery (string)
-                    + delivery_date: 2019/09/01 (string)
-                    + estimated_delivery_date: null (string)
-                + ()
-                    + inventory_id: 1
-                    + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (string) - 納品数量
+                    + delivery_date: `2019-09-01` (string)
+                    + estimated_delivery_date (string, optional, nullable)
+                + (object)
+                    + inventory_id: 2 (number)
+                    + title: テレビ (string) - 物品名
+                    + quantity: 3 (number) - 納品数量
                     + unit: 台 (string) - 単位
-                    + unit_price: 100 (string) - 納品単価
+                    + unit_price: 100 (number) - 納品単価
                     + status: completed_delivery (string)
-                    + delivery_date: 2019/09/01 (string)
-                    + estimated_delivery_date: null (string)
+                    + delivery_date: `2019-09-01` (string)
+                    + estimated_delivery_date (string, optional, nullable)
         + ()
             + id: 11 (number)
             + num: 1001 (string)
             + customer_name: 株式会社ZAICO (string) - 取引先名
             + status: `before_delivery` (string) - 状態
             + total_amount: 1000 (number)
-            + delivery_date: `2019/09/01` (string) - 納品日
-            + estimated_delivery_date: `2019/09/01` (string) - 納品予定日
+            + delivery_date: `2019-09-01` (string) - 納品日
+            + estimated_delivery_date: `2019-09-01` (string) - 納品予定日
             + created_at: `2018-03-27T09:38:19+09:00`
             + updated_at: `2018-03-27T09:38:19+09:00`
-            + deliveries (array)
-                + ()
-                    + inventory_id: 5
+            + deliveries (array[object], fixed-type)
+                + (object)
+                    + inventory_id: 5 (number)
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (string) - 納品数量
+                    + quantity: 3 (number) - 納品数量
                     + unit: 台 (string) - 単位
-                    + unit_price: 100 (string) - 納品単価
+                    + unit_price: 100 (number) - 納品単価
                     + status: completed_delivery
-                    + delivery_date: 2019/09/01 
-                    + estimated_delivery_date: null
+                    + delivery_date: `2019-09-01`
+                    + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
 
 
 ## 納品データ作成 [/api/v1/packing_slips/]
@@ -389,7 +389,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + num: 100 (string, optional) - 納品データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + status: `completed_delivery` (string, required) - 状態
-        + delivery_date: `2019/09/01` (string) - 納品日
+        + delivery_date: `2019-09-01` (string) - 納品日
         + deliveries (array[CreateDelivery], required)
 
 + Response 200 (application/json)
@@ -454,29 +454,29 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + customer_name: 株式会社ZAICO (string) - 取引先名
         + status: `completed_delivery` (string) - 状態
         + total_amount: 1000 (number)
-        + delivery_date: `2019/09/01` (string) - 納品日
-        + estimated_delivery_date: `2019/09/01` (string) - 納品日
+        + delivery_date: `2019-09-01` (string) - 納品日
+        + estimated_delivery_date: `2019-09-01` (string) - 納品日
         + created_at: `2018-03-27T09:38:19+09:00`
         + updated_at: `2018-03-27T09:38:19+09:00`
-        + deliveries (array)
-            + ()
-                + inventory_id: 1
-                + title: 掃除機 (string) - 物品名
-                + quantity: 3 (string) - 納品数量
-                + unit: 台 (string) - 単位
-                + unit_price: 100 (string) - 納品単価
-                + status: completed_delivery
-                + delivery_date: 2019/09/01 
-                + estimated_delivery_date: null
-            + ()
-                + inventory_id: 1
-                + title: 掃除機 (string) - 物品名
-                + quantity: 3 (string) - 納品数量
-                + unit: 台 (string) - 単位
-                + unit_price: 100 (string) - 納品単価
-                + status: completed_delivery
-                + delivery_date: 2019/09/01 
-                + estimated_delivery_date: null
+            + deliveries (array[object], fixed-type)
+                + (object)
+                    + inventory_id: 1 (number)
+                    + title: 掃除機 (string) - 物品名
+                    + quantity: 3 (number) - 納品数量
+                    + unit: 台 (string) - 単位
+                    + unit_price: 100 (number) - 納品単価
+                    + status: completed_delivery (string)
+                    + delivery_date: `2019-09-01` (string)
+                    + estimated_delivery_date (string, optional, nullable)
+                + (object)
+                    + inventory_id: 2 (number)
+                    + title: テレビ (string) - 物品名
+                    + quantity: 3 (number) - 納品数量
+                    + unit: 台 (string) - 単位
+                    + unit_price: 100 (number) - 納品単価
+                    + status: completed_delivery (string)
+                    + delivery_date: `2019-09-01` (string)
+                    + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
 
 ## 納品データ更新 [/api/v1/packing_slips/]
 ### 納品データ更新 [PUT]
@@ -561,21 +561,21 @@ Authorization: Bearer YOUR_TOKEN_HERE
 
 ## CreateDelivery (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (string, required) - 納品数量
-+ unit_price: 100 (string, optional) - 納品単価
-+ estimated_delivery_date: null (string, optional) -　納品予定日
++ quantity: 3 (number, required) - 納品数量
++ unit_price: 100 (number, optional) - 納品単価
++ estimated_delivery_date: `2019-09-01` (string, optional, nullable)
 
 ## UpdateDeliveryToCompleted
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (string, required) - 納品数量
-+ unit_price: 100 (string, optional) - 納品単価
++ quantity: 3 (number, required) - 納品数量
++ unit_price: 100 (number, optional) - 納品単価
 + status: completed_delivery (string)
-+ delivery_date: 2019/11/11 (string)
-+ estimated_delivery_date: null (string, optional) -　納品予定日
++ delivery_date: `2019-11-11` (string)
++ estimated_delivery_date: `2019-11-11` (string, optional, nullable) 
 
 ## UpdateDeliveryToBefore
 + inventory_id: 2 (number, required) - 在庫データID
-+ quantity: 5 (string, required) - 納品数量
-+ unit_price: null (string, optional) - 納品単価
++ quantity: 5 (number, required) - 納品数量
++ unit_price: 100 (number, optional, nullable) - 納品単価
 + status: before_delivery
-+ estimated_delivery_date: null (string, optional) -　納品予定日
++ estimated_delivery_date: `2019-11-11` (string, optional, nullable) 
