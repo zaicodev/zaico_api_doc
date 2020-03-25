@@ -292,6 +292,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
       * completed_delivery : 納品済み
     * delivery_date : 納品日
     * estimated_delivery_date : 納品予定日
+    * etc : 摘要・備考
 
 + Request
     + Headers
@@ -321,6 +322,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + status: completed_delivery (string)
                     + delivery_date: `2019-09-01` (string)
                     + estimated_delivery_date (string, optional, nullable)
+                    + etc: 黒色 (string) - 摘要・備考
                 + (object)
                     + inventory_id: 2 (number)
                     + title: テレビ (string) - 物品名
@@ -330,6 +332,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + status: completed_delivery (string)
                     + delivery_date: `2019-09-01` (string)
                     + estimated_delivery_date (string, optional, nullable)
+                    + etc: (string) - 摘要・備考
         + ()
             + id: 11 (number)
             + num: 1001 (string)
@@ -350,6 +353,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + status: completed_delivery
                     + delivery_date: `2019-09-01`
                     + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
+                    + etc: (string) - 摘要・備考
 
 
 ## 納品データ作成 [/api/v1/packing_slips/]
@@ -378,6 +382,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             * quantity : 納品数量
             * unit_price : 納品単価
             * estimated_delivery_date : 納品予定日
+            * etc : 摘要・備考
 
 + Request
     + Headers
@@ -437,6 +442,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
       * completed_delivery : 納品済み
     * delivery_date : 納品日
     * estimated_delivery_date : 納品予定日
+    * etc: 摘要・備考
 
 + Parameters
     + id: 1 (number) - 納品データのID
@@ -468,6 +474,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + status: completed_delivery (string)
                     + delivery_date: `2019-09-01` (string)
                     + estimated_delivery_date (string, optional, nullable)
+                    + etc: 白色 (string) - 摘要・備考
                 + (object)
                     + inventory_id: 2 (number)
                     + title: テレビ (string) - 物品名
@@ -477,6 +484,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + status: completed_delivery (string)
                     + delivery_date: `2019-09-01` (string)
                     + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
+                    + etc: (string) - 摘要・備考
 
 ## 納品データ更新 [/api/v1/packing_slips/]
 ### 納品データ更新 [PUT]
@@ -499,6 +507,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                 * 納品済み在庫の状態を更新することはできません
             * delivery_date : 納品日
             * estimated_delivery_date : 納品予定日
+            * etc : 摘要・備考
 
 + Request
     + Headers
