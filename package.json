@@ -4,6 +4,6 @@
     "replace": "^1.1.1"
   },
   "scripts": {
-    "build":"yarn aglio -i api.md -o zaico-api-doc.html"
+    "build": "yarn aglio -i api.md -o dist/index.html"
   }
 }
