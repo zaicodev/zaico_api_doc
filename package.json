@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "aglio": "^2.3.0",
-    "replace": "^1.1.1"
+    "aglio": "^2.3.0"
   },
   "scripts": {
     "build": "yarn aglio -i api.md -o dist/index.html"
