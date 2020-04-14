@@ -1,5 +1,7 @@
 # クラウド在庫管理ソフトZAICOのAPIドキュメント
 
+https://zaico-api-document.netlify.com/
+
 ## 必要な設定
 
 api.mdを編集してHTMLに変換するときは「aglio」を使います。
@@ -8,4 +10,9 @@ api.mdを編集してHTMLに変換するときは「aglio」を使います。
 1. Node.jsをインストール https://nodejs.org/ja/
 2. `yarn` を実行
 
-HTMLに変換するときは `yarn build` を実行してください。
+HTMLに変換するときは `yarn build` を実行してください。`dist/index.html` に出力されます。
+
+## ドキュメントの公開について
+
+Netlifyを使って公開しています。
+masterブランチにコミットがあったときに、自動的にデプロイされます。
