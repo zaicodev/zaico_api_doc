@@ -30,6 +30,15 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます。サンプルプログラムなど詳しくはこちらのページをご覧ください( https://www.zaico.co.jp/2019/03/29/zaico-api-update-get-inventories/ )
   * ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
   * Link, Total-Countヘッダは在庫一覧でのみ返されます
+  * 在庫一覧画面でのみ在庫データを検索できます。検索できる項目は「title」、「category」、「place」、「code」の4つです。検索する場合は以下のようにリクエストを送ってください。（下記の例は全部の項目に該当する在庫データを検索するものです。必要な項目のクエリを発行ください。）
+    * 【注意】1つの項目に複数の値をいれて検索することはできません。
+    * 【注意】「code(QRコード・バーコードの値)」のみ完全一致での検索となります。
+  ```http
+  Ref：
+  https://web.zaico.co.jp/api/v1/inventories/?title={TITLE}&category={CATEGORY}&place={PLACE}&code={CODE}
+  例：
+  https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&category=物品&place=ZAICO倉庫&code=123456789
+  ```
   + Request
     + Headers
       Authorization: Bearer YOUR_TOKEN
