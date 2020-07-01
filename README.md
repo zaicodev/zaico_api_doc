@@ -16,3 +16,7 @@ HTMLに変換するときは `yarn build` を実行してください。`dist/in
 
 Netlifyを使って公開しています。
 masterブランチにコミットがあったときに、自動的にデプロイされます。
+
+## node.jsのバージョン
+
+node.js v10以上だとyarn installが失敗するのでv8を使うとうまくいきます。
