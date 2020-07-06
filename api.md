@@ -1,8 +1,8 @@
 FORMAT: 1A
 HOST: https://web.zaico.co.jp
- 
+
 # ZAICO API Document
-このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。  
+このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。
 2020年4月28日更新
 
 # Group 認証
@@ -173,7 +173,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
 
 + Response 404 (application/json)
   + Attributes (InventoryNotFound)
-  
+
 
 ## Data Structures
 ### InventoryCreateSuccessfully
@@ -200,6 +200,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
 + state: `新品` (string) - 状態
 + place: `ZAICO倉庫` (string) - 保管場所
 + etc: `備考` (string) - 備考
++ user_group: `ユーザーグループ` (string) - ユーザーグループ(カンマ区切りで複数指定可)
 + code: `tw201800000000` (string) - バーコードの値
 + item_image: `base64-encoded-image` (string)
 + stocktake_attributes
@@ -399,7 +400,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             Authorization: Bearer YOUR_TOKEN
             Content-Type: application/json
 
-    + Attributes 
+    + Attributes
         + num: 100 (string, optional) - 納品データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + status: `completed_delivery` (string, required) - 状態
@@ -407,14 +408,14 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + deliveries (array[CreateDelivery], required)
 
 + Response 200 (application/json)
-    + Attributes 
+    + Attributes
         + code: 200 (number) - ステータスコード
         + status: success (string) - 状態
         + message: Data was successfully created. (string) - メッセージ
         + data_id: 12345 (number) - 作成した納品データID
 
 + Response 422 (application/json)
-    + Attributes 
+    + Attributes
         + code: 422 (number) - ステータスコード
         + status: error (string) - 状態
         + message: Invalid data. (string) - メッセージ
@@ -463,7 +464,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             Content-Type: application/json
 
 + Response 200 (application/json)
-    + Attributes 
+    + Attributes
         + id: 10 (number)
         + num: 100 (string)
         + customer_name: 株式会社ZAICO (string) - 取引先名
@@ -511,7 +512,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             * quantity : 納品数量
             * unit_price : 納品単価
             * status : 状態
-                * 納品前在庫を更新するときは before_delivery または completed_delivery を指定できます   
+                * 納品前在庫を更新するときは before_delivery または completed_delivery を指定できます
                 納品前在庫を納品済みに更新すると **対象の在庫データの数量を減少します**
                 * 納品済み在庫の状態を更新することはできません
             * delivery_date : 納品日
@@ -524,20 +525,20 @@ Authorization: Bearer YOUR_TOKEN_HERE
             Authorization: Bearer YOUR_TOKEN
             Content-Type: application/json
 
-    + Attributes 
+    + Attributes
         + num: 100 (string, optional) - 納品データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + deliveries (array[UpdateDeliveryToCompleted, UpdateDeliveryToBefore], required)
 
 + Response 200 (application/json)
-    + Attributes 
+    + Attributes
         + code: 200 (number) - ステータスコード
         + status: success (string) - 状態
         + message: Data was successfully created. (string) - メッセージ
         + data_id: 12345 (number) - 作成した納品データID
 
 + Response 422 (application/json)
-    + Attributes 
+    + Attributes
         + code: 422 (number) - ステータスコード
         + status: error (string) - 状態
         + message: Invalid data. (string) - メッセージ
@@ -563,13 +564,13 @@ Authorization: Bearer YOUR_TOKEN_HERE
             Content-Type: application/json
 
 + Response 200 (application/json)
-    + Attributes 
+    + Attributes
         + code: 200 (number) - ステータスコード
         + status: success (string) - 状態
         + message: Data was successfully deleted (string) - メッセージ
 
 + Response 404 (application/json)
-    + Attributes 
+    + Attributes
         + code: 404 (number) - ステータスコード
         + status: error (string) - 状態
         + message: Packing slip not found (string) - メッセージ
@@ -589,11 +590,11 @@ Authorization: Bearer YOUR_TOKEN_HERE
 + unit_price: 100 (number, optional) - 納品単価
 + status: completed_delivery (string)
 + delivery_date: `2019-11-11` (string)
-+ estimated_delivery_date: `2019-11-11` (string, optional, nullable) 
++ estimated_delivery_date: `2019-11-11` (string, optional, nullable)
 
 ## UpdateDeliveryToBefore
 + inventory_id: 2 (number, required) - 在庫データID
 + quantity: 5 (number, required) - 納品数量
 + unit_price: 100 (number, optional, nullable) - 納品単価
 + status: before_delivery
-+ estimated_delivery_date: `2019-11-11` (string, optional, nullable) 
++ estimated_delivery_date: `2019-11-11` (string, optional, nullable)
