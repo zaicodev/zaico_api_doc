@@ -597,6 +597,7 @@ HOST: https://web.zaico.co.jp/
   * total_amount : 仕入データの合計金額
   * purchase_date: 仕入日
   * estimated_purchase_date　: 仕入予定日
+  * create_user_name : 仕入データ作成者名
   * created_at : 仕入データ作成日
   * updated_at : 仕入データ更新日
   * purchase_items : 仕入データに登録している在庫データ一覧
@@ -629,6 +630,7 @@ HOST: https://web.zaico.co.jp/
             + total_amount: 1000 (number)
             + purchase_date: null (string) - 仕入日
             + estimated_purchase_date: `2020-01-01` (string) - 仕入予定日
+            + create_user_name: 在庫太郎 (string) - 仕入データ作成者名
             + created_at: `2019-12-27T09:38:19+09:00`
             + updated_at: `2019-12-27T09:38:19+09:00`
             + purchase_items (array)
@@ -658,6 +660,7 @@ HOST: https://web.zaico.co.jp/
             + total_amount: 1000 (number)
             + purchase_date: `2020-01-01` (string) - 仕入日
             + estimated_purchase_date: null (string) - 仕入予定日
+            + create_user_name: 在庫太郎 (string) - 仕入データ作成者名
             + created_at: `2019-12-27T09:38:19+09:00`
             + updated_at: `2019-12-27T09:38:19+09:00`
             + purchase_items (array)
@@ -689,6 +692,7 @@ HOST: https://web.zaico.co.jp/
   * delivery_date : 仕入日
   * estimated_delivery_date : 仕入予定日
     * この仕入予定日は仕入データの物品のうち、最も早い仕入予定日を表示します
+  * create_user_name : 仕入データ作成者名
   * created_at : 仕入データ作成日
   * updated_at : 仕入データ更新日
   * deliveries : 仕入データに登録している在庫データ一覧
@@ -724,6 +728,7 @@ HOST: https://web.zaico.co.jp/
         + total_amount: 1000 (number)
         + purchase_date: null (string) - 仕入日
         + estimated_purchase_date: `2020-01-01` (string) - 仕入予定日
+        + create_user_name: 在庫太郎 (string) - 仕入データ作成者名
         + created_at: `2019-12-27T09:38:19+09:00`
         + updated_at: `2019-12-27T09:38:19+09:00`
         + purchase_items (array)

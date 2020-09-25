@@ -1551,6 +1551,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>total_amount : 仕入データの合計金額</li>
 <li>purchase_date: 仕入日</li>
 <li>estimated_purchase_date　: 仕入予定日</li>
+<li>create_user_name : 仕入データ作成者名</li>
 <li>created_at : 仕入データ作成日</li>
 <li>updated_at : 仕入データ更新日</li>
 <li>purchase_items : 仕入データに登録している在庫データ一覧
@@ -1584,6 +1585,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">total_amount</span>": <span class="hljs-value"><span class="hljs-number">1000</span></span>,
     "<span class="hljs-attribute">purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"null"</span></span>,
     "<span class="hljs-attribute">estimated_purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"2020-01-01"</span></span>,
+    "<span class="hljs-attribute">create_user_name</span>": <span class="hljs-value"><span class="hljs-string">"在庫太郎"</span></span>,
     "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2019-12-27T09:38:19+09:00"</span></span>,
     "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2019-12-27T09:38:19+09:00"</span></span>,
     "<span class="hljs-attribute">purchase_items</span>": <span class="hljs-value">[
@@ -1617,6 +1619,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">total_amount</span>": <span class="hljs-value"><span class="hljs-number">1000</span></span>,
     "<span class="hljs-attribute">purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"2020-01-01"</span></span>,
     "<span class="hljs-attribute">estimated_purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"null"</span></span>,
+    "<span class="hljs-attribute">create_user_name</span>": <span class="hljs-value"><span class="hljs-string">"在庫太郎"</span></span>,
     "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2019-12-27T09:38:19+09:00"</span></span>,
     "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2019-12-27T09:38:19+09:00"</span></span>,
     "<span class="hljs-attribute">purchase_items</span>": <span class="hljs-value">[
@@ -1661,6 +1664,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>この仕入予定日は仕入データの物品のうち、最も早い仕入予定日を表示します</li>
 </ul>
 </li>
+<li>create_user_name : 仕入データ作成者名</li>
 <li>created_at : 仕入データ作成日</li>
 <li>updated_at : 仕入データ更新日</li>
 <li>deliveries : 仕入データに登録している在庫データ一覧
@@ -1695,6 +1699,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
   "<span class="hljs-attribute">total_amount</span>": <span class="hljs-value"><span class="hljs-number">1000</span></span>,
   "<span class="hljs-attribute">purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"null"</span></span>,
   "<span class="hljs-attribute">estimated_purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"2020-01-01"</span></span>,
+  "<span class="hljs-attribute">create_user_name</span>": <span class="hljs-value"><span class="hljs-string">"在庫太郎"</span></span>,
   "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2019-12-27T09:38:19+09:00"</span></span>,
   "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2019-12-27T09:38:19+09:00"</span></span>,
   "<span class="hljs-attribute">purchase_items</span>": <span class="hljs-value">[
@@ -1747,6 +1752,10 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">estimated_purchase_date</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"仕入予定日"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">create_user_name</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"仕入データ作成者名"</span>
     </span>}</span>,
     "<span class="hljs-attribute">created_at</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
