@@ -580,10 +580,8 @@ Authorization: Bearer YOUR_TOKEN_HERE
 HOST: https://web.zaico.co.jp/
 
 ## 仕入データ一覧取得 [/api/v1/purchases/]
-
 ### 仕入データ一覧取得 [GET]
-
-#### 概要
+#### 処理概要
 
 * 自分のアカウントに登録されている仕入データのすべてを返します
 * 仕入データが1件も無い場合は、空の配列を返します
@@ -673,6 +671,80 @@ HOST: https://web.zaico.co.jp/
                     + purchase_date: `2020-01-01`
                     + estimated_purchase_date: null
 
+## 仕入データ個別取得 [/api/v1/purchases/{id}]
+### 仕入データ個別取得 [GET]
+#### 処理概要
+
+* 仕入データを1件のみ取得します
+* 仕入データの項目について以下のようになります
+  * id : 仕入データID
+  * num : 仕入データ番号（ユーザーが任意に設定できる番号）
+  * customer_name : 取引先名
+  * status : 仕入データの状態
+    * 以下の3つのいずれかが設定されています
+    * not_ordered : 発注前
+    * ordered : 発注済み
+    * purchased : 仕入済み 
+  * total_amount : 仕入データの合計金額
+  * delivery_date : 仕入日
+  * estimated_delivery_date : 仕入予定日
+    * この仕入予定日は仕入データの物品のうち、最も早い仕入予定日を表示します
+  * created_at : 仕入データ作成日
+  * updated_at : 仕入データ更新日
+  * deliveries : 仕入データに登録している在庫データ一覧
+    * inventory_id : 在庫データID
+    * title : 物品名
+    * quantity : 仕入数量
+    * unit : 単位
+    * unit_price : 仕入単価
+    * status : 状態
+        * 以下の3つのいずれかが設定されています
+        * not_ordered : 発注前
+        * ordered : 発注済み
+        * purchased : 仕入済み 
+    * delivery_date : 仕入日
+    * estimated_delivery_date : 仕入予定日
+    * etc: 摘要・備考
+
++ Parameters
+    + id: 10 (number) - 仕入データのID
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
++ Response 200 (application/json)
+    + Attributes 
+        + id: 10 (number)
+        + num: 100 (string)
+        + customer_name: 株式会社ZAICO (string) - 取引先名
+        + status: `ordered` (string) - 状態
+        + total_amount: 1000 (number)
+        + purchase_date: null (string) - 仕入日
+        + estimated_purchase_date: `2020-01-01` (string) - 仕入予定日
+        + created_at: `2019-12-27T09:38:19+09:00`
+        + updated_at: `2019-12-27T09:38:19+09:00`
+        + purchase_items (array)
+            + ()
+                + inventory_id: 1
+                + title: 掃除機 (string) - 物品名
+                + quantity: 3 (string) - 仕入数量
+                + unit: 台 (string) - 単位
+                + unit_price: 100 (string) - 仕入単価
+                + status: ordered (string)
+                + purchase_date: null (string)
+                + estimated_purchase_date: `2020-01-01` (string)
+            + ()
+                + inventory_id: 1
+                + title: 掃除機 (string) - 物品名
+                + quantity: 3 (string) - 仕入数量
+                + unit: 台 (string) - 単位
+                + unit_price: 100 (string) - 仕入単価
+                + status: ordered (string)
+                + purchase_date: null (string)
+                + estimated_purchase_date: `2020-01-01` (string)
 
 # Data Structures
 
