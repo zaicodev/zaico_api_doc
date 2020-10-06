@@ -2,8 +2,8 @@ FORMAT: 1A
 HOST: https://web.zaico.co.jp
 
 # ZAICO API Document
-このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。
-2020年4月28日更新
+このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。  
+2020年10月6日更新
 
 # Group 認証
 ## 認証について
