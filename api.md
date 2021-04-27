@@ -210,10 +210,8 @@ Authorization: Bearer YOUR_TOKEN_HERE
       + name: `追加項目名` (string) - 追加項目名
       + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
-  + (object)
     + order_point_quantity: 5 (number) - 発注点
 + inventory_history
-  + (object)
     + memo: `変更履歴メモ` (string) - 変更履歴のメモ
 
 ### InventoriesViews
@@ -235,7 +233,6 @@ Authorization: Bearer YOUR_TOKEN_HERE
       + name: `追加項目名` (string) - 追加項目名
       + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
-  + (object)
     + order_point_quantity: 5 (number) - 発注点
 + created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日
 + updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日
