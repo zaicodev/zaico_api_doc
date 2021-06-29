@@ -2,7 +2,7 @@ FORMAT: 1A
 HOST: https://web.zaico.co.jp
 
 # ZAICO API Document
-このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。  
+このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。
 2020年10月6日更新
 
 # Group 認証
@@ -210,10 +210,8 @@ Authorization: Bearer YOUR_TOKEN_HERE
       + name: `追加項目名` (string) - 追加項目名
       + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
-  + (object)
     + order_point_quantity: 5 (number) - 発注点
 + inventory_history
-  + (object)
     + memo: `変更履歴メモ` (string) - 変更履歴のメモ
 
 ### InventoriesViews
@@ -235,7 +233,6 @@ Authorization: Bearer YOUR_TOKEN_HERE
       + name: `追加項目名` (string) - 追加項目名
       + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
-  + (object)
     + order_point_quantity: 5 (number) - 発注点
 + created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日
 + updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日
@@ -500,7 +497,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
                     + etc: (string) - 摘要・備考
 
-## 納品データ更新 [/api/v1/packing_slips/]
+## 納品データ更新 [/api/v1/packing_slips/{id}]
 ### 納品データ更新 [PUT]
 #### 処理概要
 
@@ -522,6 +519,9 @@ Authorization: Bearer YOUR_TOKEN_HERE
             * delivery_date : 納品日
             * estimated_delivery_date : 納品予定日
             * etc : 摘要・備考
+
++ Parameters
+    + id: 1 (number) - 納品データのID
 
 + Request
     + Headers
@@ -601,7 +601,7 @@ HOST: https://web.zaico.co.jp/
     * 以下の3つのいずれかが設定されています
     * not_ordered : 発注前
     * ordered : 発注済み
-    * purchased : 仕入済み 
+    * purchased : 仕入済み
   * total_amount : 仕入データの合計金額
   * purchase_date: 仕入日
   * estimated_purchase_date　: 仕入予定日
@@ -618,7 +618,7 @@ HOST: https://web.zaico.co.jp/
         * 以下の3つのいずれかが設定されています
         * not_ordered : 発注前
         * ordered : 発注済み
-        * purchased : 仕入済み 
+        * purchased : 仕入済み
     * purchase_date: 仕入日
     * estimated_purchase_date　: 仕入予定日
 
@@ -682,6 +682,62 @@ HOST: https://web.zaico.co.jp/
                     + purchase_date: `2020-01-01`
                     + estimated_purchase_date: null
 
+
+## 仕入データ作成 [/api/v1/purchases/]
+### 仕入データ作成 [POST]
+#### 処理概要
+
+* 仕入データを作成します
+* パースできないJSONを送るとエラーを返します
+* 登録できる項目について
+    * num : 仕入データ番号（ユーザーが任意に設定できる番号）
+    * customer_name : 取引先名
+    * status : 仕入データの状態
+        * 以下の2つのどちらかを指定してください
+        * 仕入前の場合は not_ordered
+        * 仕入済みの場合は purchased
+        * **仕入済みを指定した場合は、対象の在庫データの数量を増加します**
+    * purchase_date : 仕入日
+        * statusによって必須かどうか変わります
+        * status=purchased
+            * purcahse_dateが必須
+        * status=not_ordered
+            * purchase_dateは不要
+    * purchase_items : 対象となる在庫データの配列
+        * 以下のパラメータを含むオブジェクトを配列の要素とします
+            * inventory_id : 在庫データID
+            * quantity : 仕入数量
+            * unit_price : 仕入単価
+            * estimated_purchase_date : 仕入予定日
+            * etc : 摘要・備考
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
+    + Attributes
+        + num: 100 (string, optional) - 仕入データ番号（ユーザーが任意に設定できる番号）
+        + customer_name: 株式会社ZAICO (string, optional) - 取引先名
+        + status: `purchased` (string, required) - 状態
+        + purchase_date: `2019-09-01` (string) - 仕入日
+        + purchase_items (array[CreatePurchaseItem], required)
+
++ Response 200 (application/json)
+    + Attributes
+        + code: 200 (number) - ステータスコード
+        + status: success (string) - 状態
+        + message: Data was successfully created. (string) - メッセージ
+        + data_id: 12345 (number) - 作成した仕入データID
+
++ Response 422 (application/json)
+    + Attributes
+        + code: 422 (number) - ステータスコード
+        + status: error (string) - 状態
+        + message: Invalid data. (string) - メッセージ
+
+
 ## 仕入データ個別取得 [/api/v1/purchases/{id}]
 ### 仕入データ個別取得 [GET]
 #### 処理概要
@@ -695,10 +751,10 @@ HOST: https://web.zaico.co.jp/
     * 以下の3つのいずれかが設定されています
     * not_ordered : 発注前
     * ordered : 発注済み
-    * purchased : 仕入済み 
+    * purchased : 仕入済み
   * total_amount : 仕入データの合計金額
-  * delivery_date : 仕入日
-  * estimated_delivery_date : 仕入予定日
+  * purchase_date : 仕入日
+  * estimated_purchase_date : 仕入予定日
     * この仕入予定日は仕入データの物品のうち、最も早い仕入予定日を表示します
   * create_user_name : 仕入データ作成者名
   * created_at : 仕入データ作成日
@@ -713,9 +769,9 @@ HOST: https://web.zaico.co.jp/
         * 以下の3つのいずれかが設定されています
         * not_ordered : 発注前
         * ordered : 発注済み
-        * purchased : 仕入済み 
-    * delivery_date : 仕入日
-    * estimated_delivery_date : 仕入予定日
+        * purchased : 仕入済み
+    * purchase_date : 仕入日
+    * estimated_purchase_date : 仕入予定日
     * etc: 摘要・備考
 
 + Parameters
@@ -728,11 +784,11 @@ HOST: https://web.zaico.co.jp/
             Content-Type: application/json
 
 + Response 200 (application/json)
-    + Attributes 
+    + Attributes
         + id: 10 (number)
         + num: 100 (string)
         + customer_name: 株式会社ZAICO (string) - 取引先名
-        + status: `ordered` (string) - 状態
+        + status: `purchased` (string) - 状態
         + total_amount: 1000 (number)
         + purchase_date: null (string) - 仕入日
         + estimated_purchase_date: `2020-01-01` (string) - 仕入予定日
@@ -746,7 +802,7 @@ HOST: https://web.zaico.co.jp/
                 + quantity: 3 (string) - 仕入数量
                 + unit: 台 (string) - 単位
                 + unit_price: 100 (string) - 仕入単価
-                + status: ordered (string)
+                + status: purchased (string)
                 + purchase_date: null (string)
                 + estimated_purchase_date: `2020-01-01` (string)
             + ()
@@ -755,9 +811,92 @@ HOST: https://web.zaico.co.jp/
                 + quantity: 3 (string) - 仕入数量
                 + unit: 台 (string) - 単位
                 + unit_price: 100 (string) - 仕入単価
-                + status: ordered (string)
+                + status: purchased (string)
                 + purchase_date: null (string)
                 + estimated_purchase_date: `2020-01-01` (string)
+
+## 仕入データ更新 [/api/v1/purchases/{id}]
+### 仕入データ更新 [PUT]
+#### 処理概要
+
+* 仕入データを更新します
+* パースできないJSONを送るとエラーを返します
+* 項目について
+    * num : 仕入データ番号（ユーザーが任意に設定できる番号）
+    * customer_name : 取引先名
+    * purchase_items : 対象となる在庫データの配列
+        * 以下のパラメータを含むオブジェクトを配列の要素とします
+            * inventory_id : 在庫データID
+                * 在庫データIDは対象の物品を特定するために指定するため、これを更新することはできません
+            * quantity : 仕入数量
+            * unit_price : 仕入単価
+            * status : 状態
+                * 仕入前在庫を更新するときは not_ordered, ordered, purchased を指定できます
+                仕入前在庫を仕入済みに更新すると **対象の在庫データの数量を増加します**
+                * 仕入済み在庫の状態を更新することはできません
+            * purchase_date : 仕入日
+            * estimated_purchase_date : 仕入予定日
+            * etc : 摘要・備考
+
++ Parameters
+    + id: 1 (number) - 仕入データのID
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
+    + Attributes
+        + num: 100 (string, optional) - 仕入データ番号（ユーザーが任意に設定できる番号）
+        + customer_name: 株式会社ZAICO (string, optional) - 取引先名
+        + purchase_items (array[UpdatePurchaseItemToPurchased, UpdatePurchaseItemToOrdered, UpdatePurchaseItemToNotOrdered], required)
+
++ Response 200 (application/json)
+    + Attributes
+        + code: 200 (number) - ステータスコード
+        + status: success (string) - 状態
+        + message: Data was successfully created. (string) - メッセージ
+        + data_id: 12345 (number) - 作成した仕入データID
+
++ Response 422 (application/json)
+    + Attributes
+        + code: 422 (number) - ステータスコード
+        + status: error (string) - 状態
+        + message: Invalid data. (string) - メッセージ
+
+
+
+## 仕入データ削除 [/api/v1/packing_slips/{id}]
+### 仕入データ削除 [DELETE]
+#### 処理概要
+
+* 特定の仕入データを削除します
+* 仕入データの各物品の状態によって在庫データの取り扱いが変わります
+    * 仕入前：変化なし
+    * 仕入済み：在庫データの数量を仕入数量分だけ戻します
+
++ Parameters
+    + id: 1 (number) - 仕入データのID
+
++ Request
+    + Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
++ Response 200 (application/json)
+    + Attributes
+        + code: 200 (number) - ステータスコード
+        + status: success (string) - 状態
+        + message: Data was successfully deleted (string) - メッセージ
+
++ Response 404 (application/json)
+    + Attributes
+        + code: 404 (number) - ステータスコード
+        + status: error (string) - 状態
+        + message: Packing slip not found (string) - メッセージ
+
 
 # Data Structures
 
@@ -781,3 +920,33 @@ HOST: https://web.zaico.co.jp/
 + unit_price: 100 (number, optional, nullable) - 納品単価
 + status: before_delivery
 + estimated_delivery_date: `2019-11-11` (string, optional, nullable)
+
+## CreatePurchaseItem (object)
++ inventory_id: 1 (number, required) - 在庫データID
++ quantity: 3 (number, required) - 仕入数量
++ unit_price: 100 (number, optional) - 仕入単価
++ estimated_purchase_date: `2019-09-01` (string, optional, nullable)
+
+## UpdatePurchaseItemToPurchased
++ inventory_id: 1 (number, required) - 在庫データID
++ quantity: 3 (number, required) - 仕入数量
++ unit_price: 100 (number, optional) - 仕入単価
++ status: purchased (string)
++ purchase_date: `2019-11-11` (string)
++ estimated_purchase_date: `2019-11-11` (string, optional, nullable)
+
+## UpdatePurchaseItemToOrdered
++ inventory_id: 1 (number, required) - 在庫データID
++ quantity: 3 (number, required) - 仕入数量
++ unit_price: 100 (number, optional) - 仕入単価
++ status: ordered (string)
++ purchase_date: `2019-11-11` (string)
++ estimated_purchase_date: `2019-11-11` (string, optional, nullable)
+
+## UpdatePurchaseItemToNotOrdered
++ inventory_id: 2 (number, required) - 在庫データID
++ quantity: 5 (number, required) - 仕入数量
++ unit_price: 100 (number, optional, nullable) - 仕入単価
++ status: not_ordered
++ estimated_purchase_date: `2019-11-11` (string, optional, nullable)
+
