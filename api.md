@@ -950,3 +950,91 @@ HOST: https://web.zaico.co.jp/
 + status: not_ordered
 + estimated_purchase_date: `2019-11-11` (string, optional, nullable)
 
+
+# Group 取引先データ
+
+## 取引先データ一覧取得 [/api/v1/customers/]
+### GET
+#### 処理概要
+  * 自分のアカウントに登録されている顧客データのすべてを返します
+  * 顧客データが1件も無い場合は、空の配列を返します
+  * 顧客データが1000件以上ある場合はページネーションで分割され、1000件ごと顧客データを返します
+  * 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます。
+  * ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
+  * Link, Total-Countヘッダは顧客一覧でのみ返されます
+  ```http
+  Ref：
+  https://web.zaico.co.jp/api/v1/customers?page=1
+  ```
+  + Request
+    + Headers
+      Authorization: Bearer YOUR_TOKEN
+      Content-Type: application/json
+  + Response 200 (application/json)
+    + Headers
+      Link: <https://web.zaico.co.jp/api/v1/customers?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/customers/api/v1/customers?page=1>; rel="last"
+      Total-Count: 顧客データ件数
+    + Attributes (CustomersView)
+
+## 取引先データ一覧作成 [/api/v1/customers/]
+### POST
+#### 処理概要
+  * 取引先データを作成します
+  * パースできないJSONを送るとエラーを返します
+  * 名前のみあれば作成可能です
+
++ Request
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
+
+  + Params
+    + Attributes (CustomerCreateParams)
+
++ Response 200 (application/json)
+  + Attributes (CustomerCreateSuccessfully)
+
++ Response 400 (application/json)
+  + Attributes (BadRequestNoData)
+
++ Response 422 (application/json)
+  + Attributes (UnprocessableEntity)
+
+## Data Structures
+### CustomersView
++ id: 1 (number) - レコードID
++ company_id: 1 (number) - 事業所ID
++ related_company_id: 1 (number) - 関連する事業所ID
++ name: (string) - `取引先A` 取引先名
++ email: (string) `zaico@example.com` - メールアドレス
++ name_postfix: `様` (string) - 敬称
++ zip: (string) `1234567` - 郵便番号
++ address: (string) `東京都港区` - 住所
++ building_name: (string) `港ビル` - 建物名・部屋番号
++ phone_number: `08012345678` (string) - 電話番号
++ etc: (string) `取引先` - 備考
++ created_at: `2021-12-27T09:38:19+09:00` (string) - 作成日
++ updated_at: `2021-12-27T09:38:19+09:00` (string) - 更新日
++ customer_optional_attributes
+  + id: 1 (number) - 顧客情報オプションレコードID
+  + name: `オプション` (string) - 顧客情報オプション名
+  + value: `値` (string) - 顧客情報オプションの値
+
+### CustomerCreateParams
++ name: (string) - `取引先A` 取引先名
++ email: (string) `zaico@example.com` - メールアドレス
++ name_postfix: `様` (string) - 敬称
++ zip: (string) `1234567` - 郵便番号
++ address: (string) `東京都港区` - 住所
++ building_name: (string) `港ビル` - 建物名・部屋番号
++ phone_number: `08012345678` (string) - 電話番号
++ etc: (string) `取引先` - 備考
++ customer_optional_attributes
+  + name: `オプション` (string) - 顧客情報オプション名
+  + value: `値` (string) - 顧客情報オプションの値
+
+### CustomerCreateSuccessfully
++ code: 200 (number) - コード
++ status: `success` (string) - ステータス
++ message: `Data was successfully created` (string) - メッセージ
++ data_id: 1 (number) - レコードID
