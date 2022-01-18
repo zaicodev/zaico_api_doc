@@ -1034,6 +1034,26 @@ HOST: https://web.zaico.co.jp/
 + Response 404 (application/json)
   + Attributes (InventoryNotFound)
 
+## 取引先データ削除 [/api/v1/customers/{id}]
+### DELETE
+#### 処理概要
+* 特定の取引先データを削除します
+* 該当する取引先データが無い場合はエラーを返します
+
++ Parameters
+  + id: 1 (number, required) - 取引先データのID
+
++ Request
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
+
++ Response 200 (application/json)
+  + Attributes (CustomerDeleteSuccessfully)
+
++ Response 404 (application/json)
+  + Attributes (CustomerNotFound)
+
 ## Data Structures
 ### CustomersView
 + id: 1 (number) - レコードID
@@ -1092,3 +1112,14 @@ HOST: https://web.zaico.co.jp/
 + status: `success` (string) - ステータス
 + message: `Data was successfully updated` (string) - メッセージ
 + data_id: 1 (number) - レコードID
+
+### CustomerDeleteSuccessfully
++ code: 200 (number) - コード
++ status: `success` (string) - ステータス
++ message: `Data was successfully deleted` (string) - メッセージ
++ data_id: 1 (number) - レコードID
+
+### CustomerNotFound
++ code: 404 (number) - コード
++ status: `error` (string) - ステータス
++ message: `Customer not found` (string) - メッセージ
