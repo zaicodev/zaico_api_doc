@@ -2099,13 +2099,13 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section><section id="取引先データ" class="resource-group"><h2 class="group-heading">取引先データ <a href="#取引先データ" class="permalink">&para;</a></h2><div id="取引先データ-取引先データ一覧取得" class="resource"><h3 class="resource-heading">取引先データ一覧取得 <a href="#取引先データ-取引先データ一覧取得" class="permalink">&nbsp;&para;</a></h3><div id="取引先データ-取引先データ一覧取得-get" class="action get"><h4 class="action-heading"><div class="name"></div><a href="#取引先データ-取引先データ一覧取得-get" class="method get">GET</a><code class="uri">/api/v1/customers/</code></h4><h4 id="header-処理概要-15">処理概要 <a class="permalink" href="#header-処理概要-15" aria-hidden="true">¶</a></h4>
 <ul>
 <li>
-<p>自分のアカウントに登録されている顧客データのすべてを返します</p>
+<p>自分のアカウントに登録されている取引先データのすべてを返します</p>
 </li>
 <li>
-<p>顧客データが1件も無い場合は、空の配列を返します</p>
+<p>取引先データが1件も無い場合は、空の配列を返します</p>
 </li>
 <li>
-<p>顧客データが1000件以上ある場合はページネーションで分割され、1000件ごと顧客データを返します</p>
+<p>取引先データが1000件以上ある場合はページネーションで分割され、1000件ごと取引先データを返します</p>
 </li>
 <li>
 <p>任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます。</p>
@@ -2114,12 +2114,12 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <p>ページ情報はHTTPヘッダ&quot;Link&quot;に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません</p>
 </li>
 <li>
-<p>Link, Total-Countヘッダは顧客一覧でのみ返されます</p>
+<p>Link, Total-Countヘッダは取引先一覧でのみ返されます</p>
 <pre><code class="language-http">Ref：
 https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
 </li>
 </ul>
-<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://web.zaico.co.jp</span>/api/v1/customers/</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer YOUR_TOKEN</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Link</span>: <span class="hljs-string">&lt;https://web.zaico.co.jp/api/v1/customers?page=1&gt;; rel="first", &lt;https://web.zaico.co.jp/api/v1/customers/api/v1/customers?page=1&gt;; rel="last"</span><br><span class="hljs-attribute">Total-Count</span>: <span class="hljs-string">顧客データ件数</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://web.zaico.co.jp</span>/api/v1/customers/</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer YOUR_TOKEN</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Link</span>: <span class="hljs-string">&lt;https://web.zaico.co.jp/api/v1/customers?page=1&gt;; rel="first", &lt;https://web.zaico.co.jp/api/v1/customers/api/v1/customers?page=1&gt;; rel="last"</span><br><span class="hljs-attribute">Total-Count</span>: <span class="hljs-string">取引先データ件数</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">company_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">related_company_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
@@ -2199,7 +2199,7 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
       "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"顧客情報オプションレコードID"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプションレコードID"</span>
         </span>}</span>,
         "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -2279,11 +2279,11 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
       "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
         "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"顧客情報オプション名"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプション名"</span>
         </span>}</span>,
         "<span class="hljs-attribute">value</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"顧客情報オプションの値"</span>
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプションの値"</span>
         </span>}
       </span>}
     </span>}

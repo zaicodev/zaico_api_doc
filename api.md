@@ -956,12 +956,12 @@ HOST: https://web.zaico.co.jp/
 ## 取引先データ一覧取得 [/api/v1/customers/]
 ### GET
 #### 処理概要
-  * 自分のアカウントに登録されている顧客データのすべてを返します
-  * 顧客データが1件も無い場合は、空の配列を返します
-  * 顧客データが1000件以上ある場合はページネーションで分割され、1000件ごと顧客データを返します
+  * 自分のアカウントに登録されている取引先データのすべてを返します
+  * 取引先データが1件も無い場合は、空の配列を返します
+  * 取引先データが1000件以上ある場合はページネーションで分割され、1000件ごと取引先データを返します
   * 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます。
   * ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
-  * Link, Total-Countヘッダは顧客一覧でのみ返されます
+  * Link, Total-Countヘッダは取引先一覧でのみ返されます
   ```http
   Ref：
   https://web.zaico.co.jp/api/v1/customers?page=1
@@ -973,7 +973,7 @@ HOST: https://web.zaico.co.jp/
   + Response 200 (application/json)
     + Headers
       Link: <https://web.zaico.co.jp/api/v1/customers?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/customers/api/v1/customers?page=1>; rel="last"
-      Total-Count: 顧客データ件数
+      Total-Count: 取引先データ件数
     + Attributes (CustomersView)
 
 ## 取引先データ作成 [/api/v1/customers/]
@@ -1032,7 +1032,7 @@ HOST: https://web.zaico.co.jp/
   + Attributes (BadRequestNoData)
 
 + Response 404 (application/json)
-  + Attributes (InventoryNotFound)
+  + Attributes (CustomerNotFound)
 
 ## 取引先データ削除 [/api/v1/customers/{id}]
 ### DELETE
@@ -1070,7 +1070,7 @@ HOST: https://web.zaico.co.jp/
 + created_at: `2021-12-27T09:38:19+09:00` (string) - 作成日
 + updated_at: `2021-12-27T09:38:19+09:00` (string) - 更新日
 + customer_optional_attributes
-  + id: 1 (number) - 顧客情報オプションレコードID
+  + id: 1 (number) - 取引先情報オプションレコードID
   + name: `オプション` (string) - 取引先情報オプション名
   + value: `値` (string) - 取引先情報オプションの値
 
@@ -1084,8 +1084,8 @@ HOST: https://web.zaico.co.jp/
 + phone_number: `08012345678` (string) - 電話番号
 + etc: `取引先` (string) - 備考
 + customer_optional_attributes
-  + name: `オプション` (string) - 顧客情報オプション名
-  + value: `値` (string) - 顧客情報オプションの値
+  + name: `オプション` (string) - 取引先情報オプション名
+  + value: `値` (string) - 取引先情報オプションの値
 
 ### CustomerCreateSuccessfully
 + code: 200 (number) - コード
