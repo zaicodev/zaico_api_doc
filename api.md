@@ -976,12 +976,15 @@ HOST: https://web.zaico.co.jp/
       Total-Count: 顧客データ件数
     + Attributes (CustomersView)
 
-## 取引先データ一覧作成 [/api/v1/customers/]
+## 取引先データ作成 [/api/v1/customers/]
 ### POST
 #### 処理概要
   * 取引先データを作成します
   * パースできないJSONを送るとエラーを返します
   * 名前のみあれば作成可能です
+
++ Parameters
+  + id: 1 (number, required) - 取引先データのID
 
 + Request
   + Headers
@@ -1000,35 +1003,66 @@ HOST: https://web.zaico.co.jp/
 + Response 422 (application/json)
   + Attributes (UnprocessableEntity)
 
+## 取引先データ更新 [/api/v1/customers/{id}]
+### PUT
+#### 処理概要
+  * 特定の取引先データを更新します
+  * 名前のみあれば作成可能です
+  * 該当する取引先データが無い場合はエラーを返します
+  * パースできないJSONを送るとエラーを返します
+
++ Parameters
+  + id: 1 (number, required) - 取引先データのID
+
++ Params
+    + Attributes (InventoryCreateParams)
+
++ Request
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
+
+  + Params
+    + Attributes (CustomerUpdateParams)
+
++ Response 200 (application/json)
+  + Attributes (CustomerUpdateSuccessfully)
+
++ Response 400 (application/json)
+  + Attributes (BadRequestNoData)
+
++ Response 404 (application/json)
+  + Attributes (InventoryNotFound)
+
 ## Data Structures
 ### CustomersView
 + id: 1 (number) - レコードID
 + company_id: 1 (number) - 事業所ID
 + related_company_id: 1 (number) - 関連する事業所ID
-+ name: (string) - `取引先A` 取引先名
-+ email: (string) `zaico@example.com` - メールアドレス
++ name: `取引先A` (string) - 取引先名
++ email: `zaico@example.com` (string) - メールアドレス
 + name_postfix: `様` (string) - 敬称
-+ zip: (string) `1234567` - 郵便番号
-+ address: (string) `東京都港区` - 住所
-+ building_name: (string) `港ビル` - 建物名・部屋番号
++ zip: `1234567` (string) - 郵便番号
++ address: `東京都港区` (string) - 住所
++ building_name: `港ビル` (string) - 建物名・部屋番号
 + phone_number: `08012345678` (string) - 電話番号
-+ etc: (string) `取引先` - 備考
++ etc: `取引先` (string) - 備考
 + created_at: `2021-12-27T09:38:19+09:00` (string) - 作成日
 + updated_at: `2021-12-27T09:38:19+09:00` (string) - 更新日
 + customer_optional_attributes
   + id: 1 (number) - 顧客情報オプションレコードID
-  + name: `オプション` (string) - 顧客情報オプション名
-  + value: `値` (string) - 顧客情報オプションの値
+  + name: `オプション` (string) - 取引先情報オプション名
+  + value: `値` (string) - 取引先情報オプションの値
 
 ### CustomerCreateParams
-+ name: (string) - `取引先A` 取引先名
-+ email: (string) `zaico@example.com` - メールアドレス
++ name: `取引先A` (string) -  取引先名
++ email: `zaico@example.com` (string) - メールアドレス
 + name_postfix: `様` (string) - 敬称
-+ zip: (string) `1234567` - 郵便番号
-+ address: (string) `東京都港区` - 住所
-+ building_name: (string) `港ビル` - 建物名・部屋番号
++ zip: `1234567` (string) - 郵便番号
++ address: `東京都港区` (string) - 住所
++ building_name: `港ビル` (string) - 建物名・部屋番号
 + phone_number: `08012345678` (string) - 電話番号
-+ etc: (string) `取引先` - 備考
++ etc: `取引先` (string) - 備考
 + customer_optional_attributes
   + name: `オプション` (string) - 顧客情報オプション名
   + value: `値` (string) - 顧客情報オプションの値
@@ -1037,4 +1071,24 @@ HOST: https://web.zaico.co.jp/
 + code: 200 (number) - コード
 + status: `success` (string) - ステータス
 + message: `Data was successfully created` (string) - メッセージ
++ data_id: 1 (number) - レコードID
+
+### CustomerUpdateParams
++ name: `取引先A` (string) -  取引先名
++ email: `zaico@example.com` (string) - メールアドレス
++ name_postfix: `様` (string) - 敬称
++ zip: `1234567` (string) - 郵便番号
++ address: `東京都港区` (string) - 住所
++ building_name: `港ビル` (string) - 建物名・部屋番号
++ phone_number: `08012345678` (string) - 電話番号
++ etc: `取引先` (string) - 備考
++ customer_optional_attributes
+  + id: 取引先情報オプションID
+  + name: `オプション` (string) - 取引先情報オプション名
+  + value: `値` (string) - 取引先情報オプションの値
+
+### CustomerUpdateSuccessfully
++ code: 200 (number) - コード
++ status: `success` (string) - ステータス
++ message: `Data was successfully updated` (string) - メッセージ
 + data_id: 1 (number) - レコードID
