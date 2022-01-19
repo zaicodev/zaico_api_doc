@@ -2121,8 +2121,6 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
 </ul>
 <h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://web.zaico.co.jp</span>/api/v1/customers/</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer YOUR_TOKEN</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Link</span>: <span class="hljs-string">&lt;https://web.zaico.co.jp/api/v1/customers?page=1&gt;; rel="first", &lt;https://web.zaico.co.jp/api/v1/customers/api/v1/customers?page=1&gt;; rel="last"</span><br><span class="hljs-attribute">Total-Count</span>: <span class="hljs-string">取引先データ件数</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-  "<span class="hljs-attribute">company_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-  "<span class="hljs-attribute">related_company_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"取引先A"</span></span>,
   "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"zaico@example.com"</span></span>,
   "<span class="hljs-attribute">name_postfix</span>": <span class="hljs-value"><span class="hljs-string">"様"</span></span>,
@@ -2130,14 +2128,7 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
   "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"東京都港区"</span></span>,
   "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"港ビル"</span></span>,
   "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value"><span class="hljs-string">"08012345678"</span></span>,
-  "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"取引先"</span></span>,
-  "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2021-12-27T09:38:19+09:00"</span></span>,
-  "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2021-12-27T09:38:19+09:00"</span></span>,
-  "<span class="hljs-attribute">customer_optional_attributes</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"オプション"</span></span>,
-    "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"値"</span>
-  </span>}
+  "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"取引先"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -2145,14 +2136,6 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
     "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"レコードID"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">company_id</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"事業所ID"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">related_company_id</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"関連する事業所ID"</span>
     </span>}</span>,
     "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -2185,31 +2168,6 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
     "<span class="hljs-attribute">etc</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">created_at</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"作成日"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"更新日"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">customer_optional_attributes</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
-      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプションレコードID"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプション名"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">value</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプションの値"</span>
-        </span>}
-      </span>}
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="取引先データ-取引先データ作成" class="resource"><h3 class="resource-heading">取引先データ作成 <a href="#取引先データ-取引先データ作成" class="permalink">&nbsp;&para;</a></h3><div id="取引先データ-取引先データ作成-post" class="action post"><h4 class="action-heading"><div class="name"></div><a href="#取引先データ-取引先データ作成-post" class="method post">POST</a><code class="uri">/api/v1/customers/</code></h4><h4 id="header-処理概要-16">処理概要 <a class="permalink" href="#header-処理概要-16" aria-hidden="true">¶</a></h4>
@@ -2233,11 +2191,7 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
   "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"東京都港区"</span></span>,
   "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"港ビル"</span></span>,
   "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value"><span class="hljs-string">"08012345678"</span></span>,
-  "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"取引先"</span></span>,
-  "<span class="hljs-attribute">customer_optional_attributes</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"オプション"</span></span>,
-    "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"値"</span>
-  </span>}
+  "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"取引先"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -2273,19 +2227,6 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
     "<span class="hljs-attribute">etc</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">customer_optional_attributes</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
-      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプション名"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">value</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプションの値"</span>
-        </span>}
-      </span>}
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
@@ -2380,12 +2321,7 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
   "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"東京都港区"</span></span>,
   "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"港ビル"</span></span>,
   "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value"><span class="hljs-string">"08012345678"</span></span>,
-  "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"取引先"</span></span>,
-  "<span class="hljs-attribute">customer_optional_attributes</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプションID"</span></span>,
-    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"オプション"</span></span>,
-    "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-string">"値"</span>
-  </span>}
+  "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"取引先"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -2421,22 +2357,6 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
     "<span class="hljs-attribute">etc</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">customer_optional_attributes</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
-      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
-        "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプション名"</span>
-        </span>}</span>,
-        "<span class="hljs-attribute">value</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"取引先情報オプションの値"</span>
-        </span>}
-      </span>}
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
@@ -2489,14 +2409,14 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>404</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-number">404</span></span>,
   "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"error"</span></span>,
-  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Inventory not found"</span>
+  "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Customer not found"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
   "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"ステータスコード"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"コード"</span>
     </span>}</span>,
     "<span class="hljs-attribute">status</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -2504,7 +2424,7 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
     </span>}</span>,
     "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"エラー内容"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"メッセージ"</span>
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="取引先データ-取引先データ削除" class="resource"><h3 class="resource-heading">取引先データ削除 <a href="#取引先データ-取引先データ削除" class="permalink">&nbsp;&para;</a></h3><div id="取引先データ-取引先データ削除-delete" class="action delete"><h4 class="action-heading"><div class="name"></div><a href="#取引先データ-取引先データ削除-delete" class="method delete">DELETE</a><code class="uri">/api/v1/customers/{id}</code></h4><h4 id="header-処理概要-18">処理概要 <a class="permalink" href="#header-処理概要-18" aria-hidden="true">¶</a></h4>
@@ -2564,7 +2484,7 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"メッセージ"</span>
     </span>}
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 18 Jan 2022</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 19 Jan 2022</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 

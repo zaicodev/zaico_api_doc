@@ -1057,8 +1057,6 @@ HOST: https://web.zaico.co.jp/
 ## Data Structures
 ### CustomersView
 + id: 1 (number) - レコードID
-+ company_id: 1 (number) - 事業所ID
-+ related_company_id: 1 (number) - 関連する事業所ID
 + name: `取引先A` (string) - 取引先名
 + email: `zaico@example.com` (string) - メールアドレス
 + name_postfix: `様` (string) - 敬称
@@ -1067,12 +1065,6 @@ HOST: https://web.zaico.co.jp/
 + building_name: `港ビル` (string) - 建物名・部屋番号
 + phone_number: `08012345678` (string) - 電話番号
 + etc: `取引先` (string) - 備考
-+ created_at: `2021-12-27T09:38:19+09:00` (string) - 作成日
-+ updated_at: `2021-12-27T09:38:19+09:00` (string) - 更新日
-+ customer_optional_attributes
-  + id: 1 (number) - 取引先情報オプションレコードID
-  + name: `オプション` (string) - 取引先情報オプション名
-  + value: `値` (string) - 取引先情報オプションの値
 
 ### CustomerCreateParams
 + name: `取引先A` (string) -  取引先名
@@ -1083,9 +1075,6 @@ HOST: https://web.zaico.co.jp/
 + building_name: `港ビル` (string) - 建物名・部屋番号
 + phone_number: `08012345678` (string) - 電話番号
 + etc: `取引先` (string) - 備考
-+ customer_optional_attributes
-  + name: `オプション` (string) - 取引先情報オプション名
-  + value: `値` (string) - 取引先情報オプションの値
 
 ### CustomerCreateSuccessfully
 + code: 200 (number) - コード
@@ -1102,10 +1091,6 @@ HOST: https://web.zaico.co.jp/
 + building_name: `港ビル` (string) - 建物名・部屋番号
 + phone_number: `08012345678` (string) - 電話番号
 + etc: `取引先` (string) - 備考
-+ customer_optional_attributes
-  + id: 取引先情報オプションID
-  + name: `オプション` (string) - 取引先情報オプション名
-  + value: `値` (string) - 取引先情報オプションの値
 
 ### CustomerUpdateSuccessfully
 + code: 200 (number) - コード
