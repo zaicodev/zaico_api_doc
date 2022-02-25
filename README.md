@@ -1,6 +1,6 @@
 # クラウド在庫管理ソフトZAICOのAPIドキュメント
 
-https://zaico-api-document.netlify.com/
+https://zaicodev.github.io/zaico-api-doc
 
 ## 必要な設定
 
@@ -14,9 +14,5 @@ HTMLに変換するときは `yarn build` を実行してください。`dist/in
 
 ## ドキュメントの公開について
 
-Netlifyを使って公開しています。
+Github Actionsを使って公開しています。
 masterブランチにコミットがあったときに、自動的にデプロイされます。
-
-## node.jsのバージョン
-
-node.js v10以上だとyarn installが失敗するのでv8を使うとうまくいきます。
