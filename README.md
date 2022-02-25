@@ -1,6 +1,6 @@
 # クラウド在庫管理ソフトZAICOのAPIドキュメント
 
-https://zaicodev.github.io/zaico-api-doc
+https://zaicodev.github.io/zaico_api_doc/
 
 ## 必要な設定
 
