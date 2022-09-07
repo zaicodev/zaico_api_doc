@@ -867,7 +867,7 @@ HOST: https://web.zaico.co.jp/
 
 
 
-## 仕入データ削除 [/api/v1/packing_slips/{id}]
+## 仕入データ削除 [/api/v1/purchases/{id}]
 ### 仕入データ削除 [DELETE]
 #### 処理概要
 
