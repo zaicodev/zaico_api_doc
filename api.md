@@ -283,26 +283,26 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * customer_name : 取引先名
   * status : 出庫データの状態
     * 以下の2つのどちらかが設定されています
-    * before_delivery : 納品前
-    * completed_delivery : 納品済み
+    * before_delivery : 出庫前
+    * completed_delivery : 出庫済
   * total_amount : 出庫データの合計金額
-  * delivery_date : 納品日
-  * estimated_delivery_date : 納品予定日
-    * この納品予定日は出庫データの物品のうち、最も早い納品予定日を表示します
+  * delivery_date : 出庫日
+  * estimated_delivery_date : 出庫予定日
+    * この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します
   * created_at : 出庫データ作成日
   * updated_at : 出庫データ更新日
   * deliveries : 出庫データに登録している在庫データ一覧
     * inventory_id : 在庫データID
     * title : 物品名
-    * quantity : 納品数量
+    * quantity : 出庫数量
     * unit : 単位
     * unit_price : 納品単価
     * status : 状態
       * 以下の2つのどちらかが設定されています
-      * before_delivery : 納品前
-      * completed_delivery : 納品済み
-    * delivery_date : 納品日
-    * estimated_delivery_date : 納品予定日
+      * before_delivery : 出庫前
+      * completed_delivery : 出庫済
+    * delivery_date : 出庫日
+    * estimated_delivery_date : 出庫予定日
     * etc : 摘要・備考
 
 + Request
@@ -319,7 +319,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             + customer_name: 株式会社ZAICO (string) - 取引先名
             + status: `completed_delivery` (string) - 状態
             + total_amount: 1000 (number)
-            + delivery_date: `2019-09-01` (string) - 納品日
+            + delivery_date: `2019-09-01` (string) - 出庫日
             + estimated_delivery_date (string, optional, nullable)
             + created_at: `2018-03-27T09:38:19+09:00`
             + updated_at: `2018-03-27T09:38:19+09:00`
@@ -327,7 +327,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                 + (object)
                     + inventory_id: 1 (number)
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (number) - 納品数量
+                    + quantity: 3 (number) - 出庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (number) - 納品単価
                     + status: completed_delivery (string)
@@ -337,7 +337,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                 + (object)
                     + inventory_id: 2 (number)
                     + title: テレビ (string) - 物品名
-                    + quantity: 3 (number) - 納品数量
+                    + quantity: 3 (number) - 出庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (number) - 納品単価
                     + status: completed_delivery (string)
@@ -350,15 +350,15 @@ Authorization: Bearer YOUR_TOKEN_HERE
             + customer_name: 株式会社ZAICO (string) - 取引先名
             + status: `before_delivery` (string) - 状態
             + total_amount: 1000 (number)
-            + delivery_date: `2019-09-01` (string) - 納品日
-            + estimated_delivery_date: `2019-09-01` (string) - 納品予定日
+            + delivery_date: `2019-09-01` (string) - 出庫日
+            + estimated_delivery_date: `2019-09-01` (string) - 出庫予定日
             + created_at: `2018-03-27T09:38:19+09:00`
             + updated_at: `2018-03-27T09:38:19+09:00`
             + deliveries (array[object], fixed-type)
                 + (object)
                     + inventory_id: 5 (number)
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (number) - 納品数量
+                    + quantity: 3 (number) - 出庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (number) - 納品単価
                     + status: completed_delivery
@@ -378,10 +378,10 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * customer_name : 取引先名
     * status : 出庫データの状態
         * 以下の2つのどちらかを指定してください
-        * 納品前の場合は before_delivery
-        * 納品済みの場合は completed_delivery
-        * **納品済みを指定した場合は、対象の在庫データの数量を減少します**
-    * delivery_date : 納品日
+        * 出庫前の場合は before_delivery
+        * 出庫済の場合は completed_delivery
+        * **出庫済みを指定した場合は、対象の在庫データの数量を減少します**
+    * delivery_date : 出庫日
         * statusによって必須かどうか変わります
         * status=completed_delivery
             * delivery_dateが必須
@@ -390,9 +390,9 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * deliveries : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
-            * quantity : 納品数量
+            * quantity : 出庫数量
             * unit_price : 納品単価
-            * estimated_delivery_date : 納品予定日
+            * estimated_delivery_date : 出庫予定日
             * etc : 摘要・備考
 
 + Request
@@ -405,7 +405,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + status: `completed_delivery` (string, required) - 状態
-        + delivery_date: `2019-09-01` (string) - 納品日
+        + delivery_date: `2019-09-01` (string) - 出庫日
         + deliveries (array[CreateDelivery], required)
 
 + Response 200 (application/json)
@@ -433,26 +433,26 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * customer_name : 取引先名
   * status : 出庫データの状態
     * 以下の2つのどちらかが設定されています
-    * before_delivery : 納品前
-    * completed_delivery : 納品済み
+    * before_delivery : 出庫前
+    * completed_delivery : 出庫済み
   * total_amount : 出庫データの合計金額
-  * delivery_date : 納品日
-  * estimated_delivery_date : 納品予定日
-    * この納品予定日は出庫データの物品のうち、最も早い納品予定日を表示します
+  * delivery_date : 出庫日
+  * estimated_delivery_date : 出庫予定日
+    * この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します
   * created_at : 出庫データ作成日
   * updated_at : 出庫データ更新日
   * deliveries : 出庫データに登録している在庫データ一覧
     * inventory_id : 在庫データID
     * title : 物品名
-    * quantity : 納品数量
+    * quantity : 出庫数量
     * unit : 単位
     * unit_price : 納品単価
     * status : 状態
       * 以下の2つのどちらかが設定されています
-      * before_delivery : 納品前
-      * completed_delivery : 納品済み
-    * delivery_date : 納品日
-    * estimated_delivery_date : 納品予定日
+      * before_delivery : 出庫前
+      * completed_delivery : 出庫済み
+    * delivery_date : 出庫日
+    * estimated_delivery_date : 出庫予定日
     * etc: 摘要・備考
 
 + Parameters
@@ -471,15 +471,15 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + customer_name: 株式会社ZAICO (string) - 取引先名
         + status: `completed_delivery` (string) - 状態
         + total_amount: 1000 (number)
-        + delivery_date: `2019-09-01` (string) - 納品日
-        + estimated_delivery_date: `2019-09-01` (string) - 納品日
+        + delivery_date: `2019-09-01` (string) - 出庫日
+        + estimated_delivery_date: `2019-09-01` (string) - 出庫日
         + created_at: `2018-03-27T09:38:19+09:00`
         + updated_at: `2018-03-27T09:38:19+09:00`
             + deliveries (array[object], fixed-type)
                 + (object)
                     + inventory_id: 1 (number)
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (number) - 納品数量
+                    + quantity: 3 (number) - 出庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (number) - 納品単価
                     + status: completed_delivery (string)
@@ -489,7 +489,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                 + (object)
                     + inventory_id: 2 (number)
                     + title: テレビ (string) - 物品名
-                    + quantity: 3 (number) - 納品数量
+                    + quantity: 3 (number) - 出庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (number) - 納品単価
                     + status: completed_delivery (string)
@@ -510,14 +510,14 @@ Authorization: Bearer YOUR_TOKEN_HERE
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
                 * 在庫データIDは対象の物品を特定するために指定するため、これを更新することはできません
-            * quantity : 納品数量
+            * quantity : 出庫数量
             * unit_price : 納品単価
             * status : 状態
-                * 納品前在庫を更新するときは before_delivery または completed_delivery を指定できます
-                納品前在庫を納品済みに更新すると **対象の在庫データの数量を減少します**
-                * 納品済み在庫の状態を更新することはできません
-            * delivery_date : 納品日
-            * estimated_delivery_date : 納品予定日
+                * 出庫前在庫を更新するときは before_delivery または completed_delivery を指定できます
+                出庫前在庫を出庫済に更新すると **対象の在庫データの数量を減少します**
+                * 出庫済在庫の状態を更新することはできません
+            * delivery_date : 出庫日
+            * estimated_delivery_date : 出庫予定日
             * etc : 摘要・備考
 
 + Parameters
@@ -555,8 +555,8 @@ Authorization: Bearer YOUR_TOKEN_HERE
 
 * 特定の出庫データを削除します
 * 出庫データの各物品の状態によって在庫データの取り扱いが変わります
-    * 納品前：変化なし
-    * 納品済み：在庫データの数量を納品数量分だけ戻します
+    * 出庫前：変化なし
+    * 出庫済：在庫データの数量を出庫数量分だけ戻します
 
 + Parameters
     + id: 1 (number) - 出庫データのID
@@ -902,13 +902,13 @@ HOST: https://web.zaico.co.jp/
 
 ## CreateDelivery (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 納品数量
++ quantity: 3 (number, required) - 出庫数量
 + unit_price: 100 (number, optional) - 納品単価
 + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
 
 ## UpdateDeliveryToCompleted
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 納品数量
++ quantity: 3 (number, required) - 出庫数量
 + unit_price: 100 (number, optional) - 納品単価
 + status: completed_delivery (string)
 + delivery_date: `2019-11-11` (string)
@@ -916,7 +916,7 @@ HOST: https://web.zaico.co.jp/
 
 ## UpdateDeliveryToBefore
 + inventory_id: 2 (number, required) - 在庫データID
-+ quantity: 5 (number, required) - 納品数量
++ quantity: 5 (number, required) - 出庫数量
 + unit_price: 100 (number, optional, nullable) - 納品単価
 + status: before_delivery
 + estimated_delivery_date: `2019-11-11` (string, optional, nullable)

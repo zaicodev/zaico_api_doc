@@ -880,15 +880,15 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>status : 出庫データの状態
 <ul>
 <li>以下の2つのどちらかが設定されています</li>
-<li>before_delivery : 納品前</li>
-<li>completed_delivery : 納品済み</li>
+<li>before_delivery : 出庫前</li>
+<li>completed_delivery : 出庫済</li>
 </ul>
 </li>
 <li>total_amount : 出庫データの合計金額</li>
-<li>delivery_date : 納品日</li>
-<li>estimated_delivery_date : 納品予定日
+<li>delivery_date : 出庫日</li>
+<li>estimated_delivery_date : 出庫予定日
 <ul>
-<li>この納品予定日は出庫データの物品のうち、最も早い納品予定日を表示します</li>
+<li>この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します</li>
 </ul>
 </li>
 <li>created_at : 出庫データ作成日</li>
@@ -897,18 +897,18 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <ul>
 <li>inventory_id : 在庫データID</li>
 <li>title : 物品名</li>
-<li>quantity : 納品数量</li>
+<li>quantity : 出庫数量</li>
 <li>unit : 単位</li>
 <li>unit_price : 納品単価</li>
 <li>status : 状態
 <ul>
 <li>以下の2つのどちらかが設定されています</li>
-<li>before_delivery : 納品前</li>
-<li>completed_delivery : 納品済み</li>
+<li>before_delivery : 出庫前</li>
+<li>completed_delivery : 出庫済</li>
 </ul>
 </li>
-<li>delivery_date : 納品日</li>
-<li>estimated_delivery_date : 納品予定日</li>
+<li>delivery_date : 出庫日</li>
+<li>estimated_delivery_date : 出庫予定日</li>
 <li>etc : 摘要・備考</li>
 </ul>
 </li>
@@ -994,12 +994,12 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>status : 出庫データの状態
 <ul>
 <li>以下の2つのどちらかを指定してください</li>
-<li>納品前の場合は before_delivery</li>
-<li>納品済みの場合は completed_delivery</li>
-<li><strong>納品済みを指定した場合は、対象の在庫データの数量を減少します</strong></li>
+<li>出庫前の場合は before_delivery</li>
+<li>出庫済の場合は completed_delivery</li>
+<li><strong>出庫済みを指定した場合は、対象の在庫データの数量を減少します</strong></li>
 </ul>
 </li>
-<li>delivery_date : 納品日
+<li>delivery_date : 出庫日
 <ul>
 <li>statusによって必須かどうか変わります</li>
 <li>status=completed_delivery
@@ -1019,9 +1019,9 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>以下のパラメータを含むオブジェクトを配列の要素とします
 <ul>
 <li>inventory_id : 在庫データID</li>
-<li>quantity : 納品数量</li>
+<li>quantity : 出庫数量</li>
 <li>unit_price : 納品単価</li>
-<li>estimated_delivery_date : 納品予定日</li>
+<li>estimated_delivery_date : 出庫予定日</li>
 <li>etc : 摘要・備考</li>
 </ul>
 </li>
@@ -1061,7 +1061,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     </span>}</span>,
     "<span class="hljs-attribute">delivery_date</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"納品日"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"出庫日"</span>
     </span>}</span>,
     "<span class="hljs-attribute">deliveries</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span>
@@ -1132,15 +1132,15 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>status : 出庫データの状態
 <ul>
 <li>以下の2つのどちらかが設定されています</li>
-<li>before_delivery : 納品前</li>
-<li>completed_delivery : 納品済み</li>
+<li>before_delivery : 出庫前</li>
+<li>completed_delivery : 出庫済み</li>
 </ul>
 </li>
 <li>total_amount : 出庫データの合計金額</li>
-<li>delivery_date : 納品日</li>
-<li>estimated_delivery_date : 納品予定日
+<li>delivery_date : 出庫日</li>
+<li>estimated_delivery_date : 出庫予定日
 <ul>
-<li>この納品予定日は出庫データの物品のうち、最も早い納品予定日を表示します</li>
+<li>この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します</li>
 </ul>
 </li>
 <li>created_at : 出庫データ作成日</li>
@@ -1149,18 +1149,18 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <ul>
 <li>inventory_id : 在庫データID</li>
 <li>title : 物品名</li>
-<li>quantity : 納品数量</li>
+<li>quantity : 出庫数量</li>
 <li>unit : 単位</li>
 <li>unit_price : 納品単価</li>
 <li>status : 状態
 <ul>
 <li>以下の2つのどちらかが設定されています</li>
-<li>before_delivery : 納品前</li>
-<li>completed_delivery : 納品済み</li>
+<li>before_delivery : 出庫前</li>
+<li>completed_delivery : 出庫済み</li>
 </ul>
 </li>
-<li>delivery_date : 納品日</li>
-<li>estimated_delivery_date : 納品予定日</li>
+<li>delivery_date : 出庫日</li>
+<li>estimated_delivery_date : 出庫予定日</li>
 <li>etc: 摘要・備考</li>
 </ul>
 </li>
@@ -1226,11 +1226,11 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     </span>}</span>,
     "<span class="hljs-attribute">delivery_date</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"納品日"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"出庫日"</span>
     </span>}</span>,
     "<span class="hljs-attribute">estimated_delivery_date</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"納品日"</span>
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"出庫日"</span>
     </span>}</span>,
     "<span class="hljs-attribute">created_at</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
@@ -1253,7 +1253,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
                 </span>}</span>,
                 "<span class="hljs-attribute">quantity</span>": <span class="hljs-value">{
                   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-                  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"納品数量"</span>
+                  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"出庫数量"</span>
                 </span>}</span>,
                 "<span class="hljs-attribute">unit</span>": <span class="hljs-value">{
                   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -1293,7 +1293,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
                 </span>}</span>,
                 "<span class="hljs-attribute">quantity</span>": <span class="hljs-value">{
                   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-                  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"納品数量"</span>
+                  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"出庫数量"</span>
                 </span>}</span>,
                 "<span class="hljs-attribute">unit</span>": <span class="hljs-value">{
                   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -1348,17 +1348,17 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>在庫データIDは対象の物品を特定するために指定するため、これを更新することはできません</li>
 </ul>
 </li>
-<li>quantity : 納品数量</li>
+<li>quantity : 出庫数量</li>
 <li>unit_price : 納品単価</li>
 <li>status : 状態
 <ul>
-<li>納品前在庫を更新するときは before_delivery または completed_delivery を指定できます
-納品前在庫を納品済みに更新すると <strong>対象の在庫データの数量を減少します</strong></li>
-<li>納品済み在庫の状態を更新することはできません</li>
+<li>出庫前在庫を更新するときは before_delivery または completed_delivery を指定できます
+出庫前在庫を出庫済に更新すると <strong>対象の在庫データの数量を減少します</strong></li>
+<li>出庫済在庫の状態を更新することはできません</li>
 </ul>
 </li>
-<li>delivery_date : 納品日</li>
-<li>estimated_delivery_date : 納品予定日</li>
+<li>delivery_date : 出庫日</li>
+<li>estimated_delivery_date : 出庫予定日</li>
 <li>etc : 摘要・備考</li>
 </ul>
 </li>
@@ -1462,8 +1462,8 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>
 <p>出庫データの各物品の状態によって在庫データの取り扱いが変わります</p>
 <ul>
-<li>納品前：変化なし</li>
-<li>納品済み：在庫データの数量を納品数量分だけ戻します</li>
+<li>出庫前：変化なし</li>
+<li>出庫済：在庫データの数量を出庫数量分だけ戻します</li>
 </ul>
 </li>
 </ul>
