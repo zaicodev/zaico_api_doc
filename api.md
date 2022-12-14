@@ -2,8 +2,8 @@ FORMAT: 1A
 HOST: https://web.zaico.co.jp
 
 # ZAICO API Document
-このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。
-2020年10月6日更新
+このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。  
+2022年12月14日更新
 
 # Group 認証
 ## 認証について
@@ -266,32 +266,32 @@ Authorization: Bearer YOUR_TOKEN_HERE
 + message: `error message` ( string ) - エラー内容
 
 
-# Group 納品データ
+# Group 出庫データ
 
-## 納品データ一覧取得 [/api/v1/packing_slips/]
-### 納品データ一覧取得 [GET]
+## 出庫データ一覧取得 [/api/v1/packing_slips/]
+### 出庫データ一覧取得 [GET]
 #### 処理概要
-* 自分のアカウントに登録されている納品データのすべてを返します
-* 納品データが1件も無い場合は、空の配列を返します
-* 納品データが1000件以上ある場合はページネーションで分割され、1000件ごと納品データを返します
+* 自分のアカウントに登録されている出庫データのすべてを返します
+* 出庫データが1件も無い場合は、空の配列を返します
+* 出庫データが1000件以上ある場合はページネーションで分割され、1000件ごと出庫データを返します
 * 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます。
 * ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
 * Link, Total-Countヘッダは納品一覧でのみ返されます
-* 各納品データの項目について以下のようになります
-  * id : 納品データID
-  * num : 納品データ番号（ユーザーが任意に設定できる番号）
+* 各出庫データの項目について以下のようになります
+  * id : 出庫データID
+  * num : 出庫データ番号（ユーザーが任意に設定できる番号）
   * customer_name : 取引先名
-  * status : 納品データの状態
+  * status : 出庫データの状態
     * 以下の2つのどちらかが設定されています
     * before_delivery : 納品前
     * completed_delivery : 納品済み
-  * total_amount : 納品データの合計金額
+  * total_amount : 出庫データの合計金額
   * delivery_date : 納品日
   * estimated_delivery_date : 納品予定日
-    * この納品予定日は納品データの物品のうち、最も早い納品予定日を表示します
-  * created_at : 納品データ作成日
-  * updated_at : 納品データ更新日
-  * deliveries : 納品データに登録している在庫データ一覧
+    * この納品予定日は出庫データの物品のうち、最も早い納品予定日を表示します
+  * created_at : 出庫データ作成日
+  * updated_at : 出庫データ更新日
+  * deliveries : 出庫データに登録している在庫データ一覧
     * inventory_id : 在庫データID
     * title : 物品名
     * quantity : 納品数量
@@ -367,16 +367,16 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + etc: (string) - 摘要・備考
 
 
-## 納品データ作成 [/api/v1/packing_slips/]
-### 納品データ作成 [POST]
+## 出庫データ作成 [/api/v1/packing_slips/]
+### 出庫データ作成 [POST]
 #### 処理概要
 
-* 納品データを作成します
+* 出庫データを作成します
 * パースできないJSONを送るとエラーを返します
 * 登録できる項目について
-    * num : 納品データ番号（ユーザーが任意に設定できる番号）
+    * num : 出庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
-    * status : 納品データの状態
+    * status : 出庫データの状態
         * 以下の2つのどちらかを指定してください
         * 納品前の場合は before_delivery
         * 納品済みの場合は completed_delivery
@@ -402,7 +402,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             Content-Type: application/json
 
     + Attributes
-        + num: 100 (string, optional) - 納品データ番号（ユーザーが任意に設定できる番号）
+        + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + status: `completed_delivery` (string, required) - 状態
         + delivery_date: `2019-09-01` (string) - 納品日
@@ -413,7 +413,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + code: 200 (number) - ステータスコード
         + status: success (string) - 状態
         + message: Data was successfully created. (string) - メッセージ
-        + data_id: 12345 (number) - 作成した納品データID
+        + data_id: 12345 (number) - 作成した出庫データID
 
 + Response 422 (application/json)
     + Attributes
@@ -422,26 +422,26 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + message: Invalid data. (string) - メッセージ
 
 
-## 納品データ個別取得 [/api/v1/packing_slips/{id}]
-### 納品データ個別取得 [GET]
+## 出庫データ個別取得 [/api/v1/packing_slips/{id}]
+### 出庫データ個別取得 [GET]
 #### 処理概要
 
-* 納品データを1件のみ取得します
-* 納品データの項目について以下のようになります
-  * id : 納品データID
-  * num : 納品データ番号（ユーザーが任意に設定できる番号）
+* 出庫データを1件のみ取得します
+* 出庫データの項目について以下のようになります
+  * id : 出庫データID
+  * num : 出庫データ番号（ユーザーが任意に設定できる番号）
   * customer_name : 取引先名
-  * status : 納品データの状態
+  * status : 出庫データの状態
     * 以下の2つのどちらかが設定されています
     * before_delivery : 納品前
     * completed_delivery : 納品済み
-  * total_amount : 納品データの合計金額
+  * total_amount : 出庫データの合計金額
   * delivery_date : 納品日
   * estimated_delivery_date : 納品予定日
-    * この納品予定日は納品データの物品のうち、最も早い納品予定日を表示します
-  * created_at : 納品データ作成日
-  * updated_at : 納品データ更新日
-  * deliveries : 納品データに登録している在庫データ一覧
+    * この納品予定日は出庫データの物品のうち、最も早い納品予定日を表示します
+  * created_at : 出庫データ作成日
+  * updated_at : 出庫データ更新日
+  * deliveries : 出庫データに登録している在庫データ一覧
     * inventory_id : 在庫データID
     * title : 物品名
     * quantity : 納品数量
@@ -456,7 +456,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * etc: 摘要・備考
 
 + Parameters
-    + id: 1 (number) - 納品データのID
+    + id: 1 (number) - 出庫データのID
 
 + Request
     + Headers
@@ -497,14 +497,14 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
                     + etc: (string) - 摘要・備考
 
-## 納品データ更新 [/api/v1/packing_slips/{id}]
-### 納品データ更新 [PUT]
+## 出庫データ更新 [/api/v1/packing_slips/{id}]
+### 出庫データ更新 [PUT]
 #### 処理概要
 
-* 納品データを更新します
+* 出庫データを更新します
 * パースできないJSONを送るとエラーを返します
 * 項目について
-    * num : 納品データ番号（ユーザーが任意に設定できる番号）
+    * num : 出庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
     * deliveries : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
@@ -521,7 +521,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             * etc : 摘要・備考
 
 + Parameters
-    + id: 1 (number) - 納品データのID
+    + id: 1 (number) - 出庫データのID
 
 + Request
     + Headers
@@ -530,7 +530,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             Content-Type: application/json
 
     + Attributes
-        + num: 100 (string, optional) - 納品データ番号（ユーザーが任意に設定できる番号）
+        + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + deliveries (array[UpdateDeliveryToCompleted, UpdateDeliveryToBefore], required)
 
@@ -539,7 +539,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + code: 200 (number) - ステータスコード
         + status: success (string) - 状態
         + message: Data was successfully created. (string) - メッセージ
-        + data_id: 12345 (number) - 作成した納品データID
+        + data_id: 12345 (number) - 作成した出庫データID
 
 + Response 422 (application/json)
     + Attributes
@@ -549,17 +549,17 @@ Authorization: Bearer YOUR_TOKEN_HERE
 
 
 
-## 納品データ削除 [/api/v1/packing_slips/{id}]
-### 納品データ削除 [DELETE]
+## 出庫データ削除 [/api/v1/packing_slips/{id}]
+### 出庫データ削除 [DELETE]
 #### 処理概要
 
-* 特定の納品データを削除します
-* 納品データの各物品の状態によって在庫データの取り扱いが変わります
+* 特定の出庫データを削除します
+* 出庫データの各物品の状態によって在庫データの取り扱いが変わります
     * 納品前：変化なし
     * 納品済み：在庫データの数量を納品数量分だけ戻します
 
 + Parameters
-    + id: 1 (number) - 納品データのID
+    + id: 1 (number) - 出庫データのID
 
 + Request
     + Headers
@@ -579,36 +579,36 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + status: error (string) - 状態
         + message: Packing slip not found (string) - メッセージ
 
-# Group 仕入データ
+# Group 入庫データ
 
 HOST: https://web.zaico.co.jp/
 
-## 仕入データ一覧取得 [/api/v1/purchases/]
-### 仕入データ一覧取得 [GET]
+## 入庫データ一覧取得 [/api/v1/purchases/]
+### 入庫データ一覧取得 [GET]
 #### 処理概要
 
-* 自分のアカウントに登録されている仕入データのすべてを返します
-* 仕入データが1件も無い場合は、空の配列を返します
-* 仕入データが1000件以上ある場合はページネーションで分割され、1000件ごと仕入データを返します
+* 自分のアカウントに登録されている入庫データのすべてを返します
+* 入庫データが1件も無い場合は、空の配列を返します
+* 入庫データが1000件以上ある場合はページネーションで分割され、1000件ごと入庫データを返します
 * 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます
 * ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
 * Link, Total-Countヘッダは仕入一覧でのみ返されます
-* 各仕入データの項目について以下のようになります
-  * id : 仕入データID
-  * num : 仕入データ番号（ユーザーが任意に設定できる番号）
+* 各入庫データの項目について以下のようになります
+  * id : 入庫データID
+  * num : 入庫データ番号（ユーザーが任意に設定できる番号）
   * customer_name : 取引先名
-  * status : 仕入データの状態
+  * status : 入庫データの状態
     * 以下の3つのいずれかが設定されています
     * not_ordered : 発注前
     * ordered : 発注済み
     * purchased : 仕入済み
-  * total_amount : 仕入データの合計金額
+  * total_amount : 入庫データの合計金額
   * purchase_date: 仕入日
   * estimated_purchase_date　: 仕入予定日
-  * create_user_name : 仕入データ作成者名
-  * created_at : 仕入データ作成日
-  * updated_at : 仕入データ更新日
-  * purchase_items : 仕入データに登録している在庫データ一覧
+  * create_user_name : 入庫データ作成者名
+  * created_at : 入庫データ作成日
+  * updated_at : 入庫データ更新日
+  * purchase_items : 入庫データに登録している在庫データ一覧
     * inventory_id : 在庫データID
     * title : 物品名
     * quantity : 仕入数量
@@ -638,7 +638,7 @@ HOST: https://web.zaico.co.jp/
             + total_amount: 1000 (number)
             + purchase_date: null (string) - 仕入日
             + estimated_purchase_date: `2020-01-01` (string) - 仕入予定日
-            + create_user_name: 在庫太郎 (string) - 仕入データ作成者名
+            + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
             + created_at: `2019-12-27T09:38:19+09:00`
             + updated_at: `2019-12-27T09:38:19+09:00`
             + purchase_items (array)
@@ -668,7 +668,7 @@ HOST: https://web.zaico.co.jp/
             + total_amount: 1000 (number)
             + purchase_date: `2020-01-01` (string) - 仕入日
             + estimated_purchase_date: null (string) - 仕入予定日
-            + create_user_name: 在庫太郎 (string) - 仕入データ作成者名
+            + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
             + created_at: `2019-12-27T09:38:19+09:00`
             + updated_at: `2019-12-27T09:38:19+09:00`
             + purchase_items (array)
@@ -683,16 +683,16 @@ HOST: https://web.zaico.co.jp/
                     + estimated_purchase_date: null
 
 
-## 仕入データ作成 [/api/v1/purchases/]
-### 仕入データ作成 [POST]
+## 入庫データ作成 [/api/v1/purchases/]
+### 入庫データ作成 [POST]
 #### 処理概要
 
-* 仕入データを作成します
+* 入庫データを作成します
 * パースできないJSONを送るとエラーを返します
 * 登録できる項目について
-    * num : 仕入データ番号（ユーザーが任意に設定できる番号）
+    * num : 入庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
-    * status : 仕入データの状態
+    * status : 入庫データの状態
         * 以下の2つのどちらかを指定してください
         * 仕入前の場合は not_ordered
         * 仕入済みの場合は purchased
@@ -718,7 +718,7 @@ HOST: https://web.zaico.co.jp/
             Content-Type: application/json
 
     + Attributes
-        + num: 100 (string, optional) - 仕入データ番号（ユーザーが任意に設定できる番号）
+        + num: 100 (string, optional) - 入庫データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + status: `purchased` (string, required) - 状態
         + purchase_date: `2019-09-01` (string) - 仕入日
@@ -729,7 +729,7 @@ HOST: https://web.zaico.co.jp/
         + code: 200 (number) - ステータスコード
         + status: success (string) - 状態
         + message: Data was successfully created. (string) - メッセージ
-        + data_id: 12345 (number) - 作成した仕入データID
+        + data_id: 12345 (number) - 作成した入庫データID
 
 + Response 422 (application/json)
     + Attributes
@@ -738,28 +738,28 @@ HOST: https://web.zaico.co.jp/
         + message: Invalid data. (string) - メッセージ
 
 
-## 仕入データ個別取得 [/api/v1/purchases/{id}]
-### 仕入データ個別取得 [GET]
+## 入庫データ個別取得 [/api/v1/purchases/{id}]
+### 入庫データ個別取得 [GET]
 #### 処理概要
 
-* 仕入データを1件のみ取得します
-* 仕入データの項目について以下のようになります
-  * id : 仕入データID
-  * num : 仕入データ番号（ユーザーが任意に設定できる番号）
+* 入庫データを1件のみ取得します
+* 入庫データの項目について以下のようになります
+  * id : 入庫データID
+  * num : 入庫データ番号（ユーザーが任意に設定できる番号）
   * customer_name : 取引先名
-  * status : 仕入データの状態
+  * status : 入庫データの状態
     * 以下の3つのいずれかが設定されています
     * not_ordered : 発注前
     * ordered : 発注済み
     * purchased : 仕入済み
-  * total_amount : 仕入データの合計金額
+  * total_amount : 入庫データの合計金額
   * purchase_date : 仕入日
   * estimated_purchase_date : 仕入予定日
-    * この仕入予定日は仕入データの物品のうち、最も早い仕入予定日を表示します
-  * create_user_name : 仕入データ作成者名
-  * created_at : 仕入データ作成日
-  * updated_at : 仕入データ更新日
-  * deliveries : 仕入データに登録している在庫データ一覧
+    * この仕入予定日は入庫データの物品のうち、最も早い仕入予定日を表示します
+  * create_user_name : 入庫データ作成者名
+  * created_at : 入庫データ作成日
+  * updated_at : 入庫データ更新日
+  * deliveries : 入庫データに登録している在庫データ一覧
     * inventory_id : 在庫データID
     * title : 物品名
     * quantity : 仕入数量
@@ -775,7 +775,7 @@ HOST: https://web.zaico.co.jp/
     * etc: 摘要・備考
 
 + Parameters
-    + id: 10 (number) - 仕入データのID
+    + id: 10 (number) - 入庫データのID
 
 + Request
     + Headers
@@ -792,7 +792,7 @@ HOST: https://web.zaico.co.jp/
         + total_amount: 1000 (number)
         + purchase_date: null (string) - 仕入日
         + estimated_purchase_date: `2020-01-01` (string) - 仕入予定日
-        + create_user_name: 在庫太郎 (string) - 仕入データ作成者名
+        + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
         + created_at: `2019-12-27T09:38:19+09:00`
         + updated_at: `2019-12-27T09:38:19+09:00`
         + purchase_items (array)
@@ -815,14 +815,14 @@ HOST: https://web.zaico.co.jp/
                 + purchase_date: null (string)
                 + estimated_purchase_date: `2020-01-01` (string)
 
-## 仕入データ更新 [/api/v1/purchases/{id}]
-### 仕入データ更新 [PUT]
+## 入庫データ更新 [/api/v1/purchases/{id}]
+### 入庫データ更新 [PUT]
 #### 処理概要
 
-* 仕入データを更新します
+* 入庫データを更新します
 * パースできないJSONを送るとエラーを返します
 * 項目について
-    * num : 仕入データ番号（ユーザーが任意に設定できる番号）
+    * num : 入庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
     * purchase_items : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
@@ -839,7 +839,7 @@ HOST: https://web.zaico.co.jp/
             * etc : 摘要・備考
 
 + Parameters
-    + id: 1 (number) - 仕入データのID
+    + id: 1 (number) - 入庫データのID
 
 + Request
     + Headers
@@ -848,7 +848,7 @@ HOST: https://web.zaico.co.jp/
             Content-Type: application/json
 
     + Attributes
-        + num: 100 (string, optional) - 仕入データ番号（ユーザーが任意に設定できる番号）
+        + num: 100 (string, optional) - 入庫データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + purchase_items (array[UpdatePurchaseItemToPurchased, UpdatePurchaseItemToOrdered, UpdatePurchaseItemToNotOrdered], required)
 
@@ -857,7 +857,7 @@ HOST: https://web.zaico.co.jp/
         + code: 200 (number) - ステータスコード
         + status: success (string) - 状態
         + message: Data was successfully created. (string) - メッセージ
-        + data_id: 12345 (number) - 作成した仕入データID
+        + data_id: 12345 (number) - 作成した入庫データID
 
 + Response 422 (application/json)
     + Attributes
@@ -867,17 +867,17 @@ HOST: https://web.zaico.co.jp/
 
 
 
-## 仕入データ削除 [/api/v1/purchases/{id}]
-### 仕入データ削除 [DELETE]
+## 入庫データ削除 [/api/v1/purchases/{id}]
+### 入庫データ削除 [DELETE]
 #### 処理概要
 
-* 特定の仕入データを削除します
-* 仕入データの各物品の状態によって在庫データの取り扱いが変わります
+* 特定の入庫データを削除します
+* 入庫データの各物品の状態によって在庫データの取り扱いが変わります
     * 仕入前：変化なし
     * 仕入済み：在庫データの数量を仕入数量分だけ戻します
 
 + Parameters
-    + id: 1 (number) - 仕入データのID
+    + id: 1 (number) - 入庫データのID
 
 + Request
     + Headers
