@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: https://web.zaico.co.jp
 
-# ZAICO API Document
+# zaico API Document
 このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。  
 2022年12月14日更新
 
@@ -24,7 +24,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
 #### 処理概要
   * 自分のアカウントに登録されている在庫データのすべてを返します
   * 在庫データが1件も無い場合は、空の配列を返します
-  * 棚卸し日は設定されている場合のみ表示されます
+  * 棚卸日は設定されている場合のみ表示されます
   * 発注点は設定されている場合のみ表示されます
   * 在庫データが1000件以上ある場合はページネーションで分割され、1000件ごと在庫データを返します
   * 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます。サンプルプログラムなど詳しくはこちらのページをご覧ください( https://www.zaico.co.jp/2019/03/29/zaico-api-update-get-inventories/ )
@@ -64,7 +64,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * パースできないJSONを送るとエラーを返します
   * 存在しないユーザーグループを送るとエラーを返します
   * 変更履歴のメモも一緒に保存することが可能です。詳しくは下記Bodyをご覧ください
-  * 棚卸し日はstocktake_attributes: { checked_at: 日付 }で登録・変更が可能です
+  * 棚卸日はstocktake_attributes: { checked_at: 日付 }で登録・変更が可能です
   * 発注点を設定することも可能です
 
 + Request
@@ -90,7 +90,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
 ### GET
 #### 処理概要
  * 在庫データを1件のみ取得します
- * 棚卸し日は設定されている場合のみ表示されます
+ * 棚卸日は設定されている場合のみ表示されます
  * 発注点は設定されている場合のみ表示されます
  * 在庫データが1000件以上ある場合はページネーションで分割され、1000件ごと在庫データを返します
 
@@ -125,7 +125,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * パースできないJSONを送るとエラーを返します
   * 存在しないユーザーグループを送るとエラーを返します
   * 変更履歴のメモも一緒に保存することが可能です。詳しくは下記Bodyをご覧ください
-  * 棚卸し日はstocktake_attributes: { checked_at: 日付 }で登録・変更が可能です
+  * 棚卸日はstocktake_attributes: { checked_at: 日付 }で登録・変更が可能です
   * 発注点を設定することも可能です
 
 + Parameters
@@ -204,7 +204,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
 + code: `tw201800000000` (string) - バーコードの値
 + item_image: `base64-encoded-image` (string)
 + stocktake_attributes
-  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸し日
+  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日
 + optional_attributes (array[object],fixed-type)
   + (object)
       + name: `追加項目名` (string) - 追加項目名
@@ -227,7 +227,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
 + item_image (object)
   + url: `itemimageurl` (string) - 画像URL
 + stocktake_attributes
-  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸し日
+  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日
 + optional_attributes (array[object],fixed-type)
   + (object)
       + name: `追加項目名` (string) - 追加項目名
@@ -601,26 +601,26 @@ HOST: https://web.zaico.co.jp/
     * 以下の3つのいずれかが設定されています
     * not_ordered : 発注前
     * ordered : 発注済み
-    * purchased : 仕入済み
+    * purchased : 入庫済
   * total_amount : 入庫データの合計金額
-  * purchase_date: 仕入日
-  * estimated_purchase_date　: 仕入予定日
+  * purchase_date: 入庫日
+  * estimated_purchase_date　: 入庫予定日
   * create_user_name : 入庫データ作成者名
   * created_at : 入庫データ作成日
   * updated_at : 入庫データ更新日
   * purchase_items : 入庫データに登録している在庫データ一覧
     * inventory_id : 在庫データID
     * title : 物品名
-    * quantity : 仕入数量
+    * quantity : 入庫数量
     * unit : 単位
     * unit_price : 仕入単価
     * status : 状態
         * 以下の3つのいずれかが設定されています
         * not_ordered : 発注前
         * ordered : 発注済み
-        * purchased : 仕入済み
-    * purchase_date: 仕入日
-    * estimated_purchase_date　: 仕入予定日
+        * purchased : 入庫済み
+    * purchase_date: 入庫日
+    * estimated_purchase_date　: 入庫予定日
 
 + Request
     + Headers
@@ -636,8 +636,8 @@ HOST: https://web.zaico.co.jp/
             + customer_name: 株式会社ZAICO (string) - 取引先名
             + status: `ordered` (string) - 状態
             + total_amount: 1000 (number)
-            + purchase_date: null (string) - 仕入日
-            + estimated_purchase_date: `2020-01-01` (string) - 仕入予定日
+            + purchase_date: null (string) - 入庫日
+            + estimated_purchase_date: `2020-01-01` (string) - 入庫予定日
             + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
             + created_at: `2019-12-27T09:38:19+09:00`
             + updated_at: `2019-12-27T09:38:19+09:00`
@@ -645,7 +645,7 @@ HOST: https://web.zaico.co.jp/
                 + ()
                     + inventory_id: 1
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (string) - 仕入数量
+                    + quantity: 3 (string) - 入庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (string) - 仕入単価
                     + status: ordered (string)
@@ -654,7 +654,7 @@ HOST: https://web.zaico.co.jp/
                 + ()
                     + inventory_id: 1
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (string) - 仕入数量
+                    + quantity: 3 (string) - 入庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (string) - 仕入単価
                     + status: ordered (string)
@@ -666,8 +666,8 @@ HOST: https://web.zaico.co.jp/
             + customer_name: 株式会社ZAICO (string) - 取引先名
             + status: `purchased` (string) - 状態
             + total_amount: 1000 (number)
-            + purchase_date: `2020-01-01` (string) - 仕入日
-            + estimated_purchase_date: null (string) - 仕入予定日
+            + purchase_date: `2020-01-01` (string) - 入庫日
+            + estimated_purchase_date: null (string) - 入庫予定日
             + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
             + created_at: `2019-12-27T09:38:19+09:00`
             + updated_at: `2019-12-27T09:38:19+09:00`
@@ -675,7 +675,7 @@ HOST: https://web.zaico.co.jp/
                 + ()
                     + inventory_id: 5
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (string) - 仕入数量
+                    + quantity: 3 (string) - 入庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (string) - 仕入単価
                     + status: purchased
@@ -695,9 +695,9 @@ HOST: https://web.zaico.co.jp/
     * status : 入庫データの状態
         * 以下の2つのどちらかを指定してください
         * 仕入前の場合は not_ordered
-        * 仕入済みの場合は purchased
-        * **仕入済みを指定した場合は、対象の在庫データの数量を増加します**
-    * purchase_date : 仕入日
+        * 入庫済の場合は purchased
+        * **入庫済を指定した場合は、対象の在庫データの数量を増加します**
+    * purchase_date : 入庫日
         * statusによって必須かどうか変わります
         * status=purchased
             * purcahse_dateが必須
@@ -706,9 +706,9 @@ HOST: https://web.zaico.co.jp/
     * purchase_items : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
-            * quantity : 仕入数量
+            * quantity : 入庫数量
             * unit_price : 仕入単価
-            * estimated_purchase_date : 仕入予定日
+            * estimated_purchase_date : 入庫予定日
             * etc : 摘要・備考
 
 + Request
@@ -721,7 +721,7 @@ HOST: https://web.zaico.co.jp/
         + num: 100 (string, optional) - 入庫データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + status: `purchased` (string, required) - 状態
-        + purchase_date: `2019-09-01` (string) - 仕入日
+        + purchase_date: `2019-09-01` (string) - 入庫日
         + purchase_items (array[CreatePurchaseItem], required)
 
 + Response 200 (application/json)
@@ -751,27 +751,27 @@ HOST: https://web.zaico.co.jp/
     * 以下の3つのいずれかが設定されています
     * not_ordered : 発注前
     * ordered : 発注済み
-    * purchased : 仕入済み
+    * purchased : 入庫済
   * total_amount : 入庫データの合計金額
-  * purchase_date : 仕入日
-  * estimated_purchase_date : 仕入予定日
-    * この仕入予定日は入庫データの物品のうち、最も早い仕入予定日を表示します
+  * purchase_date : 入庫日
+  * estimated_purchase_date : 入庫予定日
+    * この入庫予定日は入庫データの物品のうち、最も早い入庫予定日を表示します
   * create_user_name : 入庫データ作成者名
   * created_at : 入庫データ作成日
   * updated_at : 入庫データ更新日
   * deliveries : 入庫データに登録している在庫データ一覧
     * inventory_id : 在庫データID
     * title : 物品名
-    * quantity : 仕入数量
+    * quantity : 入庫数量
     * unit : 単位
     * unit_price : 仕入単価
     * status : 状態
         * 以下の3つのいずれかが設定されています
         * not_ordered : 発注前
         * ordered : 発注済み
-        * purchased : 仕入済み
-    * purchase_date : 仕入日
-    * estimated_purchase_date : 仕入予定日
+        * purchased : 入庫済
+    * purchase_date : 入庫日
+    * estimated_purchase_date : 入庫予定日
     * etc: 摘要・備考
 
 + Parameters
@@ -790,8 +790,8 @@ HOST: https://web.zaico.co.jp/
         + customer_name: 株式会社ZAICO (string) - 取引先名
         + status: `purchased` (string) - 状態
         + total_amount: 1000 (number)
-        + purchase_date: null (string) - 仕入日
-        + estimated_purchase_date: `2020-01-01` (string) - 仕入予定日
+        + purchase_date: null (string) - 入庫日
+        + estimated_purchase_date: `2020-01-01` (string) - 入庫予定日
         + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
         + created_at: `2019-12-27T09:38:19+09:00`
         + updated_at: `2019-12-27T09:38:19+09:00`
@@ -799,7 +799,7 @@ HOST: https://web.zaico.co.jp/
             + ()
                 + inventory_id: 1
                 + title: 掃除機 (string) - 物品名
-                + quantity: 3 (string) - 仕入数量
+                + quantity: 3 (string) - 入庫数量
                 + unit: 台 (string) - 単位
                 + unit_price: 100 (string) - 仕入単価
                 + status: purchased (string)
@@ -808,7 +808,7 @@ HOST: https://web.zaico.co.jp/
             + ()
                 + inventory_id: 1
                 + title: 掃除機 (string) - 物品名
-                + quantity: 3 (string) - 仕入数量
+                + quantity: 3 (string) - 入庫数量
                 + unit: 台 (string) - 単位
                 + unit_price: 100 (string) - 仕入単価
                 + status: purchased (string)
@@ -828,14 +828,14 @@ HOST: https://web.zaico.co.jp/
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
                 * 在庫データIDは対象の物品を特定するために指定するため、これを更新することはできません
-            * quantity : 仕入数量
+            * quantity : 入庫数量
             * unit_price : 仕入単価
             * status : 状態
                 * 仕入前在庫を更新するときは not_ordered, ordered, purchased を指定できます
-                仕入前在庫を仕入済みに更新すると **対象の在庫データの数量を増加します**
-                * 仕入済み在庫の状態を更新することはできません
-            * purchase_date : 仕入日
-            * estimated_purchase_date : 仕入予定日
+                仕入前在庫を入庫済に更新すると **対象の在庫データの数量を増加します**
+                * 入庫済在庫の状態を更新することはできません
+            * purchase_date : 入庫日
+            * estimated_purchase_date : 入庫予定日
             * etc : 摘要・備考
 
 + Parameters
@@ -874,7 +874,7 @@ HOST: https://web.zaico.co.jp/
 * 特定の入庫データを削除します
 * 入庫データの各物品の状態によって在庫データの取り扱いが変わります
     * 仕入前：変化なし
-    * 仕入済み：在庫データの数量を仕入数量分だけ戻します
+    * 入庫済：在庫データの数量を入庫数量分だけ戻します
 
 + Parameters
     + id: 1 (number) - 入庫データのID
@@ -923,13 +923,13 @@ HOST: https://web.zaico.co.jp/
 
 ## CreatePurchaseItem (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 仕入数量
++ quantity: 3 (number, required) - 入庫数量
 + unit_price: 100 (number, optional) - 仕入単価
 + estimated_purchase_date: `2019-09-01` (string, optional, nullable)
 
 ## UpdatePurchaseItemToPurchased
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 仕入数量
++ quantity: 3 (number, required) - 入庫数量
 + unit_price: 100 (number, optional) - 仕入単価
 + status: purchased (string)
 + purchase_date: `2019-11-11` (string)
@@ -937,7 +937,7 @@ HOST: https://web.zaico.co.jp/
 
 ## UpdatePurchaseItemToOrdered
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 仕入数量
++ quantity: 3 (number, required) - 入庫数量
 + unit_price: 100 (number, optional) - 仕入単価
 + status: ordered (string)
 + purchase_date: `2019-11-11` (string)
@@ -945,7 +945,7 @@ HOST: https://web.zaico.co.jp/
 
 ## UpdatePurchaseItemToNotOrdered
 + inventory_id: 2 (number, required) - 在庫データID
-+ quantity: 5 (number, required) - 仕入数量
++ quantity: 5 (number, required) - 入庫数量
 + unit_price: 100 (number, optional, nullable) - 仕入単価
 + status: not_ordered
 + estimated_purchase_date: `2019-11-11` (string, optional, nullable)
