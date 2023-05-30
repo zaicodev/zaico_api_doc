@@ -48,11 +48,13 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"在庫データ"</span></span>,
   "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
+  "<span class="hljs-attribute">logical_quantity</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
   "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"個"</span></span>,
   "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"製品"</span></span>,
   "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"新品"</span></span>,
   "<span class="hljs-attribute">place</span>": <span class="hljs-value"><span class="hljs-string">"ZAICO倉庫"</span></span>,
   "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span></span>,
+  "<span class="hljs-attribute">group_tag</span>": <span class="hljs-value"><span class="hljs-string">"グループタグ"</span></span>,
   "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"tw201800000000"</span></span>,
   "<span class="hljs-attribute">item_image</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"itemimageurl"</span>
@@ -90,6 +92,10 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"数量"</span>
     </span>}</span>,
+    "<span class="hljs-attribute">logical_quantity</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"予定フリー在庫数（ビジネス・フルプランのみ）"</span>
+    </span>}</span>,
     "<span class="hljs-attribute">unit</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"単位"</span>
@@ -109,6 +115,10 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">etc</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">group_tag</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"グループタグ（ビジネス・フルプランのみ）"</span>
     </span>}</span>,
     "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -217,6 +227,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
   "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"新品"</span></span>,
   "<span class="hljs-attribute">place</span>": <span class="hljs-value"><span class="hljs-string">"ZAICO倉庫"</span></span>,
   "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span></span>,
+  "<span class="hljs-attribute">group_tag</span>": <span class="hljs-value"><span class="hljs-string">"グループタグ"</span></span>,
   "<span class="hljs-attribute">user_group</span>": <span class="hljs-value"><span class="hljs-string">"ユーザーグループ"</span></span>,
   "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"tw201800000000"</span></span>,
   "<span class="hljs-attribute">item_image</span>": <span class="hljs-value"><span class="hljs-string">"base64-encoded-image"</span></span>,
@@ -266,6 +277,10 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">etc</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">group_tag</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"グループタグ（ビジネス・フルプランのみ）"</span>
     </span>}</span>,
     "<span class="hljs-attribute">user_group</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -417,11 +432,13 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"在庫データ"</span></span>,
   "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
+  "<span class="hljs-attribute">logical_quantity</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
   "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"個"</span></span>,
   "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"製品"</span></span>,
   "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"新品"</span></span>,
   "<span class="hljs-attribute">place</span>": <span class="hljs-value"><span class="hljs-string">"ZAICO倉庫"</span></span>,
   "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span></span>,
+  "<span class="hljs-attribute">group_tag</span>": <span class="hljs-value"><span class="hljs-string">"グループタグ"</span></span>,
   "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"tw201800000000"</span></span>,
   "<span class="hljs-attribute">item_image</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">url</span>": <span class="hljs-value"><span class="hljs-string">"itemimageurl"</span>
@@ -459,6 +476,10 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"数量"</span>
     </span>}</span>,
+    "<span class="hljs-attribute">logical_quantity</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"予定フリー在庫数（ビジネス・フルプランのみ）"</span>
+    </span>}</span>,
     "<span class="hljs-attribute">unit</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"単位"</span>
@@ -478,6 +499,10 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">etc</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">group_tag</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"グループタグ（ビジネス・フルプランのみ）"</span>
     </span>}</span>,
     "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -608,6 +633,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
   "<span class="hljs-attribute">state</span>": <span class="hljs-value"><span class="hljs-string">"新品"</span></span>,
   "<span class="hljs-attribute">place</span>": <span class="hljs-value"><span class="hljs-string">"ZAICO倉庫"</span></span>,
   "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span></span>,
+  "<span class="hljs-attribute">group_tag</span>": <span class="hljs-value"><span class="hljs-string">"グループタグ"</span></span>,
   "<span class="hljs-attribute">user_group</span>": <span class="hljs-value"><span class="hljs-string">"ユーザーグループ"</span></span>,
   "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"tw201800000000"</span></span>,
   "<span class="hljs-attribute">item_image</span>": <span class="hljs-value"><span class="hljs-string">"base64-encoded-image"</span></span>,
@@ -657,6 +683,10 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">etc</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"備考"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">group_tag</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"グループタグ（ビジネス・フルプランのみ）"</span>
     </span>}</span>,
     "<span class="hljs-attribute">user_group</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -2490,7 +2520,7 @@ https://web.zaico.co.jp/api/v1/customers?page=1</code></pre>
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"メッセージ"</span>
     </span>}
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 14 Dec 2022</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 30 May 2023</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
