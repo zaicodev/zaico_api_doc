@@ -595,7 +595,7 @@ HOST: https://web.zaico.co.jp/
 * 入庫データが1000件以上ある場合はページネーションで分割され、1000件ごと入庫データを返します
 * 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます
 * ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
-* Link, Total-Countヘッダは仕入一覧でのみ返されます
+* Link, Total-Countヘッダは入庫物品一覧でのみ返されます
 * 各入庫データの項目について以下のようになります
   * id : 入庫データID
   * num : 入庫データ番号（ユーザーが任意に設定できる番号）
@@ -953,6 +953,63 @@ HOST: https://web.zaico.co.jp/
 + status: not_ordered
 + estimated_purchase_date: `2019-11-11` (string, optional, nullable)
 
+# Group 入庫物品データ
+
+## 入庫物品データ一覧取得 [/api/v1/purchases/items]
+### 入庫物品データ一覧取得 [GET]
+#### 処理概要
+
+* 自分のアカウントに登録されている入庫物品データを返します
+* 入庫物品データが1件も無い場合は、空の配列を返します
+* 入庫物品データが1000件以上ある場合はページネーションで分割され、1000件ごと入庫物品データを返します
+* 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます
+* ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
+* Link, Total-Countヘッダは入庫物品一覧でのみ返されます
+* 各入庫物品データの項目について以下のようになります
+  * purchase_id: 入庫データID,
+  * inventory_id: 在庫データID,
+  * title: 物品名,
+  * quantity: 入庫数量,
+  * unit: 単位,
+  * unit_price: 仕入単価,
+  * status: ステータス,
+  * purchase_date: 入庫日,
+  * estimated_purchase_date: 入庫予定日,
+  * etc: 摘要・備考
+
++ Parameters
+  + status: `purchased` (string, optional) - ステータス
+    + start_date: `2019-09-01` (string, optional) - 入庫日がこの日以降
+    + end_date: `2019-09-01` (string, optional) - 入庫日がこの日以前
+    + page: 1 (number, optional) - ページ番号
++ Request
+    + Headers
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
++ Response 200 (application/json)
+    + Attributes (array)
+        + ()
+            + purchase_id: 10 (number)
+            + inventory_id: 1 (number)
+            + title: 掃除機 (string)
+            + quantity: 3 (number)
+            + unit: 台 (string)
+            + unit_price: 100 (number)
+            + status: purchased (string)
+            + purchase_date: 2021-11-17 (string)
+            + estimated_purchase_date: (string, nullable)
+            + etc: (string)
+          + ()
+            + purchase_id: 10 (number)
+            + inventory_id: 2 (number)
+            + title: りんご (string)
+            + quantity: 10 (number)
+            + unit: 個 (string)
+            + unit_price: 200 (number)
+            + status: purchased (string)
+            + purchase_date: 2021-11-17 (string)
+            + estimated_purchase_date: (string, nullable)
+            + etc: (string)
 
 # Group 取引先データ
 

@@ -8,7 +8,8 @@ api.mdを編集してHTMLに変換するときは「aglio」を使います。
 そのため最初だけこの操作を行ってください。
 
 1. Node.jsをインストール https://nodejs.org/ja/
-2. `yarn` を実行
+2. nodeのバージョンを`16.20.1`にする（`nvm use v16.20.1; node -v`）
+3. `yarn` を実行
 
 HTMLに変換するときは `yarn build` を実行してください。`dist/index.html` に出力されます。
 
