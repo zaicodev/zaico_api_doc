@@ -314,7 +314,13 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * to_address : 住所
     * building_name : 建物名・部屋番号
     * to_phone_number : 電話番号
-    * shipping_client_id : 発送元ID
+    * shipping_client : 発送元
+      * id : 発送元ID
+      * name : 名前/会社名
+      * zip : 郵便番号
+      * address : 住所
+      * building_name : 建物名・部屋番号
+      * phone_number : 電話番号
     * invoice_type_name : 便指定
     * product_name_on_invoice : 品名
     * freight_handling : 荷扱い
@@ -421,11 +427,15 @@ Authorization: Bearer YOUR_TOKEN_HERE
         * to_phone_number : 電話番号
         * shipping_client_id : 発送元ID
         * invoice_type_name : 便指定
+          * 指定可能な値 : `ヤマト 発払い` `ヤマト DM便` `ヤマト 着払い` `ヤマト ネコポス` `佐川 元払` `佐川 着払` `ゆうパケット` `クリックポスト` `その他`
         * product_name_on_invoice : 品名
         * freight_handling : 荷扱い
+          * 指定可能な値 : `指定なし` `ワレ物注意` `下載厳禁` `天地無用` `精密機器` `ナマモノ` `水濡厳禁` `取扱注意` （※「取扱注意」は佐川のみ）
         * freight_handling2 : 荷扱い
+          * 指定可能な値 : `指定なし` `ワレ物注意` `下載厳禁` `天地無用` `精密機器` `ナマモノ` `水濡厳禁` `取扱注意` （※「取扱注意」は佐川のみ）
         * arrival_date : 希望お届け日
         * arrival_hour : 希望お届け時間帯
+          * 指定可能な値 : `指定なし` `午前中` `14〜16時` `16〜18時` `18〜20時` `19〜21時`
 
 + Request
     + Headers
@@ -439,7 +449,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + status: `completed_delivery` (string, required) - 状態
         + delivery_date: `2019-09-01` (string) - 出庫日
         + deliveries (array[CreateDelivery], required)
-        + shipping_instruction (ShippingInstructionView)
+        + shipping_instruction (ShippingInstructionParams)
 
 + Response 200 (application/json)
     + Attributes
@@ -494,7 +504,13 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * to_address : 住所
     * building_name : 建物名・部屋番号
     * to_phone_number : 電話番号
-    * shipping_client_id : 発送元ID
+    * shipping_client : 発送元
+      * id : 発送元ID
+      * name : 名前/会社名
+      * zip : 郵便番号
+      * address : 住所
+      * building_name : 建物名・部屋番号
+      * phone_number : 電話番号
     * invoice_type_name : 便指定
     * product_name_on_invoice : 品名
     * freight_handling : 荷扱い
@@ -576,11 +592,15 @@ Authorization: Bearer YOUR_TOKEN_HERE
         * to_phone_number : 電話番号
         * shipping_client_id : 発送元ID
         * invoice_type_name : 便指定
+          * 指定可能な値 : `ヤマト 発払い` `ヤマト DM便` `ヤマト 着払い` `ヤマト ネコポス` `佐川 元払` `佐川 着払` `ゆうパケット` `クリックポスト` `その他`
         * product_name_on_invoice : 品名
         * freight_handling : 荷扱い
+          * 指定可能な値 : `指定なし` `ワレ物注意` `下載厳禁` `天地無用` `精密機器` `ナマモノ` `水濡厳禁` `取扱注意` （※「取扱注意」は佐川のみ）
         * freight_handling2 : 荷扱い
+          * 指定可能な値 : `指定なし` `ワレ物注意` `下載厳禁` `天地無用` `精密機器` `ナマモノ` `水濡厳禁` `取扱注意` （※「取扱注意」は佐川のみ）
         * arrival_date : 希望お届け日
         * arrival_hour : 希望お届け時間帯
+          * 指定可能な値 : `指定なし` `午前中` `14〜16時` `16〜18時` `18〜20時` `19〜21時`
 
 + Parameters
     + id: 1 (number) - 出庫データのID
@@ -595,7 +615,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + deliveries (array[UpdateDeliveryToCompleted, UpdateDeliveryToBefore], required)
-        + shipping_instruction (ShippingInstructionView)
+        + shipping_instruction (ShippingInstructionParams)
 
 + Response 200 (application/json)
     + Attributes
@@ -991,13 +1011,29 @@ HOST: https://web.zaico.co.jp/
 + to_address: `東京都大島町元町` (string) - 住所
 + building_name: `ザイコ工場` (string) - 建物名・部屋番号
 + to_phone_number: `0312341234` (string) - 電話番号
-+ shipping_client_id: 123 (number) - 発送元ID
-+ invoice_type_name: `宅急便（ヤマト）` (string) - 便指定
+* shipping_client (ShippingClientsView) - 発送元
+* invoice_type_name: `ヤマト 発払い` (string) - 便指定
 + product_name_on_invoice: `化学薬品` (string) - 品名
 + freight_handling: `ワレ物注意` (string) - 荷扱い
 + freight_handling2: `下載厳禁` (string) - 荷扱い
 + arrival_date: `2023-10-31` (string) - 希望お届け日
 + arrival_hour: `14〜16時` (string) - 希望お届け時間帯
+
+## ShippingInstructionParams
+
++ to_name: `在庫商会` (string) - 宛名
+* to_name_postfix: `御中` (string) - 敬称
+* to_zip: `1000101` (string) - 郵便番号
+* to_address: `東京都大島町元町` (string) - 住所
+* building_name: `ザイコ工場` (string) - 建物名・部屋番号
+* to_phone_number: `0312341234` (string) - 電話番号
+* shipping_client_id: 123 (number) - 発送元ID
+* invoice_type_name: `ヤマト 発払い` (string) - 便指定
++ product_name_on_invoice: `化学薬品` (string) - 品名
+* freight_handling: `ワレ物注意` (string) - 荷扱い
+* freight_handling2: `下載厳禁` (string) - 荷扱い
+* arrival_date: `2023-10-31` (string) - 希望お届け日
+* arrival_hour: `14〜16時` (string) - 希望お届け時間帯
 
 ## CreatePurchaseItem (object)
 + inventory_id: 1 (number, required) - 在庫データID

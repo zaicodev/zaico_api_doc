@@ -950,7 +950,16 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>to_address : 住所</li>
 <li>building_name : 建物名・部屋番号</li>
 <li>to_phone_number : 電話番号</li>
-<li>shipping_client_id : 発送元ID</li>
+<li>shipping_client : 発送元
+<ul>
+<li>id : 発送元ID</li>
+<li>name : 名前/会社名</li>
+<li>zip : 郵便番号</li>
+<li>address : 住所</li>
+<li>building_name : 建物名・部屋番号</li>
+<li>phone_number : 電話番号</li>
+</ul>
+</li>
 <li>invoice_type_name : 便指定</li>
 <li>product_name_on_invoice : 品名</li>
 <li>freight_handling : 荷扱い</li>
@@ -1004,8 +1013,15 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
       "<span class="hljs-attribute">to_address</span>": <span class="hljs-value"><span class="hljs-string">"東京都大島町元町"</span></span>,
       "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"ザイコ工場"</span></span>,
       "<span class="hljs-attribute">to_phone_number</span>": <span class="hljs-value"><span class="hljs-string">"0312341234"</span></span>,
-      "<span class="hljs-attribute">shipping_client_id</span>": <span class="hljs-value"><span class="hljs-number">123</span></span>,
-      "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value"><span class="hljs-string">"宅急便（ヤマト）"</span></span>,
+      "<span class="hljs-attribute">shipping_client</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"発送元A"</span></span>,
+        "<span class="hljs-attribute">zip</span>": <span class="hljs-value"><span class="hljs-string">"1234567"</span></span>,
+        "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"東京都港区"</span></span>,
+        "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"港ビル"</span></span>,
+        "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value"><span class="hljs-string">"08012345678"</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value"><span class="hljs-string">"ヤマト 発払い"</span></span>,
       "<span class="hljs-attribute">product_name_on_invoice</span>": <span class="hljs-value"><span class="hljs-string">"化学薬品"</span></span>,
       "<span class="hljs-attribute">freight_handling</span>": <span class="hljs-value"><span class="hljs-string">"ワレ物注意"</span></span>,
       "<span class="hljs-attribute">freight_handling2</span>": <span class="hljs-value"><span class="hljs-string">"下載厳禁"</span></span>,
@@ -1098,12 +1114,28 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>building_name : 建物名・部屋番号</li>
 <li>to_phone_number : 電話番号</li>
 <li>shipping_client_id : 発送元ID</li>
-<li>invoice_type_name : 便指定</li>
+<li>invoice_type_name : 便指定
+<ul>
+<li>指定可能な値 : <code>ヤマト 発払い</code> <code>ヤマト DM便</code> <code>ヤマト 着払い</code> <code>ヤマト ネコポス</code> <code>佐川 元払</code> <code>佐川 着払</code> <code>ゆうパケット</code> <code>クリックポスト</code> <code>その他</code></li>
+</ul>
+</li>
 <li>product_name_on_invoice : 品名</li>
-<li>freight_handling : 荷扱い</li>
-<li>freight_handling2 : 荷扱い</li>
+<li>freight_handling : 荷扱い
+<ul>
+<li>指定可能な値 : <code>指定なし</code> <code>ワレ物注意</code> <code>下載厳禁</code> <code>天地無用</code> <code>精密機器</code> <code>ナマモノ</code> <code>水濡厳禁</code> <code>取扱注意</code> （※「取扱注意」は佐川のみ）</li>
+</ul>
+</li>
+<li>freight_handling2 : 荷扱い
+<ul>
+<li>指定可能な値 : <code>指定なし</code> <code>ワレ物注意</code> <code>下載厳禁</code> <code>天地無用</code> <code>精密機器</code> <code>ナマモノ</code> <code>水濡厳禁</code> <code>取扱注意</code> （※「取扱注意」は佐川のみ）</li>
+</ul>
+</li>
 <li>arrival_date : 希望お届け日</li>
-<li>arrival_hour : 希望お届け時間帯</li>
+<li>arrival_hour : 希望お届け時間帯
+<ul>
+<li>指定可能な値 : <code>指定なし</code> <code>午前中</code> <code>14〜16時</code> <code>16〜18時</code> <code>18〜20時</code> <code>19〜21時</code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1130,7 +1162,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"ザイコ工場"</span></span>,
     "<span class="hljs-attribute">to_phone_number</span>": <span class="hljs-value"><span class="hljs-string">"0312341234"</span></span>,
     "<span class="hljs-attribute">shipping_client_id</span>": <span class="hljs-value"><span class="hljs-number">123</span></span>,
-    "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value"><span class="hljs-string">"宅急便（ヤマト）"</span></span>,
+    "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value"><span class="hljs-string">"ヤマト 発払い"</span></span>,
     "<span class="hljs-attribute">product_name_on_invoice</span>": <span class="hljs-value"><span class="hljs-string">"化学薬品"</span></span>,
     "<span class="hljs-attribute">freight_handling</span>": <span class="hljs-value"><span class="hljs-string">"ワレ物注意"</span></span>,
     "<span class="hljs-attribute">freight_handling2</span>": <span class="hljs-value"><span class="hljs-string">"下載厳禁"</span></span>,
@@ -1323,7 +1355,16 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>to_address : 住所</li>
 <li>building_name : 建物名・部屋番号</li>
 <li>to_phone_number : 電話番号</li>
-<li>shipping_client_id : 発送元ID</li>
+<li>shipping_client : 発送元
+<ul>
+<li>id : 発送元ID</li>
+<li>name : 名前/会社名</li>
+<li>zip : 郵便番号</li>
+<li>address : 住所</li>
+<li>building_name : 建物名・部屋番号</li>
+<li>phone_number : 電話番号</li>
+</ul>
+</li>
 <li>invoice_type_name : 便指定</li>
 <li>product_name_on_invoice : 品名</li>
 <li>freight_handling : 荷扱い</li>
@@ -1377,8 +1418,15 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">to_address</span>": <span class="hljs-value"><span class="hljs-string">"東京都大島町元町"</span></span>,
     "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"ザイコ工場"</span></span>,
     "<span class="hljs-attribute">to_phone_number</span>": <span class="hljs-value"><span class="hljs-string">"0312341234"</span></span>,
-    "<span class="hljs-attribute">shipping_client_id</span>": <span class="hljs-value"><span class="hljs-number">123</span></span>,
-    "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value"><span class="hljs-string">"宅急便（ヤマト）"</span></span>,
+    "<span class="hljs-attribute">shipping_client</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"発送元A"</span></span>,
+      "<span class="hljs-attribute">zip</span>": <span class="hljs-value"><span class="hljs-string">"1234567"</span></span>,
+      "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"東京都港区"</span></span>,
+      "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"港ビル"</span></span>,
+      "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value"><span class="hljs-string">"08012345678"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value"><span class="hljs-string">"ヤマト 発払い"</span></span>,
     "<span class="hljs-attribute">product_name_on_invoice</span>": <span class="hljs-value"><span class="hljs-string">"化学薬品"</span></span>,
     "<span class="hljs-attribute">freight_handling</span>": <span class="hljs-value"><span class="hljs-string">"ワレ物注意"</span></span>,
     "<span class="hljs-attribute">freight_handling2</span>": <span class="hljs-value"><span class="hljs-string">"下載厳禁"</span></span>,
@@ -1532,9 +1580,35 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
           "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"電話番号"</span>
         </span>}</span>,
-        "<span class="hljs-attribute">shipping_client_id</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
-          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"発送元ID"</span>
+        "<span class="hljs-attribute">shipping_client</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"レコードID"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"名前/会社名"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">zip</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"郵便番号"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"住所"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">building_name</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"建物名・部屋番号"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"電話番号"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"発送元"</span>
         </span>}</span>,
         "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
@@ -1610,12 +1684,28 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>building_name : 建物名・部屋番号</li>
 <li>to_phone_number : 電話番号</li>
 <li>shipping_client_id : 発送元ID</li>
-<li>invoice_type_name : 便指定</li>
+<li>invoice_type_name : 便指定
+<ul>
+<li>指定可能な値 : <code>ヤマト 発払い</code> <code>ヤマト DM便</code> <code>ヤマト 着払い</code> <code>ヤマト ネコポス</code> <code>佐川 元払</code> <code>佐川 着払</code> <code>ゆうパケット</code> <code>クリックポスト</code> <code>その他</code></li>
+</ul>
+</li>
 <li>product_name_on_invoice : 品名</li>
-<li>freight_handling : 荷扱い</li>
-<li>freight_handling2 : 荷扱い</li>
+<li>freight_handling : 荷扱い
+<ul>
+<li>指定可能な値 : <code>指定なし</code> <code>ワレ物注意</code> <code>下載厳禁</code> <code>天地無用</code> <code>精密機器</code> <code>ナマモノ</code> <code>水濡厳禁</code> <code>取扱注意</code> （※「取扱注意」は佐川のみ）</li>
+</ul>
+</li>
+<li>freight_handling2 : 荷扱い
+<ul>
+<li>指定可能な値 : <code>指定なし</code> <code>ワレ物注意</code> <code>下載厳禁</code> <code>天地無用</code> <code>精密機器</code> <code>ナマモノ</code> <code>水濡厳禁</code> <code>取扱注意</code> （※「取扱注意」は佐川のみ）</li>
+</ul>
+</li>
 <li>arrival_date : 希望お届け日</li>
-<li>arrival_hour : 希望お届け時間帯</li>
+<li>arrival_hour : 希望お届け時間帯
+<ul>
+<li>指定可能な値 : <code>指定なし</code> <code>午前中</code> <code>14〜16時</code> <code>16〜18時</code> <code>18〜20時</code> <code>19〜21時</code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1650,7 +1740,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
     "<span class="hljs-attribute">building_name</span>": <span class="hljs-value"><span class="hljs-string">"ザイコ工場"</span></span>,
     "<span class="hljs-attribute">to_phone_number</span>": <span class="hljs-value"><span class="hljs-string">"0312341234"</span></span>,
     "<span class="hljs-attribute">shipping_client_id</span>": <span class="hljs-value"><span class="hljs-number">123</span></span>,
-    "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value"><span class="hljs-string">"宅急便（ヤマト）"</span></span>,
+    "<span class="hljs-attribute">invoice_type_name</span>": <span class="hljs-value"><span class="hljs-string">"ヤマト 発払い"</span></span>,
     "<span class="hljs-attribute">product_name_on_invoice</span>": <span class="hljs-value"><span class="hljs-string">"化学薬品"</span></span>,
     "<span class="hljs-attribute">freight_handling</span>": <span class="hljs-value"><span class="hljs-string">"ワレ物注意"</span></span>,
     "<span class="hljs-attribute">freight_handling2</span>": <span class="hljs-value"><span class="hljs-string">"下載厳禁"</span></span>,
@@ -2854,7 +2944,7 @@ https://web.zaico.co.jp/api/v1/shipping_clients?page=1</code></pre>
 ]</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 07 Oct 2023</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 10 Oct 2023</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
