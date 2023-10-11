@@ -307,6 +307,26 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * delivery_date : 出庫日
     * estimated_delivery_date : 出庫予定日
     * etc : 摘要・備考
+  * shipping_instruction : 発送情報（フルプラン、かつ設定されている場合のみ表示されます）
+    * to_name : 宛名
+    * to_name_postfix : 敬称
+    * to_zip : 郵便番号
+    * to_address : 住所
+    * building_name : 建物名・部屋番号
+    * to_phone_number : 電話番号
+    * shipping_client : 発送元
+      * id : 発送元ID
+      * name : 名前/会社名
+      * zip : 郵便番号
+      * address : 住所
+      * building_name : 建物名・部屋番号
+      * phone_number : 電話番号
+    * invoice_type_name : 便指定
+    * product_name_on_invoice : 品名
+    * freight_handling : 荷扱い
+    * freight_handling2 : 荷扱い
+    * arrival_date : 希望お届け日
+    * arrival_hour : 希望お届け時間帯
 
 + Request
     + Headers
@@ -347,6 +367,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + delivery_date: `2019-09-01` (string)
                     + estimated_delivery_date (string, optional, nullable)
                     + etc: (string) - 摘要・備考
+            + shipping_instruction (ShippingInstructionView)
         + ()
             + id: 11 (number)
             + num: 1001 (string)
@@ -397,6 +418,24 @@ Authorization: Bearer YOUR_TOKEN_HERE
             * unit_price : 納品単価
             * estimated_delivery_date : 出庫予定日
             * etc : 摘要・備考
+    * shipping_instruction : 発送情報（フルプランのみ設定できます）
+        * to_name : 宛名
+        * to_name_postfix : 敬称
+        * to_zip : 郵便番号
+        * to_address : 住所
+        * building_name : 建物名・部屋番号
+        * to_phone_number : 電話番号
+        * shipping_client_id : 発送元ID
+        * invoice_type_name : 便指定
+          * 指定可能な値 : `ヤマト 発払い` `ヤマト DM便` `ヤマト 着払い` `ヤマト ネコポス` `佐川 元払` `佐川 着払` `ゆうパケット` `クリックポスト` `その他`
+        * product_name_on_invoice : 品名
+        * freight_handling : 荷扱い
+          * 指定可能な値 : `指定なし` `ワレ物注意` `下載厳禁` `天地無用` `精密機器` `ナマモノ` `水濡厳禁` `取扱注意` （※「取扱注意」は佐川のみ）
+        * freight_handling2 : 荷扱い
+          * 指定可能な値 : `指定なし` `ワレ物注意` `下載厳禁` `天地無用` `精密機器` `ナマモノ` `水濡厳禁` `取扱注意` （※「取扱注意」は佐川のみ）
+        * arrival_date : 希望お届け日
+        * arrival_hour : 希望お届け時間帯
+          * 指定可能な値 : `指定なし` `午前中` `14〜16時` `16〜18時` `18〜20時` `19〜21時`
 
 + Request
     + Headers
@@ -410,6 +449,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + status: `completed_delivery` (string, required) - 状態
         + delivery_date: `2019-09-01` (string) - 出庫日
         + deliveries (array[CreateDelivery], required)
+        + shipping_instruction (ShippingInstructionParams)
 
 + Response 200 (application/json)
     + Attributes
@@ -457,6 +497,26 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * delivery_date : 出庫日
     * estimated_delivery_date : 出庫予定日
     * etc: 摘要・備考
+  * shipping_instruction : 発送情報（フルプラン、かつ設定されている場合のみ表示されます）
+    * to_name : 宛名
+    * to_name_postfix : 敬称
+    * to_zip : 郵便番号
+    * to_address : 住所
+    * building_name : 建物名・部屋番号
+    * to_phone_number : 電話番号
+    * shipping_client : 発送元
+      * id : 発送元ID
+      * name : 名前/会社名
+      * zip : 郵便番号
+      * address : 住所
+      * building_name : 建物名・部屋番号
+      * phone_number : 電話番号
+    * invoice_type_name : 便指定
+    * product_name_on_invoice : 品名
+    * freight_handling : 荷扱い
+    * freight_handling2 : 荷扱い
+    * arrival_date : 希望お届け日
+    * arrival_hour : 希望お届け時間帯
 
 + Parameters
     + id: 1 (number) - 出庫データのID
@@ -478,27 +538,28 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + estimated_delivery_date: `2019-09-01` (string) - 出庫日
         + created_at: `2018-03-27T09:38:19+09:00`
         + updated_at: `2018-03-27T09:38:19+09:00`
-            + deliveries (array[object], fixed-type)
-                + (object)
-                    + inventory_id: 1 (number)
-                    + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (number) - 出庫数量
-                    + unit: 台 (string) - 単位
-                    + unit_price: 100 (number) - 納品単価
-                    + status: completed_delivery (string)
-                    + delivery_date: `2019-09-01` (string)
-                    + estimated_delivery_date (string, optional, nullable)
-                    + etc: 白色 (string) - 摘要・備考
-                + (object)
-                    + inventory_id: 2 (number)
-                    + title: テレビ (string) - 物品名
-                    + quantity: 3 (number) - 出庫数量
-                    + unit: 台 (string) - 単位
-                    + unit_price: 100 (number) - 納品単価
-                    + status: completed_delivery (string)
-                    + delivery_date: `2019-09-01` (string)
-                    + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
-                    + etc: (string) - 摘要・備考
+        + deliveries (array[object], fixed-type)
+            + (object)
+                + inventory_id: 1 (number)
+                + title: 掃除機 (string) - 物品名
+                + quantity: 3 (number) - 出庫数量
+                + unit: 台 (string) - 単位
+                + unit_price: 100 (number) - 納品単価
+                + status: completed_delivery (string)
+                + delivery_date: `2019-09-01` (string)
+                + estimated_delivery_date (string, optional, nullable)
+                + etc: 白色 (string) - 摘要・備考
+            + (object)
+                + inventory_id: 2 (number)
+                + title: テレビ (string) - 物品名
+                + quantity: 3 (number) - 出庫数量
+                + unit: 台 (string) - 単位
+                + unit_price: 100 (number) - 納品単価
+                + status: completed_delivery (string)
+                + delivery_date: `2019-09-01` (string)
+                + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
+                + etc: (string) - 摘要・備考
+        + shipping_instruction (ShippingInstructionView)
 
 ## 出庫データ更新 [/api/v1/packing_slips/{id}]
 ### 出庫データ更新 [PUT]
@@ -522,6 +583,24 @@ Authorization: Bearer YOUR_TOKEN_HERE
             * delivery_date : 出庫日
             * estimated_delivery_date : 出庫予定日
             * etc : 摘要・備考
+    * shipping_instruction : 発送情報（フルプランのみ設定できます）
+        * to_name : 宛名
+        * to_name_postfix : 敬称
+        * to_zip : 郵便番号
+        * to_address : 住所
+        * building_name : 建物名・部屋番号
+        * to_phone_number : 電話番号
+        * shipping_client_id : 発送元ID
+        * invoice_type_name : 便指定
+          * 指定可能な値 : `ヤマト 発払い` `ヤマト DM便` `ヤマト 着払い` `ヤマト ネコポス` `佐川 元払` `佐川 着払` `ゆうパケット` `クリックポスト` `その他`
+        * product_name_on_invoice : 品名
+        * freight_handling : 荷扱い
+          * 指定可能な値 : `指定なし` `ワレ物注意` `下載厳禁` `天地無用` `精密機器` `ナマモノ` `水濡厳禁` `取扱注意` （※「取扱注意」は佐川のみ）
+        * freight_handling2 : 荷扱い
+          * 指定可能な値 : `指定なし` `ワレ物注意` `下載厳禁` `天地無用` `精密機器` `ナマモノ` `水濡厳禁` `取扱注意` （※「取扱注意」は佐川のみ）
+        * arrival_date : 希望お届け日
+        * arrival_hour : 希望お届け時間帯
+          * 指定可能な値 : `指定なし` `午前中` `14〜16時` `16〜18時` `18〜20時` `19〜21時`
 
 + Parameters
     + id: 1 (number) - 出庫データのID
@@ -536,6 +615,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
         + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）
         + customer_name: 株式会社ZAICO (string, optional) - 取引先名
         + deliveries (array[UpdateDeliveryToCompleted, UpdateDeliveryToBefore], required)
+        + shipping_instruction (ShippingInstructionParams)
 
 + Response 200 (application/json)
     + Attributes
@@ -924,6 +1004,37 @@ HOST: https://web.zaico.co.jp/
 + status: before_delivery
 + estimated_delivery_date: `2019-11-11` (string, optional, nullable)
 
+## ShippingInstructionView
++ to_name: `在庫商会` (string) - 宛名
++ to_name_postfix: `御中` (string) - 敬称
++ to_zip: `1000101` (string) - 郵便番号
++ to_address: `東京都大島町元町` (string) - 住所
++ building_name: `ザイコ工場` (string) - 建物名・部屋番号
++ to_phone_number: `0312341234` (string) - 電話番号
+* shipping_client (ShippingClientsView) - 発送元
+* invoice_type_name: `ヤマト 発払い` (string) - 便指定
++ product_name_on_invoice: `化学薬品` (string) - 品名
++ freight_handling: `ワレ物注意` (string) - 荷扱い
++ freight_handling2: `下載厳禁` (string) - 荷扱い
++ arrival_date: `2023-10-31` (string) - 希望お届け日
++ arrival_hour: `14〜16時` (string) - 希望お届け時間帯
+
+## ShippingInstructionParams
+
++ to_name: `在庫商会` (string) - 宛名
+* to_name_postfix: `御中` (string) - 敬称
+* to_zip: `1000101` (string) - 郵便番号
+* to_address: `東京都大島町元町` (string) - 住所
+* building_name: `ザイコ工場` (string) - 建物名・部屋番号
+* to_phone_number: `0312341234` (string) - 電話番号
+* shipping_client_id: 123 (number) - 発送元ID
+* invoice_type_name: `ヤマト 発払い` (string) - 便指定
++ product_name_on_invoice: `化学薬品` (string) - 品名
+* freight_handling: `ワレ物注意` (string) - 荷扱い
+* freight_handling2: `下載厳禁` (string) - 荷扱い
+* arrival_date: `2023-10-31` (string) - 希望お届け日
+* arrival_hour: `14〜16時` (string) - 希望お届け時間帯
+
 ## CreatePurchaseItem (object)
 + inventory_id: 1 (number, required) - 在庫データID
 + quantity: 3 (number, required) - 入庫数量
@@ -1113,3 +1224,47 @@ HOST: https://web.zaico.co.jp/
 + code: 404 (number) - コード
 + status: `error` (string) - ステータス
 + message: `Customer not found` (string) - メッセージ
+
+
+# Group 発送元データ
+
+## 発送元データ一覧取得 [/api/v1/shipping_clients/]
+
+### GET
+
+#### 処理概要
+
+* フルプランのみ参照できます。
+* 自分のアカウントに登録されている発送元データのすべてを返します
+* 発送元データが1件も無い場合は、空の配列を返します
+* 発送元データが1000件以上ある場合はページネーションで分割され、1000件ごと発送元データを返します
+* 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます。
+* ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
+* Link, Total-Countヘッダは発送元一覧でのみ返されます
+
+  ```http
+  Ref：
+  https://web.zaico.co.jp/api/v1/shipping_clients?page=1
+  ```
+
+* Request
+  * Headers
+      Authorization: Bearer YOUR_TOKEN
+      Content-Type: application/json
+* Response 200 (application/json)
+  * Headers
+      Link: <https://web.zaico.co.jp/api/v1/shipping_clients?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/shipping_clients?page=1>; rel="last"
+      Total-Count: 発送元データ件数
+  * Attributes (array)
+      * (ShippingClientsView)
+
+## Data Structures
+
+### ShippingClientsView
+
+* id: 1 (number) - レコードID
+* name: `発送元A` (string) - 名前/会社名
+* zip: `1234567` (string) - 郵便番号
+* address: `東京都港区` (string) - 住所
+* building_name: `港ビル` (string) - 建物名・部屋番号
+* phone_number: `08012345678` (string) - 電話番号
