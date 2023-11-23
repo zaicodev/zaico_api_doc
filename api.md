@@ -298,8 +298,15 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * inventory_id : 在庫データID
     * title : 物品名
     * quantity : 出庫数量
+    * box_quantity: まとめ換算数量（基本単位で登録された場合はquantityと同じ値）
     * unit : 単位
+    * box_unit : まとめ単位（基本単位で登録された場合はunitと同じ値）
+    * unit_snapshot : 単位自動換算情報（まとめ単位で登録された場合のみ）
+        * piece_name : 基本単位名
+        * box_name : まとめ単位名
+        * factor : 換算値
     * unit_price : 納品単価
+    * subtotal_amount : 小計（box_quantity x box_unit）
     * status : 状態
       * 以下の2つのどちらかが設定されています
       * before_delivery : 出庫前
@@ -363,6 +370,22 @@ Authorization: Bearer YOUR_TOKEN_HERE
                     + quantity: 3 (number) - 出庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (number) - 納品単価
+                    + status: completed_delivery (string)
+                    + delivery_date: `2019-09-01` (string)
+                    + estimated_delivery_date (string, optional, nullable)
+                    + etc: (string) - 摘要・備考
+                + (object)
+                    + inventory_id: 3 (number)
+                    + title: ビール (string) - 物品名
+                    + quantity: 12 (number) - 出庫数量
+                    + box_quantity: 1 (string) - まとめ換算の入庫数量
+                    + unit: 瓶 (string) - 単位
+                    + box_unit: 箱 (string) - まとめ単位
+                    + unit_price: 100 (number) - 納品単価
+                    + unit_snapshot:
+                        + piece_name: 瓶 (string) - 基本単位名称
+                        + box_name: 箱 (string) - まとめ単位名称
+                        + factor : 12 (string) - 換算値
                     + status: completed_delivery (string)
                     + delivery_date: `2019-09-01` (string)
                     + estimated_delivery_date (string, optional, nullable)
@@ -488,8 +511,15 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * inventory_id : 在庫データID
     * title : 物品名
     * quantity : 出庫数量
+    * box_quantity: まとめ換算数量（基本単位で登録された場合はquantityと同じ値）
     * unit : 単位
+    * box_unit : まとめ単位（基本単位で登録された場合はunitと同じ値）
+    * unit_snapshot : 単位自動換算情報（まとめ単位で登録された場合のみ）
+        * piece_name : 基本単位名
+        * box_name : まとめ単位名
+        * factor : 換算値
     * unit_price : 納品単価
+    * subtotal_amount : 小計（box_quantity x box_unit）
     * status : 状態
       * 以下の2つのどちらかが設定されています
       * before_delivery : 出庫前
@@ -695,8 +725,15 @@ HOST: https://web.zaico.co.jp/
     * inventory_id : 在庫データID
     * title : 物品名
     * quantity : 入庫数量
+    * box_quantity: まとめ換算数量（基本単位で登録された場合はquantityと同じ値）
     * unit : 単位
+    * box_unit : まとめ単位（基本単位で登録された場合はunitと同じ値）
+    * unit_snapshot : 単位自動換算情報
+        * piece_name : 基本単位名
+        * box_name : まとめ単位名
+        * factor : 換算値
     * unit_price : 仕入単価
+    * subtotal_amount : 小計（box_quantity x box_unit）
     * status : 状態
         * 以下の3つのいずれかが設定されています
         * not_ordered : 発注前
@@ -729,7 +766,9 @@ HOST: https://web.zaico.co.jp/
                     + inventory_id: 1
                     + title: 掃除機 (string) - 物品名
                     + quantity: 3 (string) - 入庫数量
+                    + box_quantity: 3 (string) - まとめ換算の入庫数量
                     + unit: 台 (string) - 単位
+                    + box_unit: 台 (string) - まとめ単位
                     + unit_price: 100 (string) - 仕入単価
                     + status: ordered (string)
                     + purchase_date: null (string)
@@ -738,8 +777,25 @@ HOST: https://web.zaico.co.jp/
                     + inventory_id: 1
                     + title: 掃除機 (string) - 物品名
                     + quantity: 3 (string) - 入庫数量
+                    + box_quantity: 3 (string) - まとめ換算の入庫数量
                     + unit: 台 (string) - 単位
+                    + box_unit: 台 (string) - まとめ単位
                     + unit_price: 100 (string) - 仕入単価
+                    + status: ordered (string)
+                    + purchase_date: null (string)
+                    + estimated_purchase_date: `2020-01-01` (string)
+                + ()
+                    + inventory_id: 2 
+                    + title: ビール (string) - 物品名
+                    + quantity: 12 (string) - 入庫数量
+                    + box_quantity: 1 (string) - まとめ換算の入庫数量
+                    + unit: 瓶 (string) - 単位
+                    + box_unit: 箱 (string) - まとめ単位
+                    + unit_price: 100 (string) - 仕入単価
+                    + unit_snapshot:
+                        + piece_name: 瓶 (string) - 基本単位名称
+                        + box_name: 箱 (string) - まとめ単位名称
+                        + factor : 12 (string) - 換算値
                     + status: ordered (string)
                     + purchase_date: null (string)
                     + estimated_purchase_date: `2020-01-01` (string)
@@ -846,8 +902,15 @@ HOST: https://web.zaico.co.jp/
     * inventory_id : 在庫データID
     * title : 物品名
     * quantity : 入庫数量
+    * box_quantity: まとめ換算数量（基本単位で登録された場合はquantityと同じ値）
     * unit : 単位
+    * box_unit : まとめ単位（基本単位で登録された場合はunitと同じ値）
+    * unit_snapshot : 単位自動換算情報（まとめ単位で登録された場合のみ）
+        * piece_name : 基本単位名
+        * box_name : まとめ単位名
+        * factor : 換算値
     * unit_price : 仕入単価
+    * subtotal_amount : 小計（box_quantity x box_unit）
     * status : 状態
         * 以下の3つのいずれかが設定されています
         * not_ordered : 発注前
@@ -895,6 +958,21 @@ HOST: https://web.zaico.co.jp/
                 + unit: 台 (string) - 単位
                 + unit_price: 100 (string) - 仕入単価
                 + status: purchased (string)
+                + purchase_date: null (string)
+                + estimated_purchase_date: `2020-01-01` (string)
+            + ()
+                + inventory_id: 2 
+                + title: ビール (string) - 物品名
+                + quantity: 12 (string) - 入庫数量
+                + box_quantity: 1 (string) - まとめ換算の入庫数量
+                + unit: 瓶 (string) - 単位
+                + box_unit: 箱 (string) - まとめ単位
+                + unit_price: 100 (string) - 仕入単価
+                + unit_snapshot:
+                    + piece_name: 瓶 (string) - 基本単位名称
+                    + box_name: 箱 (string) - まとめ単位名称
+                    + factor : 12 (string) - 換算値
+                + status: ordered (string)
                 + purchase_date: null (string)
                 + estimated_purchase_date: `2020-01-01` (string)
 
