@@ -928,8 +928,18 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>inventory_id : 在庫データID</li>
 <li>title : 物品名</li>
 <li>quantity : 出庫数量</li>
+<li>box_quantity: まとめ換算数量（基本単位で登録された場合はquantityと同じ値）</li>
 <li>unit : 単位</li>
+<li>box_unit : まとめ単位（基本単位で登録された場合はunitと同じ値）</li>
+<li>unit_snapshot : 単位自動換算情報（まとめ単位で登録された場合のみ）
+<ul>
+<li>piece_name : 基本単位名</li>
+<li>box_name : まとめ単位名</li>
+<li>factor : 換算値</li>
+</ul>
+</li>
 <li>unit_price : 納品単価</li>
+<li>subtotal_amount : 小計（box_quantity x box_unit）</li>
 <li>status : 状態
 <ul>
 <li>以下の2つのどちらかが設定されています</li>
@@ -1000,6 +1010,24 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
         "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
         "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"台"</span></span>,
         "<span class="hljs-attribute">unit_price</span>": <span class="hljs-value"><span class="hljs-number">100</span></span>,
+        "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"completed_delivery"</span></span>,
+        "<span class="hljs-attribute">delivery_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-09-01"</span></span>,
+        "<span class="hljs-attribute">estimated_delivery_date</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">etc</span>": <span class="hljs-value"><span class="hljs-string">""</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">inventory_id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"ビール"</span></span>,
+        "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-number">12</span></span>,
+        "<span class="hljs-attribute">box_quantity</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+        "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"瓶"</span></span>,
+        "<span class="hljs-attribute">box_unit</span>": <span class="hljs-value"><span class="hljs-string">"箱"</span></span>,
+        "<span class="hljs-attribute">unit_price</span>": <span class="hljs-value"><span class="hljs-number">100</span></span>,
+        "<span class="hljs-attribute">unit_snapshot</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">piece_name</span>": <span class="hljs-value"><span class="hljs-string">"瓶"</span></span>,
+          "<span class="hljs-attribute">box_name</span>": <span class="hljs-value"><span class="hljs-string">"箱"</span></span>,
+          "<span class="hljs-attribute">factor</span>": <span class="hljs-value"><span class="hljs-string">"12"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"completed_delivery"</span></span>,
         "<span class="hljs-attribute">delivery_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-09-01"</span></span>,
         "<span class="hljs-attribute">estimated_delivery_date</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
@@ -1333,8 +1361,18 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>inventory_id : 在庫データID</li>
 <li>title : 物品名</li>
 <li>quantity : 出庫数量</li>
+<li>box_quantity: まとめ換算数量（基本単位で登録された場合はquantityと同じ値）</li>
 <li>unit : 単位</li>
+<li>box_unit : まとめ単位（基本単位で登録された場合はunitと同じ値）</li>
+<li>unit_snapshot : 単位自動換算情報（まとめ単位で登録された場合のみ）
+<ul>
+<li>piece_name : 基本単位名</li>
+<li>box_name : まとめ単位名</li>
+<li>factor : 換算値</li>
+</ul>
+</li>
 <li>unit_price : 納品単価</li>
+<li>subtotal_amount : 小計（box_quantity x box_unit）</li>
 <li>status : 状態
 <ul>
 <li>以下の2つのどちらかが設定されています</li>
@@ -1972,8 +2010,18 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>inventory_id : 在庫データID</li>
 <li>title : 物品名</li>
 <li>quantity : 入庫数量</li>
+<li>box_quantity: まとめ換算数量（基本単位で登録された場合はquantityと同じ値）</li>
 <li>unit : 単位</li>
+<li>box_unit : まとめ単位（基本単位で登録された場合はunitと同じ値）</li>
+<li>unit_snapshot : 単位自動換算情報
+<ul>
+<li>piece_name : 基本単位名</li>
+<li>box_name : まとめ単位名</li>
+<li>factor : 換算値</li>
+</ul>
+</li>
 <li>unit_price : 仕入単価</li>
+<li>subtotal_amount : 小計（box_quantity x box_unit）</li>
 <li>status : 状態
 <ul>
 <li>以下の3つのいずれかが設定されています</li>
@@ -2006,7 +2054,9 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
         "<span class="hljs-attribute">inventory_id</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
         "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"掃除機"</span></span>,
         "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-string">"3"</span></span>,
+        "<span class="hljs-attribute">box_quantity</span>": <span class="hljs-value"><span class="hljs-string">"3"</span></span>,
         "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"台"</span></span>,
+        "<span class="hljs-attribute">box_unit</span>": <span class="hljs-value"><span class="hljs-string">"台"</span></span>,
         "<span class="hljs-attribute">unit_price</span>": <span class="hljs-value"><span class="hljs-string">"100"</span></span>,
         "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ordered"</span></span>,
         "<span class="hljs-attribute">purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"null"</span></span>,
@@ -2016,8 +2066,27 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
         "<span class="hljs-attribute">inventory_id</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
         "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"掃除機"</span></span>,
         "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-string">"3"</span></span>,
+        "<span class="hljs-attribute">box_quantity</span>": <span class="hljs-value"><span class="hljs-string">"3"</span></span>,
         "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"台"</span></span>,
+        "<span class="hljs-attribute">box_unit</span>": <span class="hljs-value"><span class="hljs-string">"台"</span></span>,
         "<span class="hljs-attribute">unit_price</span>": <span class="hljs-value"><span class="hljs-string">"100"</span></span>,
+        "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ordered"</span></span>,
+        "<span class="hljs-attribute">purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"null"</span></span>,
+        "<span class="hljs-attribute">estimated_purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"2020-01-01"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">inventory_id</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"ビール"</span></span>,
+        "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-string">"12"</span></span>,
+        "<span class="hljs-attribute">box_quantity</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+        "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"瓶"</span></span>,
+        "<span class="hljs-attribute">box_unit</span>": <span class="hljs-value"><span class="hljs-string">"箱"</span></span>,
+        "<span class="hljs-attribute">unit_price</span>": <span class="hljs-value"><span class="hljs-string">"100"</span></span>,
+        "<span class="hljs-attribute">unit_snapshot</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">piece_name</span>": <span class="hljs-value"><span class="hljs-string">"瓶"</span></span>,
+          "<span class="hljs-attribute">box_name</span>": <span class="hljs-value"><span class="hljs-string">"箱"</span></span>,
+          "<span class="hljs-attribute">factor</span>": <span class="hljs-value"><span class="hljs-string">"12"</span>
+        </span>}</span>,
         "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ordered"</span></span>,
         "<span class="hljs-attribute">purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"null"</span></span>,
         "<span class="hljs-attribute">estimated_purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"2020-01-01"</span>
@@ -2225,8 +2294,18 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>inventory_id : 在庫データID</li>
 <li>title : 物品名</li>
 <li>quantity : 入庫数量</li>
+<li>box_quantity: まとめ換算数量（基本単位で登録された場合はquantityと同じ値）</li>
 <li>unit : 単位</li>
+<li>box_unit : まとめ単位（基本単位で登録された場合はunitと同じ値）</li>
+<li>unit_snapshot : 単位自動換算情報（まとめ単位で登録された場合のみ）
+<ul>
+<li>piece_name : 基本単位名</li>
+<li>box_name : まとめ単位名</li>
+<li>factor : 換算値</li>
+</ul>
+</li>
 <li>unit_price : 仕入単価</li>
+<li>subtotal_amount : 小計（box_quantity x box_unit）</li>
 <li>status : 状態
 <ul>
 <li>以下の3つのいずれかが設定されています</li>
@@ -2273,6 +2352,23 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
       "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"台"</span></span>,
       "<span class="hljs-attribute">unit_price</span>": <span class="hljs-value"><span class="hljs-string">"100"</span></span>,
       "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"purchased"</span></span>,
+      "<span class="hljs-attribute">purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"null"</span></span>,
+      "<span class="hljs-attribute">estimated_purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"2020-01-01"</span>
+    </span>},
+    {
+      "<span class="hljs-attribute">inventory_id</span>": <span class="hljs-value"><span class="hljs-string">"2"</span></span>,
+      "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"ビール"</span></span>,
+      "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-string">"12"</span></span>,
+      "<span class="hljs-attribute">box_quantity</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+      "<span class="hljs-attribute">unit</span>": <span class="hljs-value"><span class="hljs-string">"瓶"</span></span>,
+      "<span class="hljs-attribute">box_unit</span>": <span class="hljs-value"><span class="hljs-string">"箱"</span></span>,
+      "<span class="hljs-attribute">unit_price</span>": <span class="hljs-value"><span class="hljs-string">"100"</span></span>,
+      "<span class="hljs-attribute">unit_snapshot</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">piece_name</span>": <span class="hljs-value"><span class="hljs-string">"瓶"</span></span>,
+        "<span class="hljs-attribute">box_name</span>": <span class="hljs-value"><span class="hljs-string">"箱"</span></span>,
+        "<span class="hljs-attribute">factor</span>": <span class="hljs-value"><span class="hljs-string">"12"</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"ordered"</span></span>,
       "<span class="hljs-attribute">purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"null"</span></span>,
       "<span class="hljs-attribute">estimated_purchase_date</span>": <span class="hljs-value"><span class="hljs-string">"2020-01-01"</span>
     </span>}
@@ -3001,7 +3097,7 @@ https://web.zaico.co.jp/api/v1/shipping_clients?page=1</code></pre>
 ]</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 12 Oct 2023</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 23 Nov 2023</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
