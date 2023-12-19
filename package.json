@@ -3,6 +3,7 @@
     "aglio": "^2.3.0"
   },
   "scripts": {
+    "dev": "yarn aglio -i api.md -o dist/index.html --server --port 3005",
     "build": "yarn aglio -i api.md -o dist/index.html"
   }
 }

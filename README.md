@@ -11,6 +11,14 @@ api.mdを編集してHTMLに変換するときは「aglio」を使います。
 2. nodeのバージョンを`16.20.1`にする（`nvm use v16.20.1; node -v`）
 3. `yarn` を実行
 
+## 開発（変更の自動検知）
+
+`yarn dev`
+
+http://localhost:3005/
+
+## ビルド（HTMLに変換）
+
 HTMLに変換するときは `yarn build` を実行してください。`dist/index.html` に出力されます。
 
 ## ドキュメントの公開について
