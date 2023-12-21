@@ -1191,8 +1191,7 @@ HOST: https://web.zaico.co.jp/
             + estimated_purchase_date: (string, nullable)
             + etc: (string)
             + created_at: `2023-11-16 11:27:24` (string)
-            + updated_at: `2023-11-16 11:27:24` (strin
-            + g)
+            + updated_at: `2023-11-16 11:27:24` (string)
         + ()
             + purchase_id: 10 (number)
             + inventory_id: 2 (number)
