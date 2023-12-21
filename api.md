@@ -1165,9 +1165,11 @@ HOST: https://web.zaico.co.jp/
   * purchase_date: 入庫日,
   * estimated_purchase_date: 入庫予定日,
   * etc: 摘要・備考
+  * created_at: 登録日時
+  * updated_at: 更新日時
 
 + Parameters
-  + status: `purchased` (string, optional) - ステータス
+  + status: `none, not_ordered, ordered, purchased, quotation_requested` (string, optional) - ステータス
     + start_date: `2019-09-01` (string, optional) - 入庫日がこの日以降
     + end_date: `2019-09-01` (string, optional) - 入庫日がこの日以前
     + page: 1 (number, optional) - ページ番号
@@ -1188,7 +1190,9 @@ HOST: https://web.zaico.co.jp/
             + purchase_date: 2021-11-17 (string)
             + estimated_purchase_date: (string, nullable)
             + etc: (string)
-          + ()
+            + created_at: `2023-11-16 11:27:24` (string)
+            + updated_at: `2023-11-16 11:27:24` (string)
+        + ()
             + purchase_id: 10 (number)
             + inventory_id: 2 (number)
             + title: りんご (string)
@@ -1199,6 +1203,75 @@ HOST: https://web.zaico.co.jp/
             + purchase_date: 2021-11-17 (string)
             + estimated_purchase_date: (string, nullable)
             + etc: (string)
+            + created_at: `2023-11-16 11:27:24` (string)
+            + updated_at: `2023-11-16 11:27:24` (string)
+
+# Group 出庫物品データ
+
+## 出庫物品データ一覧取得 [/api/v1/deliveries]
+### 出庫物品データ一覧取得 [GET]
+#### 処理概要
+
+* 自分のアカウントに登録されている出庫物品データを返します
+* 出庫物品データが1件も無い場合は、空の配列を返します
+* 出庫物品データが1000件以上ある場合はページネーションで分割され、1000件ごと出庫物品データを返します
+* 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます
+* ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
+* Link, Total-Countヘッダは出庫物品一覧でのみ返されます
+* 各出庫物品データの項目について以下のようになります
+  * packing_slip_id: 出庫データID,
+  * inventory_id: 在庫データID,
+  * title: 物品名,
+  * quantity: 出庫数量,
+  * unit: 単位,
+  * unit_price: 出庫単価, 
+  * status: ステータス,
+  * delivery_date: 出庫日,
+  * estimated_delivery_date: 出庫予定日, 
+  * etc: 摘要・備考
+  * date_of_issue: 納品書に記載される出庫日,
+  * created_at: 登録日時
+  * updated_at: 更新日時
+
++ Parameters
+  + status: `before_delivery, during_delivery, completed_delivery`, `completed_delivery` (string, optional) - ステータス
+    + start_date: `2019-09-01` (string, optional) - 出庫日がこの日以降
+    + end_date: `2019-09-01` (string, optional) - 出庫日がこの日以前
+    + page: 1 (number, optional) - ページ番号
++ Request
+    + Headers
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
++ Response 200 (application/json)
+    + Attributes (array)
+        + ()
+            + packing_slip_id: 10 (number)
+            + inventory_id: 1 (number)
+            + title: 掃除機 (string)
+            + quantity: 3 (number)
+            + unit: 台 (string)
+            + unit_price: 100 (number)
+            + status: completed_delivery (string)
+            + delivery_date: 2021-11-17 (string)
+            + estimated_delivery_date: (string, nullable)
+            + etc: (string)
+            + date_of_issue: 2021-11-17 (string)
+            + created_at: `2023-11-16 11:27:24` (string)
+            + updated_at: `2023-11-16 11:27:24` (string)
+        + ()
+            + packing_slip_id: 10 (number)
+            + inventory_id: 1 (number)
+            + title: 掃除機 (string)
+            + quantity: 3 (number)
+            + unit: 台 (string)
+            + unit_price: 100 (number)
+            + status: completed_delivery (string)
+            + delivery_date: 2021-11-17 (string)
+            + estimated_delivery_date: (string, nullable)
+            + etc: (string)
+            + date_of_issue: 2021-11-17 (string)
+            + created_at: `2023-11-16 11:27:24` (string)
+            + updated_at: `2023-11-16 11:27:24` (string)
 
 # Group 取引先データ
 
