@@ -3,7 +3,7 @@ HOST: https://web.zaico.co.jp
 
 # zaico API Document
 このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。  
-2022年12月14日更新
+2024年2月22日更新
 
 # Group 認証
 ## 認証について
@@ -285,8 +285,9 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * num : 出庫データ番号（ユーザーが任意に設定できる番号）
   * customer_name : 取引先名
   * status : 出庫データの状態
-    * 以下の2つのどちらかが設定されています
+    * 以下の3つのいずれかが設定されています
     * before_delivery : 出庫前
+    * during_delivery : 出庫中
     * completed_delivery : 出庫済
   * total_amount : 出庫データの合計金額
   * delivery_date : 出庫日
@@ -424,8 +425,9 @@ Authorization: Bearer YOUR_TOKEN_HERE
     * num : 出庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
     * status : 出庫データの状態
-        * 以下の2つのどちらかを指定してください
+        * 以下の3つのいずれかを指定してください
         * 出庫前の場合は before_delivery
+        * 出庫中の場合は during_delivery
         * 出庫済の場合は completed_delivery
         * **出庫済みを指定した場合は、対象の在庫データの数量を減少します**
     * delivery_date : 出庫日
@@ -498,8 +500,9 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * num : 出庫データ番号（ユーザーが任意に設定できる番号）
   * customer_name : 取引先名
   * status : 出庫データの状態
-    * 以下の2つのどちらかが設定されています
+    * 以下の3つのいずれかが設定されています
     * before_delivery : 出庫前
+    * during_delivery : 出庫中
     * completed_delivery : 出庫済み
   * total_amount : 出庫データの合計金額
   * delivery_date : 出庫日
@@ -607,7 +610,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             * quantity : 出庫数量
             * unit_price : 納品単価
             * status : 状態
-                * 出庫前在庫を更新するときは before_delivery または completed_delivery を指定できます
+                * 出庫前在庫を更新するときは before_delivery, during_delivery, completed_delivery を指定できます
                 出庫前在庫を出庫済に更新すると **対象の在庫データの数量を減少します**
                 * 出庫済在庫の状態を更新することはできません
             * delivery_date : 出庫日
@@ -711,10 +714,12 @@ HOST: https://web.zaico.co.jp/
   * num : 入庫データ番号（ユーザーが任意に設定できる番号）
   * customer_name : 取引先名
   * status : 入庫データの状態
-    * 以下の3つのいずれかが設定されています
+    * 以下の5つのいずれかが設定されています
+    * none : なし
     * not_ordered : 発注前
     * ordered : 発注済み
     * purchased : 入庫済
+    * quotation_requested : 見積依頼済み
   * total_amount : 入庫データの合計金額
   * purchase_date: 入庫日
   * estimated_purchase_date　: 入庫予定日
@@ -832,9 +837,12 @@ HOST: https://web.zaico.co.jp/
     * num : 入庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
     * status : 入庫データの状態
-        * 以下の2つのどちらかを指定してください
-        * 仕入前の場合は not_ordered
+        * 以下の5つのいずれかを指定してください
+        * なしの場合は none
+        * 発注前の場合は not_ordered
+        * 発注済みの場合は ordered
         * 入庫済の場合は purchased
+        * 見積依頼済みの場合は quotation_requested
         * **入庫済を指定した場合は、対象の在庫データの数量を増加します**
     * purchase_date : 入庫日
         * statusによって必須かどうか変わります
@@ -887,10 +895,12 @@ HOST: https://web.zaico.co.jp/
   * num : 入庫データ番号（ユーザーが任意に設定できる番号）
   * customer_name : 取引先名
   * status : 入庫データの状態
-    * 以下の3つのいずれかが設定されています
+    * 以下の5つのいずれかが設定されています
+    * none : なし
     * not_ordered : 発注前
     * ordered : 発注済み
     * purchased : 入庫済
+    * quotation_requested : 見積依頼済み
   * total_amount : 入庫データの合計金額
   * purchase_date : 入庫日
   * estimated_purchase_date : 入庫予定日
@@ -992,8 +1002,8 @@ HOST: https://web.zaico.co.jp/
             * quantity : 入庫数量
             * unit_price : 仕入単価
             * status : 状態
-                * 仕入前在庫を更新するときは not_ordered, ordered, purchased を指定できます
-                仕入前在庫を入庫済に更新すると **対象の在庫データの数量を増加します**
+                * 入庫前在庫を更新するときは none, not_ordered, ordered, purchased, quotation_requested を指定できます
+                入庫前在庫を入庫済に更新すると **対象の在庫データの数量を増加します**
                 * 入庫済在庫の状態を更新することはできません
             * purchase_date : 入庫日
             * estimated_purchase_date : 入庫予定日
@@ -1034,7 +1044,7 @@ HOST: https://web.zaico.co.jp/
 
 * 特定の入庫データを削除します
 * 入庫データの各物品の状態によって在庫データの取り扱いが変わります
-    * 仕入前：変化なし
+    * 入庫前：変化なし
     * 入庫済：在庫データの数量を入庫数量分だけ戻します
 
 + Parameters
