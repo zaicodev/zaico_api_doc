@@ -33,15 +33,16 @@
 <p>Link, Total-Countヘッダは在庫一覧でのみ返されます</p>
 </li>
 <li>
-<p>在庫一覧画面でのみ在庫データを検索できます。検索できる項目は「title」、「category」、「place」、「code」の4つです。検索する場合は以下のようにリクエストを送ってください。（下記の例は全部の項目に該当する在庫データを検索するものです。必要な項目のクエリを発行ください。）</p>
+<p>条件を指定して検索できます。検索できる項目は「title」、「category」、「place」、「code」と追加項目の5つです。検索する場合は以下のようにリクエストを送ってください。（下記の例は全部の項目に該当する在庫データを検索するものです。必要な項目のクエリを発行ください。）</p>
 <ul>
-<li>【注意】1つの項目に複数の値をいれて検索することはできません。</li>
-<li>【注意】「code(QRコード・バーコードの値)」のみ完全一致での検索となります。</li>
+<li>1つの項目に複数の値をいれて検索することはできません。</li>
+<li>「code(QRコード・バーコードの値)」は完全一致での検索となります。</li>
+<li>追加項目は一つだけ条件を指定することができ、また完全一致での検索となります。追加項目の検索はパラメータ「optional_attributes_name」に追加項目名を、「optional_attributes_value」に追加項目の値を指定してください。</li>
 </ul>
 <pre><code class="language-http">Ref：
-https://web.zaico.co.jp/api/v1/inventories/?title={TITLE}&amp;category={CATEGORY}&amp;place={PLACE}&amp;code={CODE}
+https://web.zaico.co.jp/api/v1/inventories/?title={TITLE}&amp;category={CATEGORY}&amp;place={PLACE}&amp;code={CODE}&amp;optional_attributes_name={OPTIONAL_ATTRIBUTES_NAME}&amp;optional_attributes_value={OPTIONAL_ATTRIBUTES_VALUE}
 例：
-https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=物品&amp;place=ZAICO倉庫&amp;code=123456789</code></pre>
+https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=物品&amp;place=ZAICO倉庫&amp;code=123456789&amp;optional_attributes_name=担当者&amp;optional_attributes_value=宮下</code></pre>
 </li>
 </ul>
 <h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://web.zaico.co.jp</span>/api/v1/inventories</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer YOUR_TOKEN</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Link</span>: <span class="hljs-string">&lt;https://web.zaico.co.jp/api/v1/inventories?page=1&gt;; rel="first", &lt;https://web.zaico.co.jp/api/v1/inventories?page=前のページ&gt;; rel="prev", &lt;https://web.zaico.co.jp/api/v1/inventories?page=次のページ&gt;; rel="next", &lt;https://web.zaico.co.jp/api/v1/inventories?page=最後のページ&gt;; rel="last"</span><br><span class="hljs-attribute">Total-Count</span>: <span class="hljs-string">在庫データ件数</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
@@ -922,6 +923,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します</li>
 </ul>
 </li>
+<li>memo : 出庫メモ</li>
 <li>created_at : 出庫データ作成日</li>
 <li>updated_at : 出庫データ更新日</li>
 <li>deliveries : 出庫データに登録している在庫データ一覧
@@ -1122,6 +1124,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 </li>
 </ul>
 </li>
+<li>memo : 出庫メモ</li>
 <li>deliveries : 対象となる在庫データの配列
 <ul>
 <li>以下のパラメータを含むオブジェクトを配列の要素とします
@@ -1357,6 +1360,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します</li>
 </ul>
 </li>
+<li>memo : 出庫メモ</li>
 <li>created_at : 出庫データ作成日</li>
 <li>updated_at : 出庫データ更新日</li>
 <li>deliveries : 出庫データに登録している在庫データ一覧
@@ -1691,6 +1695,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <ul>
 <li>num : 出庫データ番号（ユーザーが任意に設定できる番号）</li>
 <li>customer_name : 取引先名</li>
+<li>memo : 出庫メモ</li>
 <li>deliveries : 対象となる在庫データの配列
 <ul>
 <li>以下のパラメータを含むオブジェクトを配列の要素とします
@@ -2008,6 +2013,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <li>purchase_date: 入庫日</li>
 <li>estimated_purchase_date　: 入庫予定日</li>
 <li>create_user_name : 入庫データ作成者名</li>
+<li>memo : 入庫メモ</li>
 <li>created_at : 入庫データ作成日</li>
 <li>updated_at : 入庫データ更新日</li>
 <li>purchase_items : 入庫データに登録している在庫データ一覧
@@ -2164,6 +2170,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 </li>
 </ul>
 </li>
+<li>memo : 入庫メモ</li>
 <li>purchase_items : 対象となる在庫データの配列
 <ul>
 <li>以下のパラメータを含むオブジェクトを配列の要素とします
@@ -2297,6 +2304,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 </ul>
 </li>
 <li>create_user_name : 入庫データ作成者名</li>
+<li>memo : 入庫メモ</li>
 <li>created_at : 入庫データ作成日</li>
 <li>updated_at : 入庫データ更新日</li>
 <li>deliveries : 入庫データに登録している在庫データ一覧
@@ -2439,6 +2447,7 @@ https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&amp;category=�
 <ul>
 <li>num : 入庫データ番号（ユーザーが任意に設定できる番号）</li>
 <li>customer_name : 取引先名</li>
+<li>memo : 入庫メモ</li>
 <li>purchase_items : 対象となる在庫データの配列
 <ul>
 <li>以下のパラメータを含むオブジェクトを配列の要素とします
@@ -3201,7 +3210,7 @@ https://web.zaico.co.jp/api/v1/shipping_clients?page=1</code></pre>
 ]</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 22 Feb 2024</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 01 Mar 2024</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
