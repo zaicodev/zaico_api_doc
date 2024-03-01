@@ -30,14 +30,16 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * 任意のページを取得するにはURLにクエリ「page=」をつけることで取得できます。サンプルプログラムなど詳しくはこちらのページをご覧ください( https://www.zaico.co.jp/2019/03/29/zaico-api-update-get-inventories/ )
   * ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
   * Link, Total-Countヘッダは在庫一覧でのみ返されます
-  * 在庫一覧画面でのみ在庫データを検索できます。検索できる項目は「title」、「category」、「place」、「code」の4つです。検索する場合は以下のようにリクエストを送ってください。（下記の例は全部の項目に該当する在庫データを検索するものです。必要な項目のクエリを発行ください。）
-    * 【注意】1つの項目に複数の値をいれて検索することはできません。
-    * 【注意】「code(QRコード・バーコードの値)」のみ完全一致での検索となります。
+  * 条件を指定して検索できます。検索できる項目は「title」、「category」、「place」、「code」と追加項目の5つです。検索する場合は以下のようにリクエストを送ってください。（下記の例は全部の項目に該当する在庫データを検索するものです。必要な項目のクエリを発行ください。）
+    * 1つの項目に複数の値をいれて検索することはできません。
+    * 「code(QRコード・バーコードの値)」は完全一致での検索となります。
+    * 追加項目は一つだけ条件を指定することができ、また完全一致での検索となります。追加項目の検索はパラメータ「optional_attributes_name」に追加項目名を、「optional_attributes_value」に追加項目の値を指定してください。
+
   ```http
   Ref：
-  https://web.zaico.co.jp/api/v1/inventories/?title={TITLE}&category={CATEGORY}&place={PLACE}&code={CODE}
+  https://web.zaico.co.jp/api/v1/inventories/?title={TITLE}&category={CATEGORY}&place={PLACE}&code={CODE}&optional_attributes_name={OPTIONAL_ATTRIBUTES_NAME}&optional_attributes_value={OPTIONAL_ATTRIBUTES_VALUE}
   例：
-  https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&category=物品&place=ZAICO倉庫&code=123456789
+  https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&category=物品&place=ZAICO倉庫&code=123456789&optional_attributes_name=担当者&optional_attributes_value=宮下
   ```
   + Request
     + Headers
@@ -293,6 +295,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * delivery_date : 出庫日
   * estimated_delivery_date : 出庫予定日
     * この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します
+  * memo : 出庫メモ
   * created_at : 出庫データ作成日
   * updated_at : 出庫データ更新日
   * deliveries : 出庫データに登録している在庫データ一覧
@@ -436,6 +439,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
             * delivery_dateが必須
         * status=before_delivery
             * delivery_dateは不要
+    * memo : 出庫メモ
     * deliveries : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
@@ -508,6 +512,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
   * delivery_date : 出庫日
   * estimated_delivery_date : 出庫予定日
     * この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します
+  * memo : 出庫メモ
   * created_at : 出庫データ作成日
   * updated_at : 出庫データ更新日
   * deliveries : 出庫データに登録している在庫データ一覧
@@ -603,6 +608,7 @@ Authorization: Bearer YOUR_TOKEN_HERE
 * 項目について
     * num : 出庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
+    * memo : 出庫メモ
     * deliveries : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
@@ -724,6 +730,7 @@ HOST: https://web.zaico.co.jp/
   * purchase_date: 入庫日
   * estimated_purchase_date　: 入庫予定日
   * create_user_name : 入庫データ作成者名
+  * memo : 入庫メモ
   * created_at : 入庫データ作成日
   * updated_at : 入庫データ更新日
   * purchase_items : 入庫データに登録している在庫データ一覧
@@ -850,6 +857,7 @@ HOST: https://web.zaico.co.jp/
             * purcahse_dateが必須
         * status=not_ordered
             * purchase_dateは不要
+    * memo : 入庫メモ
     * purchase_items : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
@@ -906,6 +914,7 @@ HOST: https://web.zaico.co.jp/
   * estimated_purchase_date : 入庫予定日
     * この入庫予定日は入庫データの物品のうち、最も早い入庫予定日を表示します
   * create_user_name : 入庫データ作成者名
+  * memo : 入庫メモ
   * created_at : 入庫データ作成日
   * updated_at : 入庫データ更新日
   * deliveries : 入庫データに登録している在庫データ一覧
@@ -995,6 +1004,7 @@ HOST: https://web.zaico.co.jp/
 * 項目について
     * num : 入庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
+    * memo : 入庫メモ
     * purchase_items : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
