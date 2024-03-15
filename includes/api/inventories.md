@@ -182,7 +182,7 @@
 + state: `新品` (string) - 状態
 + place: `ZAICO倉庫` (string) - 保管場所
 + etc: `備考` (string) - 備考
-+ group_tag: `グループタグ` (string) - グループタグ（ビジネス・フルプランのみ）
++ group_tag: `グループタグ` (string) - グループタグ（フルプランのみ）
 + user_group: `ユーザーグループ` (string) - ユーザーグループ(カンマ区切りで複数指定可)
 + code: `tw201800000000` (string) - バーコードの値
 + item_image: `base64-encoded-image` (string)
@@ -201,13 +201,13 @@
 + id: 1 (number) - ID
 + title: `在庫データ` (string) - 在庫データタイトル
 + quantity: 10 (number) - 数量
-+ logical_quantity: 10 (number) - 予定フリー在庫数（ビジネス・フルプランのみ）
++ logical_quantity: 10 (number) - 予定フリー在庫数（フルプランのみ）
 + unit: `個` (string) - 単位
 + category: `製品` (string) - カテゴリ
 + state: `新品` (string) - 状態
 + place: `ZAICO倉庫` (string) - 保管場所
 + etc: `備考` (string) - 備考
-+ group_tag: `グループタグ` (string) - グループタグ（ビジネス・フルプランのみ）
++ group_tag: `グループタグ` (string) - グループタグ（フルプランのみ）
 + code: `tw201800000000` (string) - バーコードの値
 + item_image (object)
     + url: `itemimageurl` (string) - 画像URL
