@@ -109,6 +109,7 @@
 * 変更履歴のメモも一緒に保存することが可能です。詳しくは下記Bodyをご覧ください
 * 棚卸日はstocktake_attributes: { checked_at: 日付 }で登録・変更が可能です
 * 発注点を設定することも可能です
+* ユーザーグループが未指定または空の場合は場合は更新しません
 
 + Parameters
   + id: 1 (number, required) - 在庫データのID
