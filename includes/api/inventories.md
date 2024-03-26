@@ -12,9 +12,9 @@
 * ページ情報はHTTPヘッダ"Link"に最初のページ、前のページ、次のページ、最後のページそれぞれ,(カンマ)で区切られ返されます。最初のページでは「前のページ」、最後のページでは「次のページ」項目は表示されません
 * Link, Total-Countヘッダは在庫一覧でのみ返されます
 * 条件を指定して検索できます。検索できる項目は「title」、「category」、「place」、「code」と追加項目の5つです。検索する場合は以下のようにリクエストを送ってください。（下記の例は全部の項目に該当する在庫データを検索するものです。必要な項目のクエリを発行ください。）
-    * 1つの項目に複数の値をいれて検索することはできません。
-    * 「code(QRコード・バーコードの値)」は完全一致での検索となります。
-    * 追加項目は一つだけ条件を指定することができ、また完全一致での検索となります。追加項目の検索はパラメータ「optional_attributes_name」に追加項目名を、「optional_attributes_value」に追加項目の値を指定してください。
+  * 1つの項目に複数の値をいれて検索することはできません。
+  * 「code(QRコード・バーコードの値)」は完全一致での検索となります。
+  * 追加項目は一つだけ条件を指定することができ、また完全一致での検索となります。追加項目の検索はパラメータ「optional_attributes_name」に追加項目名を、「optional_attributes_value」に追加項目の値を指定してください。
 
   ```http
   Ref：
@@ -22,16 +22,17 @@
   例：
   https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&category=物品&place=ZAICO倉庫&code=123456789&optional_attributes_name=担当者&optional_attributes_value=宮下
   ```
+  
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
 
 + Response 200 (application/json)
-    + Headers
-      Link: <https://web.zaico.co.jp/api/v1/inventories?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/inventories?page=前のページ>; rel="prev", <https://web.zaico.co.jp/api/v1/inventories?page=次のページ>; rel="next", <https://web.zaico.co.jp/api/v1/inventories?page=最後のページ>; rel="last"
-      Total-Count: 在庫データ件数
-    + Attributes (InventoriesViews)
+  + Headers
+    Link: <https://web.zaico.co.jp/api/v1/inventories?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/inventories?page=前のページ>; rel="prev", <https://web.zaico.co.jp/api/v1/inventories?page=次のページ>; rel="next", <https://web.zaico.co.jp/api/v1/inventories?page=最後のページ>; rel="last"
+    Total-Count: 在庫データ件数
+  + Attributes (InventoriesViews)
 
 
 
@@ -51,21 +52,20 @@
 * 発注点を設定することも可能です
 
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
-
-    + Params
-        + Attributes (InventoryCreateParams)
+  + Headers
+  Authorization: Bearer YOUR_TOKEN
+  Content-Type: application/json
+  + Params
+  + Attributes (InventoryCreateParams)
 
 + Response 200 (application/json)
-    + Attributes (InventoryCreateSuccessfully)
+  + Attributes (InventoryCreateSuccessfully)
 
 + Response 400 (application/json)
-    + Attributes (BadRequestNoData)
+  + Attributes (BadRequestNoData)
 
 + Response 406 (application/json)
-    + Attributes (UserGroupNotExist)
+  + Attributes (UserGroupNotExist)
 
 
 
@@ -80,18 +80,18 @@
 * 在庫データが無い場合は404を返します
 
 + Parameters
-    + id: 1 (number, required) - 在庫データのID
+  + id: 1 (number, required) - 在庫データのID
 
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
 
 + Response 200 (application/json)
-    + Attributes (InventoriesViews)
+  + Attributes (InventoriesViews)
 
 + Response 404 (application/json)
-    + Attributes (InventoryNotFound)
+  + Attributes (InventoryNotFound)
 
 
 
@@ -111,27 +111,26 @@
 * 発注点を設定することも可能です
 
 + Parameters
-    + id: 1 (number, required) - 在庫データのID
+  + id: 1 (number, required) - 在庫データのID
 
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
-
-    + Params
-        + Attributes (InventoryCreateParams)
+  + Headers
+  Authorization: Bearer YOUR_TOKEN
+  Content-Type: application/json
+  + Params
+  + Attributes (InventoryCreateParams)
 
 + Response 200 (application/json)
-    + Attributes (InventoryUpdateSuccessfully)
+  + Attributes (InventoryUpdateSuccessfully)
 
 + Response 400 (application/json)
-    + Attributes (BadRequestNoData)
+  + Attributes (BadRequestNoData)
 
 + Response 404 (application/json)
-    + Attributes (InventoryNotFound)
+  + Attributes (InventoryNotFound)
 
 + Response 406 (application/json)
-    + Attributes (UserGroupNotExist)
+  + Attributes (UserGroupNotExist)
 
 
 ## 在庫データ削除 [/api/v1/inventories/{id}]
@@ -143,21 +142,22 @@
 * 該当する在庫データが無い場合はエラーを返します
 
 + Parameters
-    + id: 1 (number, required) - 在庫データのID
+  + id: 1 (number, required) - 在庫データのID
 
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
 
 + Response 200 (application/json)
-    + Attributes (InventoryDeleteSuccessfully)
+  + Attributes (InventoryDeleteSuccessfully)
 
 + Response 404 (application/json)
-    + Attributes (InventoryNotFound)
+  + Attributes (InventoryNotFound)
 
 
 ## Data Structures
+
 ### InventoryCreateSuccessfully
 + code: 200 (number) - ステータスコード
 + status: `success` (string) - 状態
@@ -187,15 +187,15 @@
 + code: `tw201800000000` (string) - バーコードの値
 + item_image: `base64-encoded-image` (string)
 + stocktake_attributes
-    + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日
+  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日
 + optional_attributes (array[object],fixed-type)
-    + (object)
-        + name: `追加項目名` (string) - 追加項目名
-        + value: `追加項目値` (string) - 追加項目値
+  + (object)
+    + name: `追加項目名` (string) - 追加項目名
+    + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
-    + order_point_quantity: 5 (number) - 発注点
+  + order_point_quantity: 5 (number) - 発注点
 + inventory_history
-    + memo: `変更履歴メモ` (string) - 変更履歴のメモ
+  + memo: `変更履歴メモ` (string) - 変更履歴のメモ
 
 ### InventoriesViews
 + id: 1 (number) - ID
@@ -210,15 +210,15 @@
 + group_tag: `グループタグ` (string) - グループタグ（フルプランのみ）
 + code: `tw201800000000` (string) - バーコードの値
 + item_image (object)
-    + url: `itemimageurl` (string) - 画像URL
+  + url: `itemimageurl` (string) - 画像URL
 + stocktake_attributes
-    + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日
+  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日
 + optional_attributes (array[object],fixed-type)
-    + (object)
-        + name: `追加項目名` (string) - 追加項目名
-        + value: `追加項目値` (string) - 追加項目値
+  + (object)
+    + name: `追加項目名` (string) - 追加項目名
+    + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
-    + order_point_quantity: 5 (number) - 発注点
+  + order_point_quantity: 5 (number) - 発注点
 + created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日
 + updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日
 + create_user_name: `田村 太郎` (string) - 作成者

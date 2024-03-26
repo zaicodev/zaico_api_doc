@@ -20,15 +20,15 @@
   ```
 
 * Request
-    * Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
+  * Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
 * Response 200 (application/json)
-    * Headers
-      Link: <https://web.zaico.co.jp/api/v1/shipping_clients?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/shipping_clients?page=1>; rel="last"
-      Total-Count: 発送元データ件数
-    * Attributes (array)
-        * (ShippingClientsView)
+  * Headers
+    Link: <https://web.zaico.co.jp/api/v1/shipping_clients?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/shipping_clients?page=1>; rel="last"
+    Total-Count: 発送元データ件数
+  * Attributes (array)
+    * (ShippingClientsView)
 
 ## Data Structures
 

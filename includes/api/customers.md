@@ -14,14 +14,14 @@
   https://web.zaico.co.jp/api/v1/customers?page=1
   ```
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
 + Response 200 (application/json)
-    + Headers
-      Link: <https://web.zaico.co.jp/api/v1/customers?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/customers/api/v1/customers?page=1>; rel="last"
-      Total-Count: 取引先データ件数
-    + Attributes (CustomersView)
+  + Headers
+    Link: <https://web.zaico.co.jp/api/v1/customers?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/customers/api/v1/customers?page=1>; rel="last"
+    Total-Count: 取引先データ件数
+  + Attributes (CustomersView)
 
 ## 取引先データ作成 [/api/v1/customers/]
 ### POST
@@ -32,24 +32,24 @@
 * パースできないJSONを送るとエラーを返します
 
 + Parameters
-    + id: 1 (number, required) - 取引先データのID
+  + id: 1 (number, required) - 取引先データのID
 
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
 
-    + Params
-        + Attributes (CustomerCreateParams)
+  + Params
+    + Attributes (CustomerCreateParams)
 
 + Response 200 (application/json)
-    + Attributes (CustomerCreateSuccessfully)
+  + Attributes (CustomerCreateSuccessfully)
 
 + Response 400 (application/json)
-    + Attributes (BadRequestNoData)
+  + Attributes (BadRequestNoData)
 
 + Response 422 (application/json)
-    + Attributes (UnprocessableEntity)
+  + Attributes (UnprocessableEntity)
 
 ## 取引先データ更新 [/api/v1/customers/{id}]
 ### PUT
@@ -61,27 +61,27 @@
 * パースできないJSONを送るとエラーを返します
 
 + Parameters
-    + id: 1 (number, required) - 取引先データのID
+  + id: 1 (number, required) - 取引先データのID
 
 + Params
-    + Attributes (InventoryCreateParams)
+  + Attributes (CustomerCreateParams)
 
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
 
-    + Params
-        + Attributes (CustomerUpdateParams)
+  + Params
+    + Attributes (CustomerUpdateParams)
 
 + Response 200 (application/json)
-    + Attributes (CustomerUpdateSuccessfully)
+  + Attributes (CustomerUpdateSuccessfully)
 
 + Response 400 (application/json)
-    + Attributes (BadRequestNoData)
+  + Attributes (BadRequestNoData)
 
 + Response 404 (application/json)
-    + Attributes (CustomerNotFound)
+  + Attributes (CustomerNotFound)
 
 ## 取引先データ削除 [/api/v1/customers/{id}]
 ### DELETE
@@ -90,18 +90,18 @@
 * 該当する取引先データが無い場合はエラーを返します
 
 + Parameters
-    + id: 1 (number, required) - 取引先データのID
+  + id: 1 (number, required) - 取引先データのID
 
 + Request
-    + Headers
-      Authorization: Bearer YOUR_TOKEN
-      Content-Type: application/json
+  + Headers
+    Authorization: Bearer YOUR_TOKEN
+    Content-Type: application/json
 
 + Response 200 (application/json)
-    + Attributes (CustomerDeleteSuccessfully)
+  + Attributes (CustomerDeleteSuccessfully)
 
 + Response 404 (application/json)
-    + Attributes (CustomerNotFound)
+  + Attributes (CustomerNotFound)
 
 ## Data Structures
 ### CustomersView
