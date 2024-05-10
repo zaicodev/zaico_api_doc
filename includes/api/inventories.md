@@ -197,6 +197,9 @@
   + order_point_quantity: 5 (number) - 発注点
 + inventory_history
   + memo: `変更履歴メモ` (string) - 変更履歴のメモ
++ is_quantity_auto_conversion_by_unit: `1` (string) - 単位換算するかどうか。"1"なら単位換算する、"0"なら単位換算しない
++ quantity_auto_conversion_by_unit_name: `箱` (string) - 単位換算後の単位名
++ quantity_auto_conversion_by_unit_factor: `12` (string) - 単位換算係数
 
 ### InventoriesViews
 + id: 1 (number) - ID
@@ -225,6 +228,9 @@
 + create_user_name: `田村 太郎` (string) - 作成者
 + update_user_name: `田村 次郎` (string) - 更新者
 + user_group: `基本グループ` (string) - ユーザーグループ
++ is_quantity_auto_conversion_by_unit: `1` (string) - 単位換算するかどうか。"1"なら単位換算する、"0"なら単位換算しない
++ quantity_auto_conversion_by_unit_name: `箱` (string) - 単位換算後の単位名
++ quantity_auto_conversion_by_unit_factor: `12` (string) - 単位換算係数
 
 ### InventoryNotFound
 + code: 404 ( number ) - ステータスコード
