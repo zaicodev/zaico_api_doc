@@ -29,6 +29,7 @@
 * 取引先データを作成します
 * 名前のみあれば作成可能です
 * 敬称は 様 または 御中が指定可能です
+* 入出庫区分は「packing_slip」または「purchase」が指定可能です
 * パースできないJSONを送るとエラーを返します
 
 + Parameters
@@ -57,6 +58,7 @@
 * 特定の取引先データを更新します
 * 名前のみあれば作成可能です
 * 敬称は 様 または 御中が指定可能です
+* 入出庫区分は「packing_slip」または「purchase」が指定可能です
 * 該当する取引先データが無い場合はエラーを返します
 * パースできないJSONを送るとエラーを返します
 
@@ -114,6 +116,10 @@
 + building_name: `港ビル` (string) - 建物名・部屋番号
 + phone_number: `08012345678` (string) - 電話番号
 + etc: `取引先` (string) - 備考
++ fax_number: `5678` (string) - FAX番号
++ category: `東京` (string) - カテゴリ
++ `customer_type`: `packing_slip` (string) - 入出庫区分
++ num: `1` (string) - 取引先No.
 
 ### CustomerCreateParams
 + name: `取引先A` (string) -  取引先名
@@ -124,6 +130,10 @@
 + building_name: `港ビル` (string) - 建物名・部屋番号
 + phone_number: `08012345678` (string) - 電話番号
 + etc: `取引先` (string) - 備考
++ fax_number: `5678` (string) - FAX番号
++ category: `東京` (string) - カテゴリ
++ `customer_type`: `purchase` (string) - 入出庫区分
++ num: `1` (string) - 取引先No.
 
 ### CustomerCreateSuccessfully
 + code: 200 (number) - コード
@@ -140,6 +150,10 @@
 + building_name: `港ビル` (string) - 建物名・部屋番号
 + phone_number: `08012345678` (string) - 電話番号
 + etc: `取引先` (string) - 備考
++ fax_number: `5678` (string) - FAX番号
++ category: `東京` (string) - カテゴリ
++ `customer_type`: `packing_slip` (string) - 入出庫区分
++ num: `1` (string) - 取引先No.
 
 ### CustomerUpdateSuccessfully
 + code: 200 (number) - コード
