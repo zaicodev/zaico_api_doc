@@ -231,6 +231,12 @@
 + is_quantity_auto_conversion_by_unit: `1` (string) - 単位換算するかどうか。"1"なら単位換算する、"0"なら単位換算しない
 + quantity_auto_conversion_by_unit_name: `箱` (string) - 単位換算後の単位名
 + quantity_auto_conversion_by_unit_factor: `12` (string) - 単位換算係数
++ attachments
+  + (object)
+    + id: `1` (number) - 写真・ファイルのID
+    + original_filename: `image.jpg` (string) - ファイル名
+    + url: `https://web.zaico.co.jp/files/image.jpg` (string) - ファイルのURL
+    + created_at: `2022-01-01 09:00:00` (string) - 作成日時
 
 ### InventoryNotFound
 + code: 404 ( number ) - ステータスコード
