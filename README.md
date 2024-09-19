@@ -14,7 +14,9 @@ api.mdを編集してHTMLに変換するときは「aglio」を使います。
 
 ## 開発（変更の自動検知）
 
-`yarn dev`
+```bash
+yarn dev
+```
 
 http://localhost:3005/
 
