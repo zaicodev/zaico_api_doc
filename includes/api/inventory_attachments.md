@@ -1,6 +1,6 @@
 # Group 在庫データの写真・ファイル
 
-## 写真・ファイル一覧取得 [/api/v1/inventories/{inventory_id}/inventory_attachments]
+## 写真・ファイル一覧取得 [/api/v1/inventory_attachments/{inventory_id}]
 ### GET
 #### 処理概要
 * 指定した在庫データに紐づくすべての写真・ファイルを取得します。
@@ -23,7 +23,7 @@
             + url: `https://web.zaico.co.jp/files/image1.jpg` (string) - ファイルのURL
             + created_at: `2022-01-01 09:00:00` (string) - 作成日時
 
-## 写真・ファイル追加 [/api/v1/inventories/{inventory_id}/inventory_attachments]
+## 写真・ファイル追加 [/api/v1/inventory_attachments/{inventory_id}]
 ### POST
 #### 処理概要
 * 指定した在庫データに新しい写真・ファイルを追加します。
@@ -37,6 +37,10 @@
             Authorization: Bearer YOUR_TOKEN
             Content-Type: application/json
 
+    + Attributes
+           + inventory_attachments (object)  
+               + item_file: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (string, required) - 添付する写真またはファイル
+
 + Response 200 (application/json)
     + Attributes
         + id: `3` (number) - 追加された写真・ファイルのID
@@ -44,7 +48,7 @@
         + url: `https://web.zaico.co.jp/files/new_image.jpg` (string) - ファイルのURL
         + created_at: `2022-01-01 09:00:00` (string) - 作成日時
 
-## 写真・ファイル削除 [/api/v1/inventories/{inventory_id}/inventory_attachments/{inventory_attachment_id}]
+## 写真・ファイル削除 [/api/v1/inventories/inventory_attachments/{inventory_id}/{inventory_attachment_id}]
 ### DELETE
 #### 処理概要
 * 指定した在庫データから写真・ファイルを削除します。
