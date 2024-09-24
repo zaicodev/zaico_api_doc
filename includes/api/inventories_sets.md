@@ -75,7 +75,7 @@
 + Request
    + Headers
        Authorization: Bearer YOUR_TOKEN
-       Content-Type: multipart/form-data
+       Content-Type: application/json
    + Attributes
        + title: `セット品A` (string, required) - セット品名
        + price: 1000 (number, optional) - 価格 

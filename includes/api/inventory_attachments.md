@@ -35,7 +35,7 @@
 + Request
     + Headers
             Authorization: Bearer YOUR_TOKEN
-            Content-Type: application/json
+            Content-Type: multipart/form-data
 
     + Attributes
        + inventory_attachment (object)  
