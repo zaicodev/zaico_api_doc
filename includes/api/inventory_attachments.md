@@ -49,7 +49,7 @@
         + url: `https://web.zaico.co.jp/files/new_image.jpg` (string) - ファイルのURL
         + created_at: `2022-01-01 09:00:00` (string) - 作成日時
 
-## 写真・ファイル削除 [/api/v1/inventories/inventory_attachments/{inventory_id}/{inventory_attachment_id}]
+## 写真・ファイル削除 [/api/v1/inventory_attachments/{inventory_id}/{inventory_attachment_id}]
 ### DELETE
 #### 処理概要
 * 指定した在庫データから写真・ファイルを削除します。
