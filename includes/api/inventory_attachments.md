@@ -26,8 +26,8 @@
 ## 写真・ファイル追加 [/api/v1/inventory_attachments/{inventory_id}]
 ### POST
 #### 処理概要
-* 指定した在庫データに新しい写真・ファイルを追加します。
-* 添付できる写真・ファイルの数は10件までです。
+* 指定した在庫データに１つの新しい写真・ファイルを追加します。
+* １つの在庫に添付できる写真・ファイルの数は合計10件までです。
 
 + Parameters
     + inventory_id: `12345` (string, required) - 在庫データID
@@ -38,8 +38,9 @@
             Content-Type: application/json
 
     + Attributes
-           + inventory_attachments (object)  
-               + item_file: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (string, required) - 添付する写真またはファイル
+       + inventory_attachment (object)  
+           + item_file: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (string, required) - 添付する写真またはファイル
+           + original_filename: `new_image.jpg` (string) - ファイル名
 
 + Response 200 (application/json)
     + Attributes
