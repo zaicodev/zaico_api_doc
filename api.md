@@ -19,6 +19,7 @@ HOST: https://web.zaico.co.jp
 <!-- include(includes/authorization.md) -->
 
 <!-- include(includes/api/inventories.md) -->
+<!-- include(includes/api/inventory_attachments.md) -->
 <!-- include(includes/api/inventories_sets.md) -->
 <!-- include(includes/api/packing_slips.md) -->
 <!-- include(includes/api/purchases.md) -->
