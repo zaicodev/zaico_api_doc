@@ -39,8 +39,7 @@
 
     + Attributes
        + inventory_attachment (object)  
-           + item_file: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA... (string, required) - 添付する写真またはファイル
-           + original_filename: `new_image.jpg` (string) - ファイル名
+           + item_file: `添付する写真またはファイルのバイナリデータ` (string, required) - 添付する写真またはファイルのバイナリデータ
 
 + Response 200 (application/json)
     + Attributes
