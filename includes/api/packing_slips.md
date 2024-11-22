@@ -26,6 +26,7 @@
     * created_at : 出庫データ作成日
     * updated_at : 出庫データ更新日
     * deliveries : 出庫データに登録している在庫データ一覧
+        * id : 出庫物品データID
         * inventory_id : 在庫データID
         * title : 物品名
         * quantity : 出庫数量
@@ -86,6 +87,7 @@
             + updated_at: `2018-03-27T09:38:19+09:00`
             + deliveries (array[object], fixed-type)
                 + (object)
+                    + id: 1 (number)
                     + inventory_id: 1 (number)
                     + title: 掃除機 (string) - 物品名
                     + quantity: 3 (number) - 出庫数量
@@ -96,6 +98,7 @@
                     + estimated_delivery_date (string, optional, nullable)
                     + etc: 黒色 (string) - 摘要・備考
                 + (object)
+                    + id: 2 (number)
                     + inventory_id: 2 (number)
                     + title: テレビ (string) - 物品名
                     + quantity: 3 (number) - 出庫数量
@@ -106,6 +109,7 @@
                     + estimated_delivery_date (string, optional, nullable)
                     + etc: (string) - 摘要・備考
                 + (object)
+                    + id: 3 (number)
                     + inventory_id: 3 (number)
                     + title: ビール (string) - 物品名
                     + quantity: 12 (number) - 出庫数量
