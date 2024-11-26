@@ -31,6 +31,7 @@ HOST: https://web.zaico.co.jp/
     * created_at : 入庫データ作成日
     * updated_at : 入庫データ更新日
     * purchase_items : 入庫データに登録している在庫データ一覧
+        * id : 入庫物品データID
         * inventory_id : 在庫データID
         * title : 物品名
         * quantity : 入庫数量
@@ -72,7 +73,8 @@ HOST: https://web.zaico.co.jp/
             + updated_at: `2019-12-27T09:38:19+09:00`
             + purchase_items (array)
                 + ()
-                    + inventory_id: 1
+                    + id: 1 (number)
+                    + inventory_id: 1 (number)
                     + title: 掃除機 (string) - 物品名
                     + quantity: 3 (string) - 入庫数量
                     + box_quantity: 3 (string) - まとめ換算の入庫数量
@@ -83,7 +85,8 @@ HOST: https://web.zaico.co.jp/
                     + purchase_date: null (string)
                     + estimated_purchase_date: `2020-01-01` (string)
                 + ()
-                    + inventory_id: 1
+                    + id: 2 (number)
+                    + inventory_id: 1 (number)
                     + title: 掃除機 (string) - 物品名
                     + quantity: 3 (string) - 入庫数量
                     + box_quantity: 3 (string) - まとめ換算の入庫数量
@@ -94,7 +97,8 @@ HOST: https://web.zaico.co.jp/
                     + purchase_date: null (string)
                     + estimated_purchase_date: `2020-01-01` (string)
                 + ()
-                    + inventory_id: 2
+                    + id: 3 (number)
+                    + inventory_id: 2 (number)
                     + title: ビール (string) - 物品名
                     + quantity: 12 (string) - 入庫数量
                     + box_quantity: 1 (string) - まとめ換算の入庫数量
@@ -522,3 +526,33 @@ HOST: https://web.zaico.co.jp/
             + etc: (string)
             + created_at: `2023-11-16 11:27:24` (string)
             + updated_at: `2023-11-16 11:27:24` (string)
+
+## 入庫物品データ削除 [/api/v1/purchases/items/{id}]
+### 入庫物品データ削除 [DELETE]
+#### 処理概要
+
+* 特定の入庫物品データを削除します
+* 入庫物品データの状態によって在庫データの取り扱いが変わります
+    * 入庫前：変化なし
+    * 入庫済：在庫データの数量を入庫数量分だけ戻します
+
+* Parameters
+    * id: 1 (number) - 入庫物品データのID
+
+* Request
+    * Headers
+
+            Authorization: Bearer YOUR_TOKEN
+            Content-Type: application/json
+
+* Response 200 (application/json)
+    * Attributes
+        * code: 200 (number) - ステータスコード
+        * status: success (string) - 状態
+        * message: Data was successfully deleted (string) - メッセージ
+
+* Response 404 (application/json)
+    * Attributes
+        * code: 404 (number) - ステータスコード
+        * status: error (string) - 状態
+        * message: Purchase item not found (string) - メッセージ
