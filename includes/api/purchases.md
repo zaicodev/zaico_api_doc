@@ -28,6 +28,7 @@ HOST: https://web.zaico.co.jp/
     * estimated_purchase_date　: 入庫予定日
     * create_user_name : 入庫データ作成者名
     * memo : 入庫メモ
+    * etc : 発注書備考
     * created_at : 入庫データ作成日
     * updated_at : 入庫データ更新日
     * purchase_items : 入庫データに登録している在庫データ一覧
@@ -50,7 +51,8 @@ HOST: https://web.zaico.co.jp/
             * ordered : 発注済み
             * purchased : 入庫済み
         * purchase_date: 入庫日
-        * estimated_purchase_date　: 入庫予定日
+        * estimated_purchase_date : 入庫予定日
+        * etc : 入庫物品メモ
 
 + Request
     + Headers
@@ -556,3 +558,4 @@ HOST: https://web.zaico.co.jp/
         * code: 404 (number) - ステータスコード
         * status: error (string) - 状態
         * message: Purchase item not found (string) - メッセージ
+
