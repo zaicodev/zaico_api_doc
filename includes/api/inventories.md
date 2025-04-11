@@ -177,7 +177,7 @@
 
 ### InventoryCreateParams
 + title: `在庫データ` (string, required) - 在庫データタイトル
-+ quantity: 10 (number) - 数量
++ quantity: 10 (string) - 数量
 + unit: `個` (string) - 単位
 + category: `製品` (string) - カテゴリ
 + state: `新品` (string) - 状態
@@ -194,7 +194,7 @@
     + name: `追加項目名` (string) - 追加項目名
     + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
-  + order_point_quantity: 5 (number) - 発注点
+  + order_point_quantity: 5 (string) - 発注点
 + inventory_history
   + memo: `変更履歴メモ` (string) - 変更履歴のメモ
 + is_quantity_auto_conversion_by_unit: `1` (string) - 単位換算するかどうか。"1"なら単位換算する、"0"なら単位換算しない
@@ -204,8 +204,8 @@
 ### InventoriesViews
 + id: 1 (number) - ID
 + title: `在庫データ` (string) - 在庫データタイトル
-+ quantity: 10 (number) - 数量
-+ logical_quantity: 10 (number) - 予定フリー在庫数（フルプランのみ）
++ quantity: 10 (string) - 数量
++ logical_quantity: 10 (string) - 予定フリー在庫数（フルプランのみ）
 + unit: `個` (string) - 単位
 + category: `製品` (string) - カテゴリ
 + state: `新品` (string) - 状態
@@ -222,7 +222,7 @@
     + name: `追加項目名` (string) - 追加項目名
     + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
-  + order_point_quantity: 5 (number) - 発注点
+  + order_point_quantity: 5 (string) - 発注点
 + created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日
 + updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日
 + create_user_name: `田村 太郎` (string) - 作成者

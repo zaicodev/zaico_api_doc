@@ -90,9 +90,9 @@
                     + id: 1 (number)
                     + inventory_id: 1 (number)
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (number) - 出庫数量
+                    + quantity: 3 (string) - 出庫数量
                     + unit: 台 (string) - 単位
-                    + unit_price: 100 (number) - 納品単価
+                    + unit_price: 100 (string) - 納品単価
                     + status: completed_delivery (string)
                     + delivery_date: `2019-09-01` (string)
                     + estimated_delivery_date (string, optional, nullable)
@@ -101,9 +101,9 @@
                     + id: 2 (number)
                     + inventory_id: 2 (number)
                     + title: テレビ (string) - 物品名
-                    + quantity: 3 (number) - 出庫数量
+                    + quantity: 3 (string) - 出庫数量
                     + unit: 台 (string) - 単位
-                    + unit_price: 100 (number) - 納品単価
+                    + unit_price: 100 (string) - 納品単価
                     + status: completed_delivery (string)
                     + delivery_date: `2019-09-01` (string)
                     + estimated_delivery_date (string, optional, nullable)
@@ -112,11 +112,11 @@
                     + id: 3 (number)
                     + inventory_id: 3 (number)
                     + title: ビール (string) - 物品名
-                    + quantity: 12 (number) - 出庫数量
+                    + quantity: 12 (string) - 出庫数量
                     + box_quantity: 1 (string) - まとめ換算の入庫数量
                     + unit: 瓶 (string) - 単位
                     + box_unit: 箱 (string) - まとめ単位
-                    + unit_price: 100 (number) - 納品単価
+                    + unit_price: 100 (string) - 納品単価
                     + unit_snapshot:
                         + piece_name: 瓶 (string) - 基本単位名称
                         + box_name: 箱 (string) - まとめ単位名称
@@ -140,9 +140,9 @@
                 + (object)
                     + inventory_id: 5 (number)
                     + title: 掃除機 (string) - 物品名
-                    + quantity: 3 (number) - 出庫数量
+                    + quantity: 3 (string) - 出庫数量
                     + unit: 台 (string) - 単位
-                    + unit_price: 100 (number) - 納品単価
+                    + unit_price: 100 (string) - 納品単価
                     + status: completed_delivery
                     + delivery_date: `2019-09-01`
                     + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
@@ -311,9 +311,9 @@
             + (object)
                 + inventory_id: 1 (number)
                 + title: 掃除機 (string) - 物品名
-                + quantity: 3 (number) - 出庫数量
+                + quantity: 3 (string) - 出庫数量
                 + unit: 台 (string) - 単位
-                + unit_price: 100 (number) - 納品単価
+                + unit_price: 100 (string) - 納品単価
                 + status: completed_delivery (string)
                 + delivery_date: `2019-09-01` (string)
                 + estimated_delivery_date (string, optional, nullable)
@@ -321,9 +321,9 @@
             + (object)
                 + inventory_id: 2 (number)
                 + title: テレビ (string) - 物品名
-                + quantity: 3 (number) - 出庫数量
+                + quantity: 3 (string) - 出庫数量
                 + unit: 台 (string) - 単位
-                + unit_price: 100 (number) - 納品単価
+                + unit_price: 100 (string) - 納品単価
                 + status: completed_delivery (string)
                 + delivery_date: `2019-09-01` (string)
                 + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
@@ -474,9 +474,9 @@
             + packing_slip_id: 10 (number)
             + inventory_id: 1 (number)
             + title: 掃除機 (string)
-            + quantity: 3 (number)
+            + quantity: 3 (string)
             + unit: 台 (string)
-            + unit_price: 100 (number)
+            + unit_price: 100 (string)
             + status: completed_delivery (string)
             + delivery_date: 2021-11-17 (string)
             + estimated_delivery_date: (string, nullable)
@@ -488,9 +488,9 @@
             + packing_slip_id: 10 (number)
             + inventory_id: 1 (number)
             + title: 掃除機 (string)
-            + quantity: 3 (number)
+            + quantity: 3 (string)
             + unit: 台 (string)
-            + unit_price: 100 (number)
+            + unit_price: 100 (string)
             + status: completed_delivery (string)
             + delivery_date: 2021-11-17 (string)
             + estimated_delivery_date: (string, nullable)

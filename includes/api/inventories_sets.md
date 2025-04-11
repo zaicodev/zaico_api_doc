@@ -41,29 +41,29 @@
        + (object)
            + id: 123 (number) - ID
            + title: `セット品A` (string) - セット品名 
-           + price: 1000 (number) - 価格
+           + price: 1000 (string) - 価格
            + code: `123456` (string) - コード
            + memo: `メモ` (string) - メモ  
            + update_user_id: 1 (number) - 更新ユーザーID
-           + available_delivery_quantity: 5 (number) - 出庫可能数量
+           + available_delivery_quantity: 5 (string) - 出庫可能数量
            + created_at: `2022-01-01 09:00:00` (string) - 作成日時
            + updated_at: `2022-01-02 10:00:00` (string) - 更新日時
            + inventories_set_items (array[object], fixed-type)
                + (object)
                    + inventory_id: 1 (number) - 在庫ID
-                   + quantity: 1 (number) - 数量
+                   + quantity: 1 (string) - 数量
                    + created_at: `2022-01-01 09:00:00` (string) - 作成日時
                    + updated_at: `2022-01-02 10:00:00` (string) - 更新日時
                    + inventory_title: `構成部品A` (string) - 在庫名
-                   + inventory_quantity: 10 (number) - 在庫数量
+                   + inventory_quantity: 10 (string) - 在庫数量
                    + inventory_del_flg: false (boolean) - 在庫削除フラグ   
                + (object)
                    + inventory_id: 2 (number)
-                   + quantity: 2 (number)
+                   + quantity: 2 (string)
                    + created_at: `2022-01-01 09:00:00` (string)
                    + updated_at: `2022-01-02 10:00:00` (string)
                    + inventory_title: `構成部品B` (string)
-                   + inventory_quantity: 20 (number)
+                   + inventory_quantity: 20 (string)
                    + inventory_del_flg: false (boolean)
       
 ## セット品データ作成 [/api/v1/inventories_sets] 
@@ -139,32 +139,32 @@
    + Attributes
        + id: 123 (number) - セット品ID
        + title: `セット品A` (string) - セット品名
-       + price: 1000 (number) - 価格
+       + price: 1000 (string) - 価格
        + code: `123456` (string) - コード
        + memo: `メモ` (string) - メモ
        + update_user_id: 1 (number) - 更新ユーザーID
-       + available_delivery_quantity: 5 (number) - 出庫可能数量 
-       + available_delivery_logical_quantity: 3 (number) - 予定フリー出庫可能数量
+       + available_delivery_quantity: 5 (string) - 出庫可能数量 
+       + available_delivery_logical_quantity: 3 (string) - 予定フリー出庫可能数量
        + created_at: `2022-01-01 09:00:00` (string) - 作成日時
        + updated_at: `2022-01-02 10:00:00` (string) - 更新日時
        + inventories_set_items (array[object], fixed-type)
            + (object) 
                + inventory_id: 1 (number) - 在庫ID
-               + quantity: 1 (number) - 数量
+               + quantity: 1 (string) - 数量
                + created_at: `2022-01-01 09:00:00` (string) - 作成日時
                + updated_at: `2022-01-02 10:00:00` (string) - 更新日時
                + inventory_title: `構成部品A` (string) - 在庫名
-               + inventory_quantity: 10 (number) - 在庫数量 
-               + inventory_logical_quantity: 8 (number) - 予定フリー在庫数
+               + inventory_quantity: 10 (string) - 在庫数量 
+               + inventory_logical_quantity: 8 (string) - 予定フリー在庫数
                + inventory_del_flg: false (boolean) - 在庫削除フラグ
            + (object)
                + inventory_id: 2 (number)
-               + quantity: 2 (number)
+               + quantity: 2 (string)
                + created_at: `2022-01-01 09:00:00` (string)
                + updated_at: `2022-01-02 10:00:00` (string)
                + inventory_title: `構成部品B` (string)
-               + inventory_quantity: 20 (number)
-               + inventory_logical_quantity: 18 (number)
+               + inventory_quantity: 20 (string)
+               + inventory_logical_quantity: 18 (string)
                + inventory_del_flg: false (boolean)
      
 + Response 404 (application/json)

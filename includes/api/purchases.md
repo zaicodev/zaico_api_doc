@@ -49,7 +49,7 @@ HOST: https://web.zaico.co.jp/
             * 以下の3つのいずれかが設定されています
             * not_ordered : 発注前
             * ordered : 発注済み
-            * purchased : 入庫済み
+            * purchased : 入庫済
         * purchase_date: 入庫日
         * estimated_purchase_date : 入庫予定日
         * etc : 入庫物品メモ
@@ -506,9 +506,9 @@ HOST: https://web.zaico.co.jp/
             + purchase_id: 10 (number)
             + inventory_id: 1 (number)
             + title: 掃除機 (string)
-            + quantity: 3 (number)
+            + quantity: 3 (string)
             + unit: 台 (string)
-            + unit_price: 100 (number)
+            + unit_price: 100 (string)
             + status: purchased (string)
             + purchase_date: 2021-11-17 (string)
             + estimated_purchase_date: (string, nullable)
@@ -519,9 +519,9 @@ HOST: https://web.zaico.co.jp/
             + purchase_id: 10 (number)
             + inventory_id: 2 (number)
             + title: りんご (string)
-            + quantity: 10 (number)
+            + quantity: 10 (string)
             + unit: 個 (string)
-            + unit_price: 200 (number)
+            + unit_price: 200 (string)
             + status: purchased (string)
             + purchase_date: 2021-11-17 (string)
             + estimated_purchase_date: (string, nullable)
