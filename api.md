@@ -14,7 +14,7 @@ HOST: https://web.zaico.co.jp
 ご不便をおかけしますが、ご了承のほどよろしくお願いいたします。
 </div>
 
-2024年11月27日更新
+2025年10月14日更新
 
 <!-- include(includes/authorization.md) -->
 
