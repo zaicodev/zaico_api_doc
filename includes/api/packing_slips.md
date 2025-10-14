@@ -23,6 +23,7 @@
     * estimated_delivery_date : 出庫予定日
         * この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します
     * memo : 出庫メモ
+    * note: 納品書備考
     * created_at : 出庫データ作成日
     * updated_at : 出庫データ更新日
     * deliveries : 出庫データに登録している在庫データ一覧
@@ -171,6 +172,7 @@
         * status=before_delivery
             * delivery_dateは不要
     * memo : 出庫メモ
+    * note: 納品書備考
     * deliveries : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
@@ -244,6 +246,7 @@
     * estimated_delivery_date : 出庫予定日
         * この出庫予定日は出庫データの物品のうち、最も早い出庫予定日を表示します
     * memo : 出庫メモ
+    * note: 納品書備考
     * created_at : 出庫データ作成日
     * updated_at : 出庫データ更新日
     * deliveries : 出庫データに登録している在庫データ一覧
@@ -340,6 +343,7 @@
     * num : 出庫データ番号（ユーザーが任意に設定できる番号）
     * customer_name : 取引先名
     * memo : 出庫メモ
+    * note: 納品書備考
     * deliveries : 対象となる在庫データの配列
         * 以下のパラメータを含むオブジェクトを配列の要素とします
             * inventory_id : 在庫データID
