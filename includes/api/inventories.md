@@ -51,6 +51,7 @@
 * 変更履歴のメモも一緒に保存することが可能です。詳しくは下記Bodyをご覧ください
 * 棚卸日はstocktake_attributes: { checked_at: 日付 }で登録・変更が可能です
 * 発注点を設定することも可能です
+* バリエーションが利用可能なプランの場合、在庫データ作成時にバリエーション項目を設定することも可能です
 
 + Request
   + Headers
@@ -121,7 +122,7 @@
       Authorization: Bearer YOUR_TOKEN
       Content-Type: application/json
   + Params
-  + Attributes (InventoryCreateParams)
+  + Attributes (InventoryUpdateParams)
 
 + Response 200 (application/json)
   + Attributes (InventoryUpdateSuccessfully)
@@ -177,7 +178,7 @@
 + status: `success` (string) - 状態
 + message: `Data was successfully deleted.` (string) - メッセージ
 
-### InventoryCreateParams
+### InventoryUpdateParams
 + title: `在庫データ` (string, required) - 在庫データタイトル
 + quantity: 10 (string) - 数量
 + unit: `個` (string) - 単位
@@ -202,6 +203,22 @@
 + is_quantity_auto_conversion_by_unit: `1` (string) - 単位換算するかどうか。"1"なら単位換算する、"0"なら単位換算しない
 + quantity_auto_conversion_by_unit_name: `箱` (string) - 単位換算後の単位名
 + quantity_auto_conversion_by_unit_factor: `12` (string) - 単位換算係数
+
+### InventoryCreateParams(InventoryUpdateParams)
++ variant_setting: (object)
+    + enabled: true (boolean) - バリエーション設定を有効化するかどうか
+    + items: (array) - バリエーション項目
+        + ()
+            + label: `ロット番号` (string) - バリエーションの項目名
+            + item_type: `number` (string) - バリエーションのデータ型
+        + ()
+            + label: `拠点` (string) - バリエーションの項目名
+            + item_type: `text` (string) - バリエーションのデータ型
+        + ()
+            + label: `利用期限` (string) - バリエーションの項目名
+            + item_type: `date` (string) - バリエーションのデータ型
+            + enabled_deadline_alert: true (boolean) - 期限アラートを有効化するかどうか
+            + deadline_alert_day: `10` (number) - 期限アラートを何日前に通知するか
 
 ### InventoriesViews
 + id: 1 (number) - ID
@@ -245,18 +262,18 @@
         + variant_setting_item_id: `1` (number) - バリエーション項目ID
         + label: `ロット番号` (string) - バリエーションの項目名
         + item_type: `number` (string) - バリエーションのデータ型
-        + enabled_deadline_alert: false (boolean) - 期限アラートが有効か
+        + enabled_deadline_alert: false (boolean) - 期限アラートが有効かどうか
     + ()
         + variant_setting_item_id: `2` (number) - バリエーション項目ID
         + label: `拠点` (string) - バリエーションの項目名
         + item_type: `text` (string) - バリエーションのデータ型
-        + enabled_deadline_alert: false (boolean) - 期限アラートが有効か
+        + enabled_deadline_alert: false (boolean) - 期限アラートが有効かどうか
     + ()
         + variant_setting_item_id: `3` (number) - バリエーション項目ID
         + label: `利用期限` (string) - バリエーションの項目名
         + item_type: `date` (string) - バリエーションのデータ型
-        + enabled_deadline_alert: true (boolean) - 期限アラートが有効か
-        + deadline_alert_day: `10` (number) - 期限アラート
+        + enabled_deadline_alert: true (boolean) - 期限アラートが有効かどうか
+        + deadline_alert_day: `10` (number) - 期限アラートを何日前に通知するか
 
 ### InventoriesIndexViews(InventoriesViews)
 
