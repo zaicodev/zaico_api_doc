@@ -168,6 +168,14 @@ HOST: https://web.zaico.co.jp/
             * unit_price : 仕入単価
             * estimated_purchase_date : 入庫予定日
             * etc : 摘要・備考
+            * variants : バリエーションデータ
+                * 以下のパラメータを含むオブジェクトを配列の要素とします
+                    * items : 以下のパラメータを含むオブジェクトを配列の要素とします
+                        * label : バリエーションの項目名
+                        * value : バリエーションの値
+                    * quantity : バリエーション毎の入庫数量
+                    * unit_price : バリエーション毎の仕入単価
+                    * code : バーコードの値
 
 + Request
     + Headers
@@ -438,9 +446,36 @@ HOST: https://web.zaico.co.jp/
 
 ## CreatePurchaseItem (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 入庫数量
++ quantity: 25 (number, required) - 入庫数量
 + unit_price: 100 (number, optional) - 仕入単価
 + estimated_purchase_date: `2019-09-01` (string, optional, nullable)
++ variants: (array)
+    + ()
+        + items: (array)
+            + ()
+                + label: `ロット番号` (string)
+                + value: `100` (string)
+            + ()
+                + label: `拠点` (string)
+                + value: `第一倉庫` (string)
+            + ()
+                + label: `利用期限` (string)
+                + value: `2025/12/31` (string)
+        + quantity: `10` (number)
+        + unit_price: `800` (number)
+    + ()
+        + items: (array)
+            + ()
+                + label: `ロット番号` (string)
+                + value: `200` (string)
+            + ()
+                + label: `拠点` (string)
+                + value: `第二倉庫` (string)
+            + ()
+                + label: `利用期限` (string)
+                + value: `2026/01/31` (string)
+        + quantity: `15` (number)
+        + unit_price: `700` (number)
 
 ## UpdatePurchaseItemToPurchased
 + inventory_id: 1 (number, required) - 在庫データID
