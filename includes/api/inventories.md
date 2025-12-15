@@ -22,7 +22,8 @@
   例：
   https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&category=物品&place=ZAICO倉庫&code=123456789&optional_attributes_name=担当者&optional_attributes_value=宮下
   ```
-  
+* バリエーションが利用可能なプランの場合、URLにクエリ「include_variant_setting=true」をつけるとバリエーションの設定項目が取得できます。
+
 + Request
   + Headers
     Authorization: Bearer YOUR_TOKEN
@@ -237,6 +238,24 @@
     + original_filename: `image.jpg` (string) - ファイル名
     + url: `https://web.zaico.co.jp/files/image.jpg` (string) - ファイルのURL
     + created_at: `2022-01-01 09:00:00` (string) - 作成日時
++ variant_setting_enabled: true (boolean) - バリエーション設定が有効かどうか
++ variant_setting: (array) - バリエーション設定情報
+    + ()
+        + variant_setting_item_id: `1` (number) - バリエーション項目ID
+        + label: `ロット番号` (string) - バリエーションの項目名
+        + item_type: `number` (string) - バリエーションのデータ型
+        + enabled_deadline_alert: false (boolean) - 期限アラートが有効か
+    + ()
+        + variant_setting_item_id: `2` (number) - バリエーション項目ID
+        + label: `拠点` (string) - バリエーションの項目名
+        + item_type: `text` (string) - バリエーションのデータ型
+        + enabled_deadline_alert: false (boolean) - 期限アラートが有効か
+    + ()
+        + variant_setting_item_id: `3` (number) - バリエーション項目ID
+        + label: `利用期限` (string) - バリエーションの項目名
+        + item_type: `date` (string) - バリエーションのデータ型
+        + enabled_deadline_alert: true (boolean) - 期限アラートが有効か
+        + deadline_alert_day: `10` (number) - 期限アラート
 
 ### InventoryNotFound
 + code: 404 ( number ) - ステータスコード
