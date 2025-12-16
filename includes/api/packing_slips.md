@@ -180,6 +180,14 @@
             * unit_price : 納品単価
             * estimated_delivery_date : 出庫予定日
             * etc : 摘要・備考
+            * variants : バリエーションデータ（登録済みのデータのみ指定できます）
+                * 以下のパラメータを含むオブジェクトを配列の要素とします
+                    * items : 以下のパラメータを含むオブジェクトを配列の要素とします
+                        * label : バリエーションの項目名
+                        * value : バリエーションの値
+                    * quantity : バリエーション毎の入庫数量
+                    * unit_price : バリエーション毎の仕入単価
+                    * code : バーコードの値
     * shipping_instruction : 発送情報（フルプランのみ設定できます）
         * to_name : 宛名
         * to_name_postfix : 敬称

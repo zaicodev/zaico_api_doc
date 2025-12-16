@@ -394,9 +394,36 @@ HOST: https://web.zaico.co.jp/
 
 ## CreateDelivery (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 出庫数量
++ quantity: 25 (number, required) - 出庫数量
 + unit_price: 100 (number, optional) - 納品単価
 + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
++ variants: (array)
+    + ()
+        + items: (array)
+            + ()
+                + label: `ロット番号` (string)
+                + value: `100` (string)
+            + ()
+                + label: `拠点` (string)
+                + value: `第一倉庫` (string)
+            + ()
+                + label: `利用期限` (string)
+                + value: `2025/12/31` (string)
+        + quantity: `10` (number)
+        + unit_price: `800` (number)
+    + ()
+        + items: (array)
+            + ()
+                + label: `ロット番号` (string)
+                + value: `200` (string)
+            + ()
+                + label: `拠点` (string)
+                + value: `第二倉庫` (string)
+            + ()
+                + label: `利用期限` (string)
+                + value: `2026/01/31` (string)
+        + quantity: `15` (number)
+        + unit_price: `700` (number)
 
 ## UpdateDeliveryToCompleted
 + inventory_id: 1 (number, required) - 在庫データID
