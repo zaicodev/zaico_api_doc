@@ -279,7 +279,7 @@
 
 ### InventoriesShowViews(InventoriesViews)
 + variants: - バリエーション情報
-    + data: (array)
+    + data: (array) - バリエーション情報
         + ()
             + items: (array)
                 + ()

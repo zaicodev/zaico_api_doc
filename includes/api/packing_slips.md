@@ -114,7 +114,7 @@
                     + inventory_id: 3 (number)
                     + title: ビール (string) - 物品名
                     + quantity: 12 (string) - 出庫数量
-                    + box_quantity: 1 (string) - まとめ換算の入庫数量
+                    + box_quantity: 1 (string) - まとめ換算の出庫数量
                     + unit: 瓶 (string) - 単位
                     + box_unit: 箱 (string) - まとめ単位
                     + unit_price: 100 (string) - 納品単価
@@ -185,7 +185,7 @@
                     * items : 以下のパラメータを含むオブジェクトを配列の要素とします
                         * label : バリエーションの項目名
                         * value : バリエーションの値
-                    * quantity : バリエーション毎の入庫数量
+                    * quantity : バリエーション毎の出庫数量
                     * unit_price : バリエーション毎の仕入単価
                     * code : バーコードの値
     * shipping_instruction : 発送情報（フルプランのみ設定できます）
