@@ -490,9 +490,9 @@
 
 + Parameters
     + status: `before_delivery, during_delivery, completed_delivery`, `completed_delivery` (string, optional) - ステータス
-        + start_date: `2019-09-01` (string, optional) - 出庫日がこの日以降
-        + end_date: `2019-09-01` (string, optional) - 出庫日がこの日以前
-        + page: 1 (number, optional) - ページ番号
+    + start_date: `2019-09-01` (string, optional) - 出庫日がこの日以降
+    + end_date: `2019-09-01` (string, optional) - 出庫日がこの日以前
+    + page: 1 (number, optional) - ページ番号
 + Request
     + Headers
       Authorization: Bearer YOUR_TOKEN

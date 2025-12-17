@@ -572,9 +572,9 @@ HOST: https://web.zaico.co.jp/
 
 + Parameters
     + status: `none, not_ordered, ordered, purchased, quotation_requested` (string, optional) - ステータス
-        + start_date: `2019-09-01` (string, optional) - 入庫日がこの日以降
-        + end_date: `2019-09-01` (string, optional) - 入庫日がこの日以前
-        + page: 1 (number, optional) - ページ番号
+    + start_date: `2019-09-01` (string, optional) - 入庫日がこの日以降
+    + end_date: `2019-09-01` (string, optional) - 入庫日がこの日以前
+    + page: 1 (number, optional) - ページ番号
 + Request
     + Headers
       Authorization: Bearer YOUR_TOKEN
