@@ -7,14 +7,14 @@ HOST: https://web.zaico.co.jp
 <div style="border-color: #ebccd1; padding: 12px; margin-bottom: 12px; background: #f2dede;">
 <strong>バリエーションについて</strong>
 
-2024年9月4日にリリースしたバリエーション機能については現在公開APIから操作することはできません。
+2024年9月4日にリリースしたバリエーション機能については、現在一部の公開APIからのみ操作することができます。
 
-対応時期については決まり次第別途お知らせいたします。
+その他のAPIの対応時期については決まり次第別途お知らせいたします。
 
 ご不便をおかけしますが、ご了承のほどよろしくお願いいたします。
 </div>
 
-2025年10月14日更新
+2025年12月18日更新
 
 <!-- include(includes/authorization.md) -->
 
