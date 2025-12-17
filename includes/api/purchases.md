@@ -552,6 +552,23 @@ HOST: https://web.zaico.co.jp/
     * etc: 摘要・備考
     * created_at: 登録日時
     * updated_at: 更新日時
+    * variants : バリエーションデータ
+        * 以下のパラメータを含むオブジェクトを配列の要素とします
+            * data_key : 在庫毎にバリエーションデータを一意に識別するキー
+            * quantity : バリエーション明細の入庫数量
+            * unit_price : バリエーション明細の仕入単価
+            * amount : バリエーション明細の入庫金額
+            * unit_snapshot : 単位情報のスナップショット
+                * 以下のパラメータを含むオブジェクトとします
+                    * factor : まとめ単位の換算係数
+                    * piece_name : 基本単位の名称
+                    * box_name : まとめ単位の名称
+            * box_quantity : まとめ単位での入庫数量
+            * box_unit : まとめ単位の名称
+            * items : 以下のパラメータを含むオブジェクトとします
+                * id : 以下のパラメータを含むオブジェクトとします
+                    * id : バリエーションの項目ID
+                    * value : バリエーションの値
 
 + Parameters
     + status: `none, not_ordered, ordered, purchased, quotation_requested` (string, optional) - ステータス
@@ -590,6 +607,21 @@ HOST: https://web.zaico.co.jp/
             + etc: (string)
             + created_at: `2023-11-16 11:27:24` (string)
             + updated_at: `2023-11-16 11:27:24` (string)
+            + variants: (array)
+                + ()
+                    + data_key: 347554bad83fd5dc1624af2c97895e279eef35f8e252231169172d0fd96757df (string)
+                    + quantity: 10.0 (number)
+                    + unit_price: 200.0 (number)
+                    + amount: 2000.0 (number)
+                    + box_quantity: 10.0 (number)
+                    + box_unit: 個 (string)
+                    + items: ()
+                        + 2: ()
+                            + id: 2 (number)
+                            + value: 第一倉庫 (string)
+                        + 3: ()
+                            + id: 3 (number)
+                            + value: 2023/11/30 (string)
 
 ## 入庫物品データ削除 [/api/v1/purchases/items/{id}]
 ### 入庫物品データ削除 [DELETE]
