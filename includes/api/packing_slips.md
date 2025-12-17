@@ -470,6 +470,23 @@
     * date_of_issue: 納品書に記載される出庫日,
     * created_at: 登録日時
     * updated_at: 更新日時
+    * variants : バリエーションデータ
+        * 以下のパラメータを含むオブジェクトを配列の要素とします
+            * data_key : 在庫毎にバリエーションデータを一意に識別するキー
+            * quantity : バリエーション明細の出庫数量
+            * unit_price : バリエーション明細の納品単価
+            * amount : バリエーション明細の出庫金額
+            * unit_snapshot : 単位情報のスナップショット
+                * 以下のパラメータを含むオブジェクトとします
+                    * factor : まとめ単位の換算係数
+                    * piece_name : 基本単位の名称
+                    * box_name : まとめ単位の名称
+            * box_quantity : まとめ単位での出庫数量
+            * box_unit : まとめ単位の名称
+            * items : 以下のパラメータを含むオブジェクトとします
+                * id : 以下のパラメータを含むオブジェクトとします
+                    * id : バリエーションの項目ID
+                    * value : バリエーションの値
 
 + Parameters
     + status: `before_delivery, during_delivery, completed_delivery`, `completed_delivery` (string, optional) - ステータス
@@ -490,10 +507,10 @@
             + unit: 台 (string)
             + unit_price: 100 (string)
             + status: completed_delivery (string)
-            + delivery_date: 2021-11-17 (string)
+            + delivery_date: `2021-11-17` (string)
             + estimated_delivery_date: (string, nullable)
             + etc: (string)
-            + date_of_issue: 2021-11-17 (string)
+            + date_of_issue: `2021-11-17` (string)
             + created_at: `2023-11-16 11:27:24` (string)
             + updated_at: `2023-11-16 11:27:24` (string)
         + ()
@@ -504,9 +521,24 @@
             + unit: 台 (string)
             + unit_price: 100 (string)
             + status: completed_delivery (string)
-            + delivery_date: 2021-11-17 (string)
+            + delivery_date: `2021-11-17` (string)
             + estimated_delivery_date: (string, nullable)
             + etc: (string)
-            + date_of_issue: 2021-11-17 (string)
+            + date_of_issue: `2021-11-17` (string)
             + created_at: `2023-11-16 11:27:24` (string)
             + updated_at: `2023-11-16 11:27:24` (string)
+            + variants: (array)
+                + ()
+                    + data_key: 347554bad83fd5dc1624af2c97895e279eef35f8e252231169172d0fd96757df (string)
+                    + quantity: 3.0 (number)
+                    + unit_price: 100.0 (number)
+                    + amount: 300.0 (number)
+                    + box_quantity: 3.0 (number)
+                    + box_unit: 台 (string)
+                    + items: ()
+                        + 4: ()
+                            + id: 4 (number)
+                            + value: `20251217-A01-1000` (string)
+                        + 5: ()
+                            + id: 5 (number)
+                            + value: 第一倉庫 (string)
