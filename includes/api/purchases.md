@@ -139,6 +139,8 @@ HOST: https://web.zaico.co.jp/
 
 ## 入庫データ作成 [/api/v1/purchases/]
 ### 入庫データ作成 [POST]
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 
 * 入庫データを作成します
@@ -531,6 +533,8 @@ HOST: https://web.zaico.co.jp/
 
 ## 入庫物品データ一覧取得 [/api/v1/purchases/items]
 ### 入庫物品データ一覧取得 [GET]
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 
 * 自分のアカウントに登録されている入庫物品データを返します

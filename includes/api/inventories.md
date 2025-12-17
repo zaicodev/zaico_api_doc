@@ -2,6 +2,8 @@
 
 ## 在庫データ一覧取得 [/api/v1/inventories]
 ### GET
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 * 自分のアカウントに登録されている在庫データのすべてを返します
 * 在庫データが1件も無い場合は、空の配列を返します
@@ -39,6 +41,8 @@
 
 ## 在庫データ作成 [/api/v1/inventories]
 ### POST
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 * 在庫データを作成します
 
@@ -73,6 +77,8 @@
 
 ## 在庫データ個別取得 [/api/v1/inventories/{id}]
 ### GET
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 * 在庫データを1件のみ取得します
 * 棚卸日は設定されている場合のみ表示されます

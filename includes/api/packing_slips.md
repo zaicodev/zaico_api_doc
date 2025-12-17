@@ -152,6 +152,8 @@
 
 ## 出庫データ作成 [/api/v1/packing_slips/]
 ### 出庫データ作成 [POST]
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 
 * 出庫データを作成します
@@ -448,6 +450,8 @@
 
 ## 出庫物品データ一覧取得 [/api/v1/deliveries]
 ### 出庫物品データ一覧取得 [GET]
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 
 * 自分のアカウントに登録されている出庫物品データを返します
