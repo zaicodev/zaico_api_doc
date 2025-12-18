@@ -2,6 +2,8 @@
 
 ## 在庫データ一覧取得 [/api/v1/inventories]
 ### GET
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 * 自分のアカウントに登録されている在庫データのすべてを返します
 * 在庫データが1件も無い場合は、空の配列を返します
@@ -22,7 +24,8 @@
   例：
   https://web.zaico.co.jp/api/v1/inventories/?title=在庫データ&category=物品&place=ZAICO倉庫&code=123456789&optional_attributes_name=担当者&optional_attributes_value=宮下
   ```
-  
+* バリエーションが利用可能なプランの場合、URLにクエリ「include_variant_setting=true」をつけるとバリエーションの設定項目が取得できます。
+
 + Request
   + Headers
     Authorization: Bearer YOUR_TOKEN
@@ -32,12 +35,14 @@
   + Headers
     Link: <https://web.zaico.co.jp/api/v1/inventories?page=1>; rel="first", <https://web.zaico.co.jp/api/v1/inventories?page=前のページ>; rel="prev", <https://web.zaico.co.jp/api/v1/inventories?page=次のページ>; rel="next", <https://web.zaico.co.jp/api/v1/inventories?page=最後のページ>; rel="last"
     Total-Count: 在庫データ件数
-  + Attributes (InventoriesViews)
+  + Attributes (InventoriesIndexViews)
 
 
 
 ## 在庫データ作成 [/api/v1/inventories]
 ### POST
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 * 在庫データを作成します
 
@@ -50,6 +55,7 @@
 * 変更履歴のメモも一緒に保存することが可能です。詳しくは下記Bodyをご覧ください
 * 棚卸日はstocktake_attributes: { checked_at: 日付 }で登録・変更が可能です
 * 発注点を設定することも可能です
+* バリエーションが利用可能なプランの場合、在庫データ作成時にバリエーション項目を設定することも可能です
 
 + Request
   + Headers
@@ -71,10 +77,13 @@
 
 ## 在庫データ個別取得 [/api/v1/inventories/{id}]
 ### GET
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 * 在庫データを1件のみ取得します
 * 棚卸日は設定されている場合のみ表示されます
 * 発注点は設定されている場合のみ表示されます
+* バリエーションが利用可能なプランの場合、URLにクエリ「include_variants=true」をつけるとバリエーションの情報が取得できます。バリエーションのデータが1000件以上ある場合は「variants_page=」でページネーションして取得できます。
 
 ### 注意事項
 * 在庫データが無い場合は404を返します
@@ -88,7 +97,7 @@
     Content-Type: application/json
 
 + Response 200 (application/json)
-  + Attributes (InventoriesViews)
+  + Attributes (InventoriesShowViews)
 
 + Response 404 (application/json)
   + Attributes (InventoryNotFound)
@@ -119,7 +128,7 @@
       Authorization: Bearer YOUR_TOKEN
       Content-Type: application/json
   + Params
-  + Attributes (InventoryCreateParams)
+  + Attributes (InventoryUpdateParams)
 
 + Response 200 (application/json)
   + Attributes (InventoryUpdateSuccessfully)
@@ -175,7 +184,7 @@
 + status: `success` (string) - 状態
 + message: `Data was successfully deleted.` (string) - メッセージ
 
-### InventoryCreateParams
+### InventoryUpdateParams
 + title: `在庫データ` (string, required) - 在庫データタイトル
 + quantity: 10 (string) - 数量
 + unit: `個` (string) - 単位
@@ -200,6 +209,22 @@
 + is_quantity_auto_conversion_by_unit: `1` (string) - 単位換算するかどうか。"1"なら単位換算する、"0"なら単位換算しない
 + quantity_auto_conversion_by_unit_name: `箱` (string) - 単位換算後の単位名
 + quantity_auto_conversion_by_unit_factor: `12` (string) - 単位換算係数
+
+### InventoryCreateParams(InventoryUpdateParams)
++ variant_setting: (object)
+    + enabled: true (boolean) - バリエーション設定を有効化するかどうか
+    + items: (array) - バリエーション項目
+        + ()
+            + label: `ロット番号` (string) - バリエーションの項目名
+            + item_type: `number` (string) - バリエーションのデータ型
+        + ()
+            + label: `拠点` (string) - バリエーションの項目名
+            + item_type: `text` (string) - バリエーションのデータ型
+        + ()
+            + label: `利用期限` (string) - バリエーションの項目名
+            + item_type: `date` (string) - バリエーションのデータ型
+            + enabled_deadline_alert: true (boolean) - 期限アラートを有効化するかどうか
+            + deadline_alert_day: `10` (number) - 期限アラートを何日前に通知するか
 
 ### InventoriesViews
 + id: 1 (number) - ID
@@ -237,6 +262,75 @@
     + original_filename: `image.jpg` (string) - ファイル名
     + url: `https://web.zaico.co.jp/files/image.jpg` (string) - ファイルのURL
     + created_at: `2022-01-01 09:00:00` (string) - 作成日時
++ variant_setting_enabled: true (boolean) - バリエーション設定が有効かどうか
++ variant_setting: (array) - バリエーション設定情報
+    + ()
+        + variant_setting_item_id: `1` (number) - バリエーション項目ID
+        + label: `ロット番号` (string) - バリエーションの項目名
+        + item_type: `number` (string) - バリエーションのデータ型
+        + enabled_deadline_alert: false (boolean) - 期限アラートが有効かどうか
+    + ()
+        + variant_setting_item_id: `2` (number) - バリエーション項目ID
+        + label: `拠点` (string) - バリエーションの項目名
+        + item_type: `text` (string) - バリエーションのデータ型
+        + enabled_deadline_alert: false (boolean) - 期限アラートが有効かどうか
+    + ()
+        + variant_setting_item_id: `3` (number) - バリエーション項目ID
+        + label: `利用期限` (string) - バリエーションの項目名
+        + item_type: `date` (string) - バリエーションのデータ型
+        + enabled_deadline_alert: true (boolean) - 期限アラートが有効かどうか
+        + deadline_alert_day: `10` (number) - 期限アラートを何日前に通知するか
+
+### InventoriesIndexViews(InventoriesViews)
+
+### InventoriesShowViews(InventoriesViews)
++ variants: - バリエーション情報
+    + data: (array) - バリエーション情報
+        + ()
+            + items: (array)
+                + ()
+                    + variant_setting_item_id: `1` (number) - バリエーション項目ID
+                    + label: `ロット番号` (string) - バリエーションの項目名
+                    + value: `100` (string) - バリエーションの値
+                + ()
+                    + variant_setting_item_id: `2` (number) - バリエーション項目ID
+                    + label: `拠点` (string) - バリエーションの項目名
+                    + value: `第一倉庫` (string) - バリエーションの値
+                + ()
+                    + variant_setting_item_id: `3` (number) - バリエーション項目ID
+                    + label: `利用期限` (string) - バリエーションの項目名
+                    + value: `2025/12/31` - バリエーションの値
+            + quantity: `10.0` (number) - 数量
+            + logical_quantity: `20.0` (number) - 予定フリー在庫数
+            + code: `tw202500000001` (string) - バーコードの値
+            + purchase_unit_price: `800.0` (number) - 仕入単価
+            + packing_slip_unit_price: `1000.0` (number) - 納品単価
+            + created_at: `2025-10-10T15:02:01+09:00` (string) - 作成日
+            + updated_at: `2025-10-10T15:02:40+09:00` (string) - 更新日
+            + create_user_name: `田村 太郎` (string) - 作成者
+        + ()
+            + items: (array)
+                + ()
+                    + variant_setting_item_id: `1` (number) - バリエーション項目ID
+                    + label: `ロット番号` (string) - バリエーションの項目名
+                    + value: `200` (string) - バリエーションの値
+                + ()
+                    + variant_setting_item_id: `2` (number) - バリエーション項目ID
+                    + label: `拠点` (string) - バリエーションの項目名
+                    + value: `第二倉庫` (string) - バリエーションの値
+                + ()
+                    + variant_setting_item_id: `3` (number) - バリエーション項目ID
+                    + label: `利用期限` (string) - バリエーションの項目名
+                    + value: `2026/01/31` - バリエーションの値
+            + quantity: `15.0` (number) - 数量
+            + logical_quantity: `30.0` (number) - 予定フリー在庫数
+            + code: `tw202500000002` (string) - バーコードの値
+            + purchase_unit_price: `700.0` (number) - 仕入単価
+            + packing_slip_unit_price: `900.0` (number) - 納品単価
+            + created_at: `2025-10-10T15:05:06+09:00` (string) - 作成日
+            + updated_at: `2025-10-10T15:06:12+09:00` (string) - 更新日
+            + create_user_name: `田村 太郎` (string) - 作成者
+    + total_count: `2` (number) - バリエーションデータの件数
 
 ### InventoryNotFound
 + code: 404 ( number ) - ステータスコード

@@ -114,7 +114,7 @@
                     + inventory_id: 3 (number)
                     + title: ビール (string) - 物品名
                     + quantity: 12 (string) - 出庫数量
-                    + box_quantity: 1 (string) - まとめ換算の入庫数量
+                    + box_quantity: 1 (string) - まとめ換算の出庫数量
                     + unit: 瓶 (string) - 単位
                     + box_unit: 箱 (string) - まとめ単位
                     + unit_price: 100 (string) - 納品単価
@@ -152,6 +152,8 @@
 
 ## 出庫データ作成 [/api/v1/packing_slips/]
 ### 出庫データ作成 [POST]
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 
 * 出庫データを作成します
@@ -180,6 +182,14 @@
             * unit_price : 納品単価
             * estimated_delivery_date : 出庫予定日
             * etc : 摘要・備考
+            * variants : バリエーションデータ（登録済みのデータのみ指定できます）
+                * 以下のパラメータを含むオブジェクトを配列の要素とします
+                    * items : 以下のパラメータを含むオブジェクトを配列の要素とします
+                        * label : バリエーションの項目名
+                        * value : バリエーションの値
+                    * quantity : バリエーション毎の出庫数量
+                    * unit_price : バリエーション毎の仕入単価
+                    * code : バーコードの値
     * shipping_instruction : 発送情報（フルプランのみ設定できます）
         * to_name : 宛名
         * to_name_postfix : 敬称
@@ -440,6 +450,8 @@
 
 ## 出庫物品データ一覧取得 [/api/v1/deliveries]
 ### 出庫物品データ一覧取得 [GET]
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 
 * 自分のアカウントに登録されている出庫物品データを返します
@@ -462,12 +474,29 @@
     * date_of_issue: 納品書に記載される出庫日,
     * created_at: 登録日時
     * updated_at: 更新日時
+    * variants : バリエーションデータ
+        * 以下のパラメータを含むオブジェクトを配列の要素とします
+            * data_key : 在庫毎にバリエーションデータを一意に識別するキー
+            * quantity : バリエーション明細の出庫数量
+            * unit_price : バリエーション明細の納品単価
+            * amount : バリエーション明細の出庫金額
+            * unit_snapshot : 単位情報のスナップショット
+                * 以下のパラメータを含むオブジェクトとします
+                    * factor : まとめ単位の換算係数
+                    * piece_name : 基本単位の名称
+                    * box_name : まとめ単位の名称
+            * box_quantity : まとめ単位での出庫数量
+            * box_unit : まとめ単位の名称
+            * items : 以下のパラメータを含むオブジェクトとします
+                * id : 以下のパラメータを含むオブジェクトとします
+                    * id : バリエーションの項目ID
+                    * value : バリエーションの値
 
 + Parameters
     + status: `before_delivery, during_delivery, completed_delivery`, `completed_delivery` (string, optional) - ステータス
-        + start_date: `2019-09-01` (string, optional) - 出庫日がこの日以降
-        + end_date: `2019-09-01` (string, optional) - 出庫日がこの日以前
-        + page: 1 (number, optional) - ページ番号
+    + start_date: `2019-09-01` (string, optional) - 出庫日がこの日以降
+    + end_date: `2019-09-01` (string, optional) - 出庫日がこの日以前
+    + page: 1 (number, optional) - ページ番号
 + Request
     + Headers
       Authorization: Bearer YOUR_TOKEN
@@ -482,10 +511,10 @@
             + unit: 台 (string)
             + unit_price: 100 (string)
             + status: completed_delivery (string)
-            + delivery_date: 2021-11-17 (string)
+            + delivery_date: `2021-11-17` (string)
             + estimated_delivery_date: (string, nullable)
             + etc: (string)
-            + date_of_issue: 2021-11-17 (string)
+            + date_of_issue: `2021-11-17` (string)
             + created_at: `2023-11-16 11:27:24` (string)
             + updated_at: `2023-11-16 11:27:24` (string)
         + ()
@@ -496,9 +525,24 @@
             + unit: 台 (string)
             + unit_price: 100 (string)
             + status: completed_delivery (string)
-            + delivery_date: 2021-11-17 (string)
+            + delivery_date: `2021-11-17` (string)
             + estimated_delivery_date: (string, nullable)
             + etc: (string)
-            + date_of_issue: 2021-11-17 (string)
+            + date_of_issue: `2021-11-17` (string)
             + created_at: `2023-11-16 11:27:24` (string)
             + updated_at: `2023-11-16 11:27:24` (string)
+            + variants: (array)
+                + ()
+                    + data_key: 347554bad83fd5dc1624af2c97895e279eef35f8e252231169172d0fd96757df (string)
+                    + quantity: 3.0 (number)
+                    + unit_price: 100.0 (number)
+                    + amount: 300.0 (number)
+                    + box_quantity: 3.0 (number)
+                    + box_unit: 台 (string)
+                    + items: ()
+                        + 4: ()
+                            + id: 4 (number)
+                            + value: `20251217-A01-1000` (string)
+                        + 5: ()
+                            + id: 5 (number)
+                            + value: 第一倉庫 (string)

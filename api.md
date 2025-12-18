@@ -1,20 +1,21 @@
 FORMAT: 1A
 HOST: https://web.zaico.co.jp
 
+<style>
+.label-variation {
+  background-color: #5cb85c;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+}
+</style>
+
 # zaico API Document
 このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。
 
-<div style="border-color: #ebccd1; padding: 12px; margin-bottom: 12px; background: #f2dede;">
-<strong>バリエーションについて</strong>
-
-2024年9月4日にリリースしたバリエーション機能については現在公開APIから操作することはできません。
-
-対応時期については決まり次第別途お知らせいたします。
-
-ご不便をおかけしますが、ご了承のほどよろしくお願いいたします。
-</div>
-
-2025年10月14日更新
+2025年12月18日更新
 
 <!-- include(includes/authorization.md) -->
 

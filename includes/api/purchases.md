@@ -139,6 +139,8 @@ HOST: https://web.zaico.co.jp/
 
 ## 入庫データ作成 [/api/v1/purchases/]
 ### 入庫データ作成 [POST]
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 
 * 入庫データを作成します
@@ -168,6 +170,14 @@ HOST: https://web.zaico.co.jp/
             * unit_price : 仕入単価
             * estimated_purchase_date : 入庫予定日
             * etc : 摘要・備考
+            * variants : バリエーションデータ
+                * 以下のパラメータを含むオブジェクトを配列の要素とします
+                    * items : 以下のパラメータを含むオブジェクトを配列の要素とします
+                        * label : バリエーションの項目名
+                        * value : バリエーションの値
+                    * quantity : バリエーション毎の入庫数量
+                    * unit_price : バリエーション毎の仕入単価
+                    * code : バーコードの値
 
 + Request
     + Headers
@@ -386,9 +396,36 @@ HOST: https://web.zaico.co.jp/
 
 ## CreateDelivery (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 出庫数量
++ quantity: 25 (number, required) - 出庫数量
 + unit_price: 100 (number, optional) - 納品単価
 + estimated_delivery_date: `2019-09-01` (string, optional, nullable)
++ variants: (array)
+    + ()
+        + items: (array)
+            + ()
+                + label: `ロット番号` (string)
+                + value: `100` (string)
+            + ()
+                + label: `拠点` (string)
+                + value: `第一倉庫` (string)
+            + ()
+                + label: `利用期限` (string)
+                + value: `2025/12/31` (string)
+        + quantity: `10` (number)
+        + unit_price: `800` (number)
+    + ()
+        + items: (array)
+            + ()
+                + label: `ロット番号` (string)
+                + value: `200` (string)
+            + ()
+                + label: `拠点` (string)
+                + value: `第二倉庫` (string)
+            + ()
+                + label: `利用期限` (string)
+                + value: `2026/01/31` (string)
+        + quantity: `15` (number)
+        + unit_price: `700` (number)
 
 ## UpdateDeliveryToCompleted
 + inventory_id: 1 (number, required) - 在庫データID
@@ -438,9 +475,36 @@ HOST: https://web.zaico.co.jp/
 
 ## CreatePurchaseItem (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 入庫数量
++ quantity: 25 (number, required) - 入庫数量
 + unit_price: 100 (number, optional) - 仕入単価
 + estimated_purchase_date: `2019-09-01` (string, optional, nullable)
++ variants: (array)
+    + ()
+        + items: (array)
+            + ()
+                + label: `ロット番号` (string)
+                + value: `100` (string)
+            + ()
+                + label: `拠点` (string)
+                + value: `第一倉庫` (string)
+            + ()
+                + label: `利用期限` (string)
+                + value: `2025/12/31` (string)
+        + quantity: `10` (number)
+        + unit_price: `800` (number)
+    + ()
+        + items: (array)
+            + ()
+                + label: `ロット番号` (string)
+                + value: `200` (string)
+            + ()
+                + label: `拠点` (string)
+                + value: `第二倉庫` (string)
+            + ()
+                + label: `利用期限` (string)
+                + value: `2026/01/31` (string)
+        + quantity: `15` (number)
+        + unit_price: `700` (number)
 
 ## UpdatePurchaseItemToPurchased
 + inventory_id: 1 (number, required) - 在庫データID
@@ -469,6 +533,8 @@ HOST: https://web.zaico.co.jp/
 
 ## 入庫物品データ一覧取得 [/api/v1/purchases/items]
 ### 入庫物品データ一覧取得 [GET]
+<span class="label-variation">バリエーション対応</span>
+
 #### 処理概要
 
 * 自分のアカウントに登録されている入庫物品データを返します
@@ -490,12 +556,29 @@ HOST: https://web.zaico.co.jp/
     * etc: 摘要・備考
     * created_at: 登録日時
     * updated_at: 更新日時
+    * variants : バリエーションデータ
+        * 以下のパラメータを含むオブジェクトを配列の要素とします
+            * data_key : 在庫毎にバリエーションデータを一意に識別するキー
+            * quantity : バリエーション明細の入庫数量
+            * unit_price : バリエーション明細の仕入単価
+            * amount : バリエーション明細の入庫金額
+            * unit_snapshot : 単位情報のスナップショット
+                * 以下のパラメータを含むオブジェクトとします
+                    * factor : まとめ単位の換算係数
+                    * piece_name : 基本単位の名称
+                    * box_name : まとめ単位の名称
+            * box_quantity : まとめ単位での入庫数量
+            * box_unit : まとめ単位の名称
+            * items : 以下のパラメータを含むオブジェクトとします
+                * id : 以下のパラメータを含むオブジェクトとします
+                    * id : バリエーションの項目ID
+                    * value : バリエーションの値
 
 + Parameters
     + status: `none, not_ordered, ordered, purchased, quotation_requested` (string, optional) - ステータス
-        + start_date: `2019-09-01` (string, optional) - 入庫日がこの日以降
-        + end_date: `2019-09-01` (string, optional) - 入庫日がこの日以前
-        + page: 1 (number, optional) - ページ番号
+    + start_date: `2019-09-01` (string, optional) - 入庫日がこの日以降
+    + end_date: `2019-09-01` (string, optional) - 入庫日がこの日以前
+    + page: 1 (number, optional) - ページ番号
 + Request
     + Headers
       Authorization: Bearer YOUR_TOKEN
@@ -528,6 +611,21 @@ HOST: https://web.zaico.co.jp/
             + etc: (string)
             + created_at: `2023-11-16 11:27:24` (string)
             + updated_at: `2023-11-16 11:27:24` (string)
+            + variants: (array)
+                + ()
+                    + data_key: 347554bad83fd5dc1624af2c97895e279eef35f8e252231169172d0fd96757df (string)
+                    + quantity: 10.0 (number)
+                    + unit_price: 200.0 (number)
+                    + amount: 2000.0 (number)
+                    + box_quantity: 10.0 (number)
+                    + box_unit: 個 (string)
+                    + items: ()
+                        + 2: ()
+                            + id: 2 (number)
+                            + value: 第一倉庫 (string)
+                        + 3: ()
+                            + id: 3 (number)
+                            + value: 2023/11/30 (string)
 
 ## 入庫物品データ削除 [/api/v1/purchases/items/{id}]
 ### 入庫物品データ削除 [DELETE]
