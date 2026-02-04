@@ -73,47 +73,47 @@ HOST: https://web.zaico.co.jp/
             + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
             + created_at: `2019-12-27T09:38:19+09:00`
             + updated_at: `2019-12-27T09:38:19+09:00`
-            + purchase_items (array)
-                + ()
-                    + id: 1 (number)
-                    + inventory_id: 1 (number)
+            + purchase_items (array[object], fixed-type)
+                + (object)
+                    + id: 1 (number) - 入庫物品ID
+                    + inventory_id: 1 (number) - 在庫データID
                     + title: 掃除機 (string) - 物品名
                     + quantity: 3 (string) - 入庫数量
                     + box_quantity: 3 (string) - まとめ換算の入庫数量
                     + unit: 台 (string) - 単位
                     + box_unit: 台 (string) - まとめ単位
                     + unit_price: 100 (string) - 仕入単価
-                    + status: ordered (string)
-                    + purchase_date: null (string)
-                    + estimated_purchase_date: `2020-01-01` (string)
-                + ()
-                    + id: 2 (number)
-                    + inventory_id: 1 (number)
+                    + status: ordered (string) - 状態
+                    + purchase_date: null (string) - 入庫日
+                    + estimated_purchase_date: `2020-01-01` (string) - 入庫予定日
+                + (object)
+                    + id: 2 (number) - 入庫物品ID
+                    + inventory_id: 1 (number) - 在庫データID
                     + title: 掃除機 (string) - 物品名
                     + quantity: 3 (string) - 入庫数量
                     + box_quantity: 3 (string) - まとめ換算の入庫数量
                     + unit: 台 (string) - 単位
                     + box_unit: 台 (string) - まとめ単位
                     + unit_price: 100 (string) - 仕入単価
-                    + status: ordered (string)
-                    + purchase_date: null (string)
-                    + estimated_purchase_date: `2020-01-01` (string)
-                + ()
-                    + id: 3 (number)
-                    + inventory_id: 2 (number)
+                    + status: ordered (string) - 状態
+                    + purchase_date: null (string) - 入庫日
+                    + estimated_purchase_date: `2020-01-01` (string) - 入庫予定日
+                + (object)
+                    + id: 3 (number) - 入庫物品ID
+                    + inventory_id: 2 (number) - 在庫データID
                     + title: ビール (string) - 物品名
                     + quantity: 12 (string) - 入庫数量
                     + box_quantity: 1 (string) - まとめ換算の入庫数量
                     + unit: 瓶 (string) - 単位
                     + box_unit: 箱 (string) - まとめ単位
                     + unit_price: 100 (string) - 仕入単価
-                    + unit_snapshot:
+                    + unit_snapshot (object) - まとめ単位情報
                         + piece_name: 瓶 (string) - 基本単位名称
                         + box_name: 箱 (string) - まとめ単位名称
                         + factor : 12 (string) - 換算値
-                    + status: ordered (string)
-                    + purchase_date: null (string)
-                    + estimated_purchase_date: `2020-01-01` (string)
+                    + status: ordered (string) - 状態
+                    + purchase_date: null (string) - 入庫日
+                    + estimated_purchase_date: `2020-01-01` (string) - 入庫予定日
         + ()
             + id: 11 (number)
             + num: 1001 (string)
@@ -125,16 +125,16 @@ HOST: https://web.zaico.co.jp/
             + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
             + created_at: `2019-12-27T09:38:19+09:00`
             + updated_at: `2019-12-27T09:38:19+09:00`
-            + purchase_items (array)
-                + ()
-                    + inventory_id: 5
+            + purchase_items (array[object], fixed-type)
+                + (object)
+                    + inventory_id: 5 (number) - 在庫データID
                     + title: 掃除機 (string) - 物品名
                     + quantity: 3 (string) - 入庫数量
                     + unit: 台 (string) - 単位
                     + unit_price: 100 (string) - 仕入単価
-                    + status: purchased
-                    + purchase_date: `2020-01-01`
-                    + estimated_purchase_date: null
+                    + status: purchased (string) - 状態
+                    + purchase_date: `2020-01-01` (string) - 入庫日
+                    + estimated_purchase_date: null (string, nullable) - 入庫予定日
 
 
 ## 入庫データ作成 [/api/v1/purchases/]
@@ -186,11 +186,20 @@ HOST: https://web.zaico.co.jp/
             Content-Type: application/json
 
     + Attributes
-        + num: 100 (string, optional) - 入庫データ番号（ユーザーが任意に設定できる番号）
-        + customer_name: 株式会社ZAICO (string, optional) - 取引先名
-        + status: `purchased` (string, required) - 状態
-        + purchase_date: `2019-09-01` (string) - 入庫日
-        + purchase_items (array[CreatePurchaseItem], required)
+        + num: 100 (string, optional) - 入庫データ番号（ユーザーが任意に設定できる番号）（最大250文字）
+        + customer_name: 株式会社ZAICO (string, optional) - 取引先名（最大255文字）
+        + status: purchased (string, required) - 状態
+        + purchase_date: `2019-09-01` (string, optional) - 入庫日, YYYY-MM-DD形式
+        + memo: `入庫メモ` (string, optional) - 入庫メモ（最大250文字）
+        + etc: `発注書備考` (string, optional) - 発注書備考（最大250文字）
+        + user_group: `ユーザーグループ` (string, optional) - ユーザーグループ（最大255文字）
+        + purchase_items (array[object], fixed-type, required) - 入庫物品データ
+            + (object)
+                + inventory_id: 1 (number, required) - 在庫データID
+                + quantity: 25 (number, required) - 入庫数量（整数部11桁、小数部4桁）
+                + unit_price: 100 (number, optional) - 仕入単価（整数部11桁、小数部4桁）
+                + estimated_purchase_date: `2019-09-01` (string, optional, nullable) - 入庫予定日, YYYY-MM-DD形式
+                + etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 
 + Response 200 (application/json)
     + Attributes
@@ -273,40 +282,40 @@ HOST: https://web.zaico.co.jp/
         + create_user_name: 在庫太郎 (string) - 入庫データ作成者名
         + created_at: `2019-12-27T09:38:19+09:00`
         + updated_at: `2019-12-27T09:38:19+09:00`
-        + purchase_items (array)
-            + ()
-                + inventory_id: 1
+        + purchase_items (array[object], fixed-type)
+            + (object)
+                + inventory_id: 1 (number) - 在庫データID
                 + title: 掃除機 (string) - 物品名
                 + quantity: 3 (string) - 入庫数量
                 + unit: 台 (string) - 単位
                 + unit_price: 100 (string) - 仕入単価
-                + status: purchased (string)
-                + purchase_date: null (string)
-                + estimated_purchase_date: `2020-01-01` (string)
-            + ()
-                + inventory_id: 1
+                + status: purchased (string) - 状態
+                + purchase_date: null (string) - 入庫日
+                + estimated_purchase_date: `2020-01-01` (string) - 入庫予定日
+            + (object)
+                + inventory_id: 1 (number) - 在庫データID
                 + title: 掃除機 (string) - 物品名
                 + quantity: 3 (string) - 入庫数量
                 + unit: 台 (string) - 単位
                 + unit_price: 100 (string) - 仕入単価
-                + status: purchased (string)
-                + purchase_date: null (string)
-                + estimated_purchase_date: `2020-01-01` (string)
-            + ()
-                + inventory_id: 2
+                + status: purchased (string) - 状態
+                + purchase_date: null (string) - 入庫日
+                + estimated_purchase_date: `2020-01-01` (string) - 入庫予定日
+            + (object)
+                + inventory_id: 2 (number) - 在庫データID
                 + title: ビール (string) - 物品名
                 + quantity: 12 (string) - 入庫数量
                 + box_quantity: 1 (string) - まとめ換算の入庫数量
                 + unit: 瓶 (string) - 単位
                 + box_unit: 箱 (string) - まとめ単位
                 + unit_price: 100 (string) - 仕入単価
-                + unit_snapshot:
+                + unit_snapshot (object) - まとめ単位情報
                     + piece_name: 瓶 (string) - 基本単位名称
                     + box_name: 箱 (string) - まとめ単位名称
                     + factor : 12 (string) - 換算値
-                + status: ordered (string)
-                + purchase_date: null (string)
-                + estimated_purchase_date: `2020-01-01` (string)
+                + status: ordered (string) - 状態
+                + purchase_date: null (string) - 入庫日
+                + estimated_purchase_date: `2020-01-01` (string) - 入庫予定日
 
 ## 入庫データ更新 [/api/v1/purchases/{id}]
 ### 入庫データ更新 [PUT]
@@ -342,9 +351,18 @@ HOST: https://web.zaico.co.jp/
             Content-Type: application/json
 
     + Attributes
-        + num: 100 (string, optional) - 入庫データ番号（ユーザーが任意に設定できる番号）
-        + customer_name: 株式会社ZAICO (string, optional) - 取引先名
-        + purchase_items (array[UpdatePurchaseItemToPurchased, UpdatePurchaseItemToOrdered, UpdatePurchaseItemToNotOrdered], required)
+        + num: 100 (string, optional) - 入庫データ番号（ユーザーが任意に設定できる番号）（最大250文字）
+        + customer_name: 株式会社ZAICO (string, optional) - 取引先名（最大255文字）
+        + memo: 入庫メモ (string, optional) - 入庫メモ（最大250文字）
+        + purchase_items (array[object], fixed-type, required) - 入庫物品データ
+            + (object)
+                + inventory_id: 1 (number, required) - 在庫データID
+                + quantity: 3 (number, required) - 入庫数量（整数部11桁、小数部4桁）
+                + unit_price: 100 (number, optional) - 仕入単価（整数部11桁、小数部4桁）
+                + status: purchased (string, required) - 状態（purchased/ordered/not_ordered）
+                + purchase_date: `2019-11-11` (string, optional) - 入庫日, YYYY-MM-DD形式
+                + estimated_purchase_date: `2019-11-11` (string, optional, nullable) - 入庫予定日, YYYY-MM-DD形式
+                + etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 
 + Response 200 (application/json)
     + Attributes
@@ -396,9 +414,10 @@ HOST: https://web.zaico.co.jp/
 
 ## CreateDelivery (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 25 (number, required) - 出庫数量
-+ unit_price: 100 (number, optional) - 納品単価
-+ estimated_delivery_date: `2019-09-01` (string, optional, nullable)
++ quantity: 25 (number, required) - 出庫数量（整数部11桁、小数部4桁）
++ unit_price: 100 (number, optional) - 納品単価（整数部11桁、小数部4桁）
++ estimated_delivery_date: `2019-09-01` (string, optional, nullable) - 出庫予定日
++ etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 + variants: (array)
     + ()
         + items: (array)
@@ -429,55 +448,58 @@ HOST: https://web.zaico.co.jp/
 
 ## UpdateDeliveryToCompleted
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 出庫数量
-+ unit_price: 100 (number, optional) - 納品単価
-+ status: completed_delivery (string)
-+ delivery_date: `2019-11-11` (string)
-+ estimated_delivery_date: `2019-11-11` (string, optional, nullable)
++ quantity: 3 (number, required) - 出庫数量（整数部11桁、小数部4桁）
++ unit_price: 100 (number, optional) - 納品単価（整数部11桁、小数部4桁）
++ status: completed_delivery (string) - 状態
++ delivery_date: `2019-11-11` (string) - 出庫日
++ estimated_delivery_date: `2019-11-11` (string, optional, nullable) - 出庫予定日
++ etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 
 ## UpdateDeliveryToBefore
 + inventory_id: 2 (number, required) - 在庫データID
-+ quantity: 5 (number, required) - 出庫数量
-+ unit_price: 100 (number, optional, nullable) - 納品単価
-+ status: before_delivery
-+ estimated_delivery_date: `2019-11-11` (string, optional, nullable)
++ quantity: 5 (number, required) - 出庫数量（整数部11桁、小数部4桁）
++ unit_price: 100 (number, optional, nullable) - 納品単価（整数部11桁、小数部4桁）
++ status: before_delivery (string) - 状態
++ estimated_delivery_date: `2019-11-11` (string, optional, nullable) - 出庫予定日
++ etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 
 ## ShippingInstructionView
-+ to_name: `在庫商会` (string) - 宛名
-+ to_name_postfix: `御中` (string) - 敬称
-+ to_zip: `1000101` (string) - 郵便番号
-+ to_address: `東京都大島町元町` (string) - 住所
-+ building_name: `ザイコ工場` (string) - 建物名・部屋番号
-+ to_phone_number: `0312341234` (string) - 電話番号
++ to_name: `在庫商会` (string) - 宛名（最大500文字）
++ to_name_postfix: `御中` (string) - 敬称（最大255文字）
++ to_zip: `1000101` (string) - 郵便番号（最大8文字）
++ to_address: `東京都大島町元町` (string) - 住所（最大32文字）
++ building_name: `ザイコ工場` (string) - 建物名・部屋番号（最大16文字）
++ to_phone_number: `0312341234` (string) - 電話番号（最大14文字）
 * shipping_client (ShippingClientsView) - 発送元
-* invoice_type_name: `ヤマト 発払い` (string) - 便指定
-+ product_name_on_invoice: `化学薬品` (string) - 品名
-+ freight_handling: `ワレ物注意` (string) - 荷扱い
-+ freight_handling2: `下載厳禁` (string) - 荷扱い
+* invoice_type_name: `ヤマト 発払い` (string) - 便指定（最大255文字）
++ product_name_on_invoice: `化学薬品` (string) - 品名（最大25文字）
++ freight_handling: `ワレ物注意` (string) - 荷扱い（最大255文字）
++ freight_handling2: `下載厳禁` (string) - 荷扱い（最大255文字）
 + arrival_date: `2023-10-31` (string) - 希望お届け日
-+ arrival_hour: `14〜16時` (string) - 希望お届け時間帯
++ arrival_hour: `14〜16時` (string) - 希望お届け時間帯（最大255文字）
 
 ## ShippingInstructionParams
 
-+ to_name: `在庫商会` (string) - 宛名
-* to_name_postfix: `御中` (string) - 敬称
-* to_zip: `1000101` (string) - 郵便番号
-* to_address: `東京都大島町元町` (string) - 住所
-* building_name: `ザイコ工場` (string) - 建物名・部屋番号
-* to_phone_number: `0312341234` (string) - 電話番号
++ to_name: `在庫商会` (string) - 宛名（最大500文字）
+* to_name_postfix: `御中` (string) - 敬称（最大255文字）
+* to_zip: `1000101` (string) - 郵便番号（最大8文字）
+* to_address: `東京都大島町元町` (string) - 住所（最大32文字）
+* building_name: `ザイコ工場` (string) - 建物名・部屋番号（最大16文字）
+* to_phone_number: `0312341234` (string) - 電話番号（最大14文字）
 * shipping_client_id: 123 (number) - 発送元ID
-* invoice_type_name: `ヤマト 発払い` (string) - 便指定
-+ product_name_on_invoice: `化学薬品` (string) - 品名
-* freight_handling: `ワレ物注意` (string) - 荷扱い
-* freight_handling2: `下載厳禁` (string) - 荷扱い
+* invoice_type_name: `ヤマト 発払い` (string) - 便指定（最大255文字）
++ product_name_on_invoice: `化学薬品` (string) - 品名（最大25文字）
+* freight_handling: `ワレ物注意` (string) - 荷扱い（最大255文字）
+* freight_handling2: `下載厳禁` (string) - 荷扱い（最大255文字）
 * arrival_date: `2023-10-31` (string) - 希望お届け日
-* arrival_hour: `14〜16時` (string) - 希望お届け時間帯
+* arrival_hour: `14〜16時` (string) - 希望お届け時間帯（最大255文字）
 
 ## CreatePurchaseItem (object)
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 25 (number, required) - 入庫数量
-+ unit_price: 100 (number, optional) - 仕入単価
-+ estimated_purchase_date: `2019-09-01` (string, optional, nullable)
++ quantity: 25 (number, required) - 入庫数量（整数部11桁、小数部4桁）
++ unit_price: 100 (number, optional) - 仕入単価（整数部11桁、小数部4桁）
++ estimated_purchase_date: `2019-09-01` (string, optional, nullable) - 入庫予定日
++ etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 + variants: (array)
     + ()
         + items: (array)
@@ -508,26 +530,29 @@ HOST: https://web.zaico.co.jp/
 
 ## UpdatePurchaseItemToPurchased
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 入庫数量
-+ unit_price: 100 (number, optional) - 仕入単価
-+ status: purchased (string)
-+ purchase_date: `2019-11-11` (string)
-+ estimated_purchase_date: `2019-11-11` (string, optional, nullable)
++ quantity: 3 (number, required) - 入庫数量（整数部11桁、小数部4桁）
++ unit_price: 100 (number, optional) - 仕入単価（整数部11桁、小数部4桁）
++ status: purchased (string) - 状態
++ purchase_date: `2019-11-11` (string) - 入庫日
++ estimated_purchase_date: `2019-11-11` (string, optional, nullable) - 入庫予定日
++ etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 
 ## UpdatePurchaseItemToOrdered
 + inventory_id: 1 (number, required) - 在庫データID
-+ quantity: 3 (number, required) - 入庫数量
-+ unit_price: 100 (number, optional) - 仕入単価
-+ status: ordered (string)
-+ purchase_date: `2019-11-11` (string)
-+ estimated_purchase_date: `2019-11-11` (string, optional, nullable)
++ quantity: 3 (number, required) - 入庫数量（整数部11桁、小数部4桁）
++ unit_price: 100 (number, optional) - 仕入単価（整数部11桁、小数部4桁）
++ status: ordered (string) - 状態
++ purchase_date: `2019-11-11` (string, optional) - 入庫日
++ estimated_purchase_date: `2019-11-11` (string, optional, nullable) - 入庫予定日
++ etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 
 ## UpdatePurchaseItemToNotOrdered
 + inventory_id: 2 (number, required) - 在庫データID
-+ quantity: 5 (number, required) - 入庫数量
-+ unit_price: 100 (number, optional, nullable) - 仕入単価
-+ status: not_ordered
-+ estimated_purchase_date: `2019-11-11` (string, optional, nullable)
++ quantity: 5 (number, required) - 入庫数量（整数部11桁、小数部4桁）
++ unit_price: 100 (number, optional, nullable) - 仕入単価（整数部11桁、小数部4桁）
++ status: not_ordered (string) - 状態
++ estimated_purchase_date: `2019-11-11` (string, optional, nullable) - 入庫予定日
++ etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
 
 # Group 入庫物品データ
 
@@ -584,48 +609,48 @@ HOST: https://web.zaico.co.jp/
       Authorization: Bearer YOUR_TOKEN
       Content-Type: application/json
 + Response 200 (application/json)
-    + Attributes (array)
-        + ()
-            + purchase_id: 10 (number)
-            + inventory_id: 1 (number)
-            + title: 掃除機 (string)
-            + quantity: 3 (string)
-            + unit: 台 (string)
-            + unit_price: 100 (string)
-            + status: purchased (string)
-            + purchase_date: 2021-11-17 (string)
-            + estimated_purchase_date: (string, nullable)
-            + etc: (string)
-            + created_at: `2023-11-16 11:27:24` (string)
-            + updated_at: `2023-11-16 11:27:24` (string)
-        + ()
-            + purchase_id: 10 (number)
-            + inventory_id: 2 (number)
-            + title: りんご (string)
-            + quantity: 10 (string)
-            + unit: 個 (string)
-            + unit_price: 200 (string)
-            + status: purchased (string)
-            + purchase_date: 2021-11-17 (string)
-            + estimated_purchase_date: (string, nullable)
-            + etc: (string)
-            + created_at: `2023-11-16 11:27:24` (string)
-            + updated_at: `2023-11-16 11:27:24` (string)
-            + variants: (array)
-                + ()
-                    + data_key: 347554bad83fd5dc1624af2c97895e279eef35f8e252231169172d0fd96757df (string)
-                    + quantity: 10.0 (number)
-                    + unit_price: 200.0 (number)
-                    + amount: 2000.0 (number)
-                    + box_quantity: 10.0 (number)
-                    + box_unit: 個 (string)
-                    + items: ()
-                        + 2: ()
-                            + id: 2 (number)
-                            + value: 第一倉庫 (string)
-                        + 3: ()
-                            + id: 3 (number)
-                            + value: 2023/11/30 (string)
+    + Attributes (array[object], fixed-type)
+        + (object)
+            + purchase_id: 10 (number) - 入庫データID
+            + inventory_id: 1 (number) - 在庫データID
+            + title: 掃除機 (string) - 物品名
+            + quantity: 3 (string) - 入庫数量
+            + unit: 台 (string) - 単位
+            + unit_price: 100 (string) - 仕入単価
+            + status: purchased (string) - 状態
+            + purchase_date: 2021-11-17 (string) - 入庫日
+            + estimated_purchase_date: (string, nullable) - 入庫予定日
+            + etc: (string) - 摘要・備考
+            + created_at: `2023-11-16 11:27:24` (string) - 作成日時
+            + updated_at: `2023-11-16 11:27:24` (string) - 更新日時
+        + (object)
+            + purchase_id: 10 (number) - 入庫データID
+            + inventory_id: 2 (number) - 在庫データID
+            + title: りんご (string) - 物品名
+            + quantity: 10 (string) - 入庫数量
+            + unit: 個 (string) - 単位
+            + unit_price: 200 (string) - 仕入単価
+            + status: purchased (string) - 状態
+            + purchase_date: 2021-11-17 (string) - 入庫日
+            + estimated_purchase_date: (string, nullable) - 入庫予定日
+            + etc: (string) - 摘要・備考
+            + created_at: `2023-11-16 11:27:24` (string) - 作成日時
+            + updated_at: `2023-11-16 11:27:24` (string) - 更新日時
+            + variants (array[object], fixed-type) - バリエーションデータ
+                + (object)
+                    + data_key: 347554bad83fd5dc1624af2c97895e279eef35f8e252231169172d0fd96757df (string) - データキー
+                    + quantity: 10.0 (number) - 入庫数量
+                    + unit_price: 200.0 (number) - 仕入単価
+                    + amount: 2000.0 (number) - 入庫金額
+                    + box_quantity: 10.0 (number) - まとめ換算の入庫数量
+                    + box_unit: 個 (string) - まとめ単位
+                    + items (object) - バリエーション項目
+                        + 2 (object)
+                            + id: 2 (number) - バリエーション項目ID
+                            + value: 第一倉庫 (string) - 値
+                        + 3 (object)
+                            + id: 3 (number) - バリエーション項目ID
+                            + value: 2023/11/30 (string) - 値
 
 ## 入庫物品データ削除 [/api/v1/purchases/items/{id}]
 ### 入庫物品データ削除 [DELETE]

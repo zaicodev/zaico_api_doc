@@ -40,10 +40,10 @@
    + Attributes (array)
        + (object)
            + id: 123 (number) - ID
-           + title: `セット品A` (string) - セット品名 
+           + title: `セット品A` (string) - セット品名（最大200文字）
            + price: 1000 (string) - 価格
-           + code: `123456` (string) - コード
-           + memo: `メモ` (string) - メモ  
+           + code: `123456` (string) - コード（最大200文字）
+           + memo: `メモ` (string) - メモ（最大250文字）
            + update_user_id: 1 (number) - 更新ユーザーID
            + available_delivery_quantity: 5 (string) - 出庫可能数量
            + created_at: `2022-01-01 09:00:00` (string) - 作成日時
@@ -77,10 +77,11 @@
        Authorization: Bearer YOUR_TOKEN
        Content-Type: application/json
    + Attributes
-       + title: `セット品A` (string, required) - セット品名
-       + price: 1000 (number, optional) - 価格 
-       + code: `123456` (string, optional) - コード
-       + inventories_set_items_attributes (array[object], fixed-type)  
+       + title: `セット品A` (string, required) - セット品名（最大200文字）
+       + price: 1000 (number, optional) - 価格
+       + code: `123456` (string, optional) - コード（最大200文字）
+       + memo: `メモ` (string, optional) - メモ（最大250文字）
+       + inventories_set_items_attributes (array[object], fixed-type)
            + (object)
                + inventory_id: 1 (number, required) - 在庫ID
                + quantity: 1 (number, required) - 数量
@@ -138,12 +139,12 @@
 + Response 200 (application/json)
    + Attributes
        + id: 123 (number) - セット品ID
-       + title: `セット品A` (string) - セット品名
+       + title: `セット品A` (string) - セット品名（最大200文字）
        + price: 1000 (string) - 価格
-       + code: `123456` (string) - コード
-       + memo: `メモ` (string) - メモ
+       + code: `123456` (string) - コード（最大200文字）
+       + memo: `メモ` (string) - メモ（最大250文字）
        + update_user_id: 1 (number) - 更新ユーザーID
-       + available_delivery_quantity: 5 (string) - 出庫可能数量 
+       + available_delivery_quantity: 5 (string) - 出庫可能数量
        + available_delivery_logical_quantity: 3 (string) - 予定フリー出庫可能数量
        + created_at: `2022-01-01 09:00:00` (string) - 作成日時
        + updated_at: `2022-01-02 10:00:00` (string) - 更新日時
@@ -187,14 +188,15 @@
        Authorization: Bearer YOUR_TOKEN
        Content-Type: application/json
    + Attributes
-       + title: `セット品A` (string) - セット品名
+       + title: `セット品A` (string) - セット品名（最大200文字）
        + price: 1000 (number) - 価格
-       + code: `123456` (string) - コード
+       + code: `123456` (string) - コード（最大200文字）
+       + memo: `メモ` (string, optional) - メモ（最大250文字）
        + inventories_set_items_attributes (array[object], fixed-type)
            + (object)
                + inventory_id: 1 (number, required) - 在庫ID
                + quantity: 1 (number, required) - 数量
-           + (object) 
+           + (object)
                + inventory_id: 2 (number, required)
                + quantity: 2 (number, required)
        

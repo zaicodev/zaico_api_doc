@@ -131,14 +131,15 @@
 
 ### InventoryGroupItemsViews
 + id: 1 (number) - ID
-+ title: `在庫データ` (string) - タイトル
++ title: `在庫データ` (string) - タイトル（最大200文字）
 + quantity: 10 (string) - 数量
 + logical_quantity: 10 (string) - 予定フリー在庫数
 + order_point_quantity: 10 (string) - 発注点（発注点機能がONの場合のみ）
 + order_point_warning: false (boolean) - 発注点の警告ON/OFF（発注点機能がONの場合のみ）
 + group_value: `グループタグ` (string) - グループタグ
-+ created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日
-+ updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日
++ code: `tw201800000000` (string) - バーコードの値（最大200文字）
++ created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日（ISO 8601形式）
++ updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日（ISO 8601形式）
 
 ### InventoryGroupItemsOrderPointsUpdateParams
 + order_point_quantity: 10 (string) - 発注点

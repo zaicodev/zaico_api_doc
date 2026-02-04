@@ -185,20 +185,20 @@
 + message: `Data was successfully deleted.` (string) - メッセージ
 
 ### InventoryUpdateParams
-+ title: `在庫データ` (string, required) - 在庫データタイトル
-+ quantity: 10 (string) - 数量
++ title: `在庫データ` (string, required) - 在庫データタイトル（最大200文字）
++ quantity: 10 (string) - 数量（整数部11桁、小数部4桁）
 + unit: `個` (string) - 単位
-+ category: `製品` (string) - カテゴリ
-+ state: `新品` (string) - 状態
-+ place: `ZAICO倉庫` (string) - 保管場所
++ category: `製品` (string) - カテゴリ（最大250文字）
++ state: `新品` (string) - 状態（最大200文字）
++ place: `ZAICO倉庫` (string) - 保管場所（最大200文字）
 + etc: `備考` (string) - 備考
-+ group_tag: `グループタグ` (string) - グループタグ（フルプランのみ）
-+ user_group: `ユーザーグループ` (string) - ユーザーグループ(カンマ区切りで複数指定可)
-+ code: `tw201800000000` (string) - バーコードの値
++ group_tag: `グループタグ` (string) - グループタグ（フルプランのみ）（最大250文字）
++ user_group: `ユーザーグループ` (string) - ユーザーグループ(カンマ区切りで複数指定可)（最大255文字）
++ code: `tw201800000000` (string) - バーコードの値（最大200文字）
 + item_image: `base64-encoded-image` (string)
 + stocktake_attributes
-  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日
-+ optional_attributes (array[object], fixed-type)
+  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日（ISO 8601形式）
++ optional_attributes (array[object], fixed-type) - 追加項目（最大9000文字）
     + (object)
         + name: `追加項目名` (string) - 追加項目名
         + value: `追加項目値` (string) - 追加項目値
@@ -228,31 +228,32 @@
 
 ### InventoriesViews
 + id: 1 (number) - ID
-+ title: `在庫データ` (string) - 在庫データタイトル
-+ quantity: 10 (string) - 数量
-+ logical_quantity: 10 (string) - 予定フリー在庫数（フルプランのみ）
++ title: `在庫データ` (string) - 在庫データタイトル（最大200文字）
++ quantity: 10 (string) - 数量（整数部11桁、小数部4桁）
++ logical_quantity: 10 (string) - 予定フリー在庫数（フルプランのみ）（整数部11桁、小数部4桁）
 + unit: `個` (string) - 単位
-+ category: `製品` (string) - カテゴリ
-+ state: `新品` (string) - 状態
-+ place: `ZAICO倉庫` (string) - 保管場所
++ category: `製品` (string) - カテゴリ（最大250文字）
++ categories (array[string]) - カテゴリの配列（categoryをカンマ分割した配列）
++ state: `新品` (string) - 状態（最大200文字）
++ place: `ZAICO倉庫` (string) - 保管場所（最大200文字）
 + etc: `備考` (string) - 備考
-+ group_tag: `グループタグ` (string) - グループタグ（フルプランのみ）
-+ code: `tw201800000000` (string) - バーコードの値
++ group_tag: `グループタグ` (string) - グループタグ（フルプランのみ）（最大250文字）
++ code: `tw201800000000` (string) - バーコードの値（最大200文字）
 + item_image (object)
   + url: `itemimageurl` (string) - 画像URL
 + stocktake_attributes
-  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日
-+ optional_attributes (array[object],fixed-type)
+  + checked_at: `2018-03-27T09:38:19+09:00` (string) - 棚卸日（ISO 8601形式）
++ optional_attributes (array[object],fixed-type) - 追加項目（最大9000文字）
   + (object)
     + name: `追加項目名` (string) - 追加項目名
     + value: `追加項目値` (string) - 追加項目値
 + quantity_management_attributes
   + order_point_quantity: 5 (string) - 発注点
-+ created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日
-+ updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日
++ created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日（ISO 8601形式）
++ updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日（ISO 8601形式）
 + create_user_name: `田村 太郎` (string) - 作成者
 + update_user_name: `田村 次郎` (string) - 更新者
-+ user_group: `基本グループ` (string) - ユーザーグループ
++ user_group: `基本グループ` (string) - ユーザーグループ（最大255文字）
 + is_quantity_auto_conversion_by_unit: `1` (string) - 単位換算するかどうか。"1"なら単位換算する、"0"なら単位換算しない
 + quantity_auto_conversion_by_unit_name: `箱` (string) - 単位換算後の単位名
 + quantity_auto_conversion_by_unit_factor: `12` (string) - 単位換算係数
