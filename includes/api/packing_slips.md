@@ -216,11 +216,20 @@
             Content-Type: application/json
 
     + Attributes
-        + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）
-        + customer_name: 株式会社ZAICO (string, optional) - 取引先名
+        + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）（最大250文字）
+        + customer_name: 株式会社ZAICO (string, optional) - 取引先名（最大255文字）
         + status: `completed_delivery` (string, required) - 状態
-        + delivery_date: `2019-09-01` (string) - 出庫日
-        + deliveries (array[CreateDelivery], required)
+        + delivery_date: `2019-09-01` (string) - 出庫日, YYYY-MM-DD形式
+        + memo: `出庫メモ` (string, optional) - 出庫メモ（最大250文字）
+        + note: `納品書備考` (string, optional) - 納品書備考（最大250文字）
+        + user_group: `ユーザーグループ` (string, optional) - ユーザーグループ（最大255文字）
+        + deliveries (array[object], fixed-type, required) - 出庫物品データ
+            + (object)
+                + inventory_id: 1 (number, required) - 在庫データID
+                + quantity: 25 (number, required) - 出庫数量（整数部11桁、小数部4桁）
+                + unit_price: 100 (number, optional) - 納品単価（整数部11桁、小数部4桁）
+                + estimated_delivery_date: `2019-09-01` (string, optional, nullable) - 出庫予定日, YYYY-MM-DD形式
+                + etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
         + shipping_instruction (ShippingInstructionParams)
 
 + Response 200 (application/json)
@@ -396,9 +405,19 @@
             Content-Type: application/json
 
     + Attributes
-        + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）
-        + customer_name: 株式会社ZAICO (string, optional) - 取引先名
-        + deliveries (array[UpdateDeliveryToCompleted, UpdateDeliveryToBefore], required)
+        + num: 100 (string, optional) - 出庫データ番号（ユーザーが任意に設定できる番号）（最大250文字）
+        + customer_name: 株式会社ZAICO (string, optional) - 取引先名（最大255文字）
+        + memo: `出庫メモ` (string, optional) - 出庫メモ（最大250文字）
+        + note: `納品書備考` (string, optional) - 納品書備考（最大250文字）
+        + deliveries (array[object], fixed-type, required) - 出庫物品データ
+            + (object)
+                + inventory_id: 1 (number, required) - 在庫データID
+                + quantity: 3 (number, required) - 出庫数量（整数部11桁、小数部4桁）
+                + unit_price: 100 (number, optional) - 納品単価（整数部11桁、小数部4桁）
+                + status: completed_delivery (string, required) - 状態（completed_delivery/before_delivery）
+                + delivery_date: `2019-11-11` (string, optional) - 出庫日, YYYY-MM-DD形式
+                + estimated_delivery_date: `2019-11-11` (string, optional, nullable) - 出庫予定日, YYYY-MM-DD形式
+                + etc: `摘要・備考` (string, optional) - 摘要・備考（最大250文字）
         + shipping_instruction (ShippingInstructionParams)
 
 + Response 200 (application/json)
@@ -502,47 +521,47 @@
       Authorization: Bearer YOUR_TOKEN
       Content-Type: application/json
 + Response 200 (application/json)
-    + Attributes (array)
-        + ()
-            + packing_slip_id: 10 (number)
-            + inventory_id: 1 (number)
-            + title: 掃除機 (string)
-            + quantity: 3 (string)
-            + unit: 台 (string)
-            + unit_price: 100 (string)
-            + status: completed_delivery (string)
-            + delivery_date: `2021-11-17` (string)
-            + estimated_delivery_date: (string, nullable)
-            + etc: (string)
-            + date_of_issue: `2021-11-17` (string)
-            + created_at: `2023-11-16 11:27:24` (string)
-            + updated_at: `2023-11-16 11:27:24` (string)
-        + ()
-            + packing_slip_id: 10 (number)
-            + inventory_id: 1 (number)
-            + title: 掃除機 (string)
-            + quantity: 3 (string)
-            + unit: 台 (string)
-            + unit_price: 100 (string)
-            + status: completed_delivery (string)
-            + delivery_date: `2021-11-17` (string)
-            + estimated_delivery_date: (string, nullable)
-            + etc: (string)
-            + date_of_issue: `2021-11-17` (string)
-            + created_at: `2023-11-16 11:27:24` (string)
-            + updated_at: `2023-11-16 11:27:24` (string)
-            + variants: (array)
-                + ()
-                    + data_key: 347554bad83fd5dc1624af2c97895e279eef35f8e252231169172d0fd96757df (string)
-                    + quantity: 3.0 (number)
-                    + unit_price: 100.0 (number)
-                    + amount: 300.0 (number)
-                    + box_quantity: 3.0 (number)
-                    + box_unit: 台 (string)
-                    + items: ()
-                        + 4: ()
-                            + id: 4 (number)
-                            + value: `20251217-A01-1000` (string)
-                        + 5: ()
-                            + id: 5 (number)
-                            + value: 第一倉庫 (string)
+    + Attributes (array[object], fixed-type)
+        + (object)
+            + packing_slip_id: 10 (number) - 出庫データID
+            + inventory_id: 1 (number) - 在庫データID
+            + title: 掃除機 (string) - 物品名
+            + quantity: 3 (string) - 出庫数量
+            + unit: 台 (string) - 単位
+            + unit_price: 100 (string) - 出庫単価
+            + status: completed_delivery (string) - 状態
+            + delivery_date: `2021-11-17` (string) - 出庫日
+            + estimated_delivery_date: (string, nullable) - 出庫予定日
+            + etc: (string) - 摘要・備考
+            + date_of_issue: `2021-11-17` (string) - 納品書に記載される出庫日
+            + created_at: `2023-11-16 11:27:24` (string) - 作成日時
+            + updated_at: `2023-11-16 11:27:24` (string) - 更新日時
+        + (object)
+            + packing_slip_id: 10 (number) - 出庫データID
+            + inventory_id: 1 (number) - 在庫データID
+            + title: 掃除機 (string) - 物品名
+            + quantity: 3 (string) - 出庫数量
+            + unit: 台 (string) - 単位
+            + unit_price: 100 (string) - 出庫単価
+            + status: completed_delivery (string) - 状態
+            + delivery_date: `2021-11-17` (string) - 出庫日
+            + estimated_delivery_date: (string, nullable) - 出庫予定日
+            + etc: (string) - 摘要・備考
+            + date_of_issue: `2021-11-17` (string) - 納品書に記載される出庫日
+            + created_at: `2023-11-16 11:27:24` (string) - 作成日時
+            + updated_at: `2023-11-16 11:27:24` (string) - 更新日時
+            + variants (array[object], fixed-type) - バリエーションデータ
+                + (object)
+                    + data_key: 347554bad83fd5dc1624af2c97895e279eef35f8e252231169172d0fd96757df (string) - データキー
+                    + quantity: 3.0 (number) - 出庫数量
+                    + unit_price: 100.0 (number) - 出庫単価
+                    + amount: 300.0 (number) - 出庫金額
+                    + box_quantity: 3.0 (number) - まとめ換算の出庫数量
+                    + box_unit: 台 (string) - まとめ単位
+                    + items (object) - バリエーション項目
+                        + 4 (object)
+                            + id: 4 (number) - バリエーション項目ID
+                            + value: `20251217-A01-1000` (string) - 値
+                        + 5 (object)
+                            + id: 5 (number) - バリエーション項目ID
+                            + value: 第一倉庫 (string) - 値

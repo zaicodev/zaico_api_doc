@@ -35,8 +35,8 @@
 ### ShippingClientsView
 
 * id: 1 (number) - レコードID
-* name: `発送元A` (string) - 名前/会社名
-* zip: `1234567` (string) - 郵便番号
-* address: `東京都港区` (string) - 住所
-* building_name: `港ビル` (string) - 建物名・部屋番号
-* phone_number: `08012345678` (string) - 電話番号
+* name: `発送元A` (string, required) - 名前/会社名（最大16文字）
+* zip: `1234567` (string, required) - 郵便番号（最大7文字）
+* address: `東京都港区` (string, required) - 住所（最大32文字）
+* building_name: `港ビル` (string) - 建物名・部屋番号（最大16文字）
+* phone_number: `08012345678` (string, required) - 電話番号（最大11文字）

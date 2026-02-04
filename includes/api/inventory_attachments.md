@@ -38,8 +38,8 @@
             Content-Type: multipart/form-data
 
     + Attributes
-       + inventory_attachment (object)  
-           + item_file: `添付する写真またはファイルのバイナリデータ` (string, required) - 添付する写真またはファイルのバイナリデータ
+       + inventory_attachment (object)
+           + item_file: `添付する写真またはファイルのバイナリデータ` (string, required) - 添付する写真またはファイルのバイナリデータ（必須）
 
 + Response 200 (application/json)
     + Attributes

@@ -108,32 +108,32 @@
 ## Data Structures
 ### CustomersView
 + id: 1 (number) - レコードID
-+ name: `取引先A` (string) - 取引先名
-+ email: `zaico@example.com` (string) - メールアドレス
-+ name_postfix: `様` (string) - 敬称
-+ zip: `1234567` (string) - 郵便番号
-+ address: `東京都港区` (string) - 住所
-+ building_name: `港ビル` (string) - 建物名・部屋番号
-+ phone_number: `08012345678` (string) - 電話番号
-+ etc: `取引先` (string) - 備考
++ name: `取引先A` (string) - 取引先名（最大100文字）
++ email: `zaico@example.com` (string) - メールアドレス（最大200文字）
++ name_postfix: `様` (string) - 敬称（最大10文字）
++ zip: `1234567` (string) - 郵便番号（最大7文字）
++ address: `東京都港区` (string) - 住所（最大1000文字）
++ building_name: `港ビル` (string) - 建物名・部屋番号（最大1000文字）
++ phone_number: `08012345678` (string) - 電話番号（最大11文字）
++ etc: `取引先` (string) - 備考（最大500文字）
 + fax_number: `5678` (string) - FAX番号
 + category: `東京` (string) - カテゴリ
 + `customer_type`: `packing_slip` (string) - 入出庫区分
-+ num: `1` (string) - 取引先No.
++ num: `1` (string) - 取引先No.（最大200文字）
 
 ### CustomerCreateParams
-+ name: `取引先A` (string) -  取引先名
-+ email: `zaico@example.com` (string) - メールアドレス
-+ name_postfix: `様` (string) - 敬称
-+ zip: `1234567` (string) - 郵便番号
-+ address: `東京都港区` (string) - 住所
-+ building_name: `港ビル` (string) - 建物名・部屋番号
-+ phone_number: `08012345678` (string) - 電話番号
-+ etc: `取引先` (string) - 備考
++ name: `取引先A` (string, required) - 取引先名（最大100文字）
++ email: `zaico@example.com` (string) - メールアドレス（最大200文字）
++ name_postfix: `様` (string) - 敬称（最大10文字）
++ zip: `1234567` (string) - 郵便番号（最大7文字）
++ address: `東京都港区` (string) - 住所（最大1000文字）
++ building_name: `港ビル` (string) - 建物名・部屋番号（最大1000文字）
++ phone_number: `08012345678` (string) - 電話番号（最大11文字）
++ etc: `取引先` (string) - 備考（最大500文字）
 + fax_number: `5678` (string) - FAX番号
 + category: `東京` (string) - カテゴリ
 + `customer_type`: `purchase` (string) - 入出庫区分
-+ num: `1` (string) - 取引先No.
++ num: `1` (string) - 取引先No.（最大200文字）
 
 ### CustomerCreateSuccessfully
 + code: 200 (number) - コード
@@ -142,18 +142,18 @@
 + data_id: 1 (number) - レコードID
 
 ### CustomerUpdateParams
-+ name: `取引先A` (string) -  取引先名
-+ email: `zaico@example.com` (string) - メールアドレス
-+ name_postfix: `様` (string) - 敬称
-+ zip: `1234567` (string) - 郵便番号
-+ address: `東京都港区` (string) - 住所
-+ building_name: `港ビル` (string) - 建物名・部屋番号
-+ phone_number: `08012345678` (string) - 電話番号
-+ etc: `取引先` (string) - 備考
++ name: `取引先A` (string) - 取引先名（最大100文字）
++ email: `zaico@example.com` (string) - メールアドレス（最大200文字）
++ name_postfix: `様` (string) - 敬称（最大10文字）
++ zip: `1234567` (string) - 郵便番号（最大7文字）
++ address: `東京都港区` (string) - 住所（最大1000文字）
++ building_name: `港ビル` (string) - 建物名・部屋番号（最大1000文字）
++ phone_number: `08012345678` (string) - 電話番号（最大11文字）
++ etc: `取引先` (string) - 備考（最大500文字）
 + fax_number: `5678` (string) - FAX番号
 + category: `東京` (string) - カテゴリ
 + `customer_type`: `packing_slip` (string) - 入出庫区分
-+ num: `1` (string) - 取引先No.
++ num: `1` (string) - 取引先No.（最大200文字）
 
 ### CustomerUpdateSuccessfully
 + code: 200 (number) - コード
