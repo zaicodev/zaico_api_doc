@@ -250,7 +250,8 @@
 + quantity_management_attributes
   + order_point_quantity: 5 (string) - 発注点
 + created_at: `2018-03-27T09:38:19+09:00` (string) - 作成日（ISO 8601形式）
-+ updated_at `2018-03-27T09:38:19+09:00` (string) - 更新日（ISO 8601形式）
++ updated_at: `2018-03-27T09:38:19+09:00` (string) - システム更新日時（ISO 8601形式）。在庫データに関連するあらゆる変更で自動更新される
++ update_date: `2018-03-27T09:38:19+09:00` (string) - 更新日時（ISO 8601形式）。基本的にシステム更新日時と同様だが、入出庫予定の変更や追加項目自体の追加・削除など在庫データ自体の変更ではない場合は更新されない
 + create_user_name: `田村 太郎` (string) - 作成者
 + update_user_name: `田村 次郎` (string) - 更新者
 + user_group: `基本グループ` (string) - ユーザーグループ（最大255文字）
