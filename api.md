@@ -15,7 +15,7 @@ HOST: https://web.zaico.co.jp
 # zaico API Document
 このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。
 
-新しい公開API v2のドキュメントは[こちら](https://internal-tools.zaico.co.jp/public-api-v2-doc/openapi.html)をご覧ください。
+新しい公開API v2のドキュメントは[こちら](https://public-docs.zaico.co.jp/public-api-v2-doc/openapi.html)をご覧ください。
 
 2025年12月18日更新
 
