@@ -10,14 +10,32 @@ HOST: https://web.zaico.co.jp
   font-size: 12px;
   font-weight: normal;
 }
+.v1-deprecation-notice {
+  background-color: #fff8e1;
+  border-left: 4px solid #ffc107;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 4px;
+}
+.v1-deprecation-notice .notice-title {
+  font-weight: bold;
+  font-size: 1.05em;
+  display: block;
+  margin-bottom: 8px;
+}
 </style>
 
 # zaico API Document
 このドキュメントはZAICO APIの機能と使うために必要なパラメータなどを説明するものです。
 
-新しい公開API v2のドキュメントは[こちら](https://public-docs.zaico.co.jp/public-api-v2-doc/openapi.html)をご覧ください。
+<div class="v1-deprecation-notice">
+<span class="notice-title">⚠ 重要なお知らせ</span>
+zaico API v1 は今後、大きな機能追加・メンテナンスを予定しておりません。<br>
+新規ご利用の際は<strong>公開API v2</strong>のご利用をご検討ください。<br>
+公開API v2 ドキュメントは<a href="https://public-docs.zaico.co.jp/public-api-v2-doc/openapi.html">こちら</a>をご覧ください。
+</div>
 
-2025年12月18日更新
+2026年6月15日更新
 
 <!-- include(includes/authorization.md) -->
 

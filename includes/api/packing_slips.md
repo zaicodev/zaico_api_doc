@@ -374,6 +374,11 @@
                   出庫前在庫を出庫済に更新すると **対象の在庫データの数量を減少します**
                 * 出庫済在庫の状態を更新することはできません
             * delivery_date : 出庫日
+                * statusによって必須かどうか変わります
+                * status=completed_delivery
+                    * delivery_dateが必須
+                * status=before_delivery
+                    * delivery_dateは不要
             * estimated_delivery_date : 出庫予定日
             * etc : 摘要・備考
     * shipping_instruction : 発送情報（フルプランのみ設定できます）
