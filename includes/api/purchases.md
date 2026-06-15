@@ -159,7 +159,7 @@ HOST: https://web.zaico.co.jp/
     * purchase_date : 入庫日
         * statusによって必須かどうか変わります
         * status=purchased
-            * purcahse_dateが必須
+            * purchase_dateが必須
         * status=not_ordered
             * purchase_dateは不要
     * memo : 入庫メモ
@@ -338,6 +338,11 @@ HOST: https://web.zaico.co.jp/
                   入庫前在庫を入庫済に更新すると **対象の在庫データの数量を増加します**
                 * 入庫済在庫の状態を更新することはできません
             * purchase_date : 入庫日
+                * statusによって必須かどうか変わります
+                * status=purchased
+                    * purchase_dateが必須
+                * status=not_ordered
+                    * purchase_dateは不要
             * estimated_purchase_date : 入庫予定日
             * etc : 摘要・備考
 
